@@ -1,5 +1,5 @@
 <!--suppress HtmlDeprecatedAttribute -->
-<h1 align="center"> :computer: Dops - CLI DevOps Toolkit </h1>
+<h1 align="center"> :computer: dops - CLI DevOps Toolkit </h1>
 
 <p align="center">
 
