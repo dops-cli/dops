@@ -1,12 +1,16 @@
-name: changelog
 
-on: push
+name: changelog
+on: [push]
 
 jobs:
   generate:
     runs-on: ubuntu-latest
-    steps: 
-      - name: Conventional Changelog Action
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Generate changelog
+        id: changelog
         uses: TriPSs/conventional-changelog-action@v3
         with:
           github-token: ${{ secrets.github_token }}
