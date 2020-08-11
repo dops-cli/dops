@@ -6,9 +6,9 @@ import (
 
 var IsDebug bool
 
-type Module struct{}
+type Flag struct{}
 
-func (Module) GetFlags() []cli.Flag {
+func (Flag) GetFlags() []cli.Flag {
 	return []cli.Flag{
 		&cli.BoolFlag{
 			Name:        "debug",
@@ -16,8 +16,4 @@ func (Module) GetFlags() []cli.Flag {
 			Destination: &IsDebug,
 		},
 	}
-}
-
-func (Module) GetCommands() []*cli.Command {
-	return []*cli.Command{}
 }

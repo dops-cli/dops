@@ -15,10 +15,6 @@ var wg sync.WaitGroup
 
 type Module struct{}
 
-func (Module) GetFlags() []cli.Flag {
-	return []cli.Flag{}
-}
-
 func (Module) GetCommands() []*cli.Command {
 	return []*cli.Command{
 		{

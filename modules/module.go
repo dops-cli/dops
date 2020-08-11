@@ -1,15 +1,19 @@
 package modules
 
 import (
+	"github.com/dops-cli/dops/flags/debug"
 	"github.com/dops-cli/dops/modules/bulkdownload"
-	"github.com/dops-cli/dops/modules/debug"
 	"github.com/dops-cli/dops/modules/update"
 	"github.com/urfave/cli/v2"
 )
 
-var RegisteredModules = []Module{debug.Module{}, bulkdownload.Module{}, update.Module{}}
+var RegisteredGlobalFlags = []GFlag{debug.Flag{}}
+var RegisteredModules = []Module{bulkdownload.Module{}, update.Module{}}
 
 type Module interface {
-	GetFlags() []cli.Flag
 	GetCommands() []*cli.Command
+}
+
+type GFlag interface {
+	GetFlags() []cli.Flag
 }
