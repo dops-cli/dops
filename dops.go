@@ -1,6 +1,7 @@
 package main
 
 import (
+	"github.com/dops-cli/dops/constants"
 	"github.com/dops-cli/dops/module"
 	"github.com/urfave/cli/v2"
 	"log"
@@ -14,7 +15,7 @@ var (
 )
 
 func init() {
-	cli.AppHelpTemplate += "\nContribute to this tool here: https://github.com/dops-cli <3\n"
+	cli.AppHelpTemplate = constants.AppHelpTemplate
 }
 
 func main() {
