@@ -15,7 +15,7 @@ curl -s https://dops-cli.com/get/linux | sudo bash
 
 ### Windows
 
-To install `dops` you must run the following command in a PowerShell terminal with administrative privileges:
+To install `dops` you must run the following command in a PowerShell terminal with **administrative privileges**:
 
 ```powershell
 iwr -useb dops-cli.com/get/windows | iex
