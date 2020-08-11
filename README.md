@@ -1,12 +1,32 @@
-# dops
-A module based DevOps CLI-Toolkit written in golang.
+<!--suppress HtmlDeprecatedAttribute -->
+<h1 align="center"> :computer: Dops - CLI DevOps Toolkit </h1>
 
-![Go Test](https://github.com/dops-cli/dops/workflows/Go%20Test/badge.svg)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+<p align="center">
+
+<a href="https://github.com/dops-cli/dops/actions?query=workflow%3A%22Go+Test%22">
+<img src="https://github.com/dops-cli/dops/workflows/Go%20Test/badge.svg" alt="Go Test">
+</a>
+
+<a href="https://opensource.org/licenses/MIT">
+<img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT">
+</a>
+
+<a href="https://github.com/dops-cli/dops/issues">
+<img src="https://img.shields.io/github/issues/dops-cli/dops.svg" alt="Issues">
+</a>
+
+<a href="https://github.com/dops-cli/dops/stargazers">
+<img src="https://img.shields.io/github/stars/dops-cli/dops.svg" alt="Stars">
+</a>
+
+<a href="https://github.com/dops-cli/dops/fork">
+<img src="https://img.shields.io/github/forks/dops-cli/dops.svg" alt="Forks">
+</a>
+
+</p>
 
 ----
 
-<!--suppress HtmlDeprecatedAttribute -->
 <p align="center">
 <strong><a href="https://github.com/dops-cli/dops#installation">Installation</a></strong>
 |
