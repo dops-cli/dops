@@ -4,6 +4,23 @@ A module based DevOps CLI-Toolkit written in golang.
 ![Go Test](https://github.com/dops-cli/dops/workflows/Go%20Test/badge.svg)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
+----
+
+<!--suppress HtmlDeprecatedAttribute -->
+<p align="center">
+<strong><a href="https://github.com/dops-cli/dops#installation">Installation</a></strong>
+|
+<strong><a href="https://github.com/dops-cli/dops#usage">Usage</a></strong>
+|
+<strong><a href="https://github.com/dops-cli/dops/blob/master/CONTRIBUTING.md">Contributing</a></strong>
+|
+<strong><a href="https://github.com/dops-cli/dops/issues/new?assignees=MarvinJWendt&labels=bug&template=report-a-bug.md&title=">Report Bug</a></strong>
+|
+<strong><a href="https://github.com/dops-cli/dops/issues/new?assignees=MarvinJWendt&labels=enhancement&template=request-a-feature.md&title=">Submit Feature Idea</a></strong>
+</p>
+
+----
+
 ## Installation
 
 > To install dops just run the following commands
