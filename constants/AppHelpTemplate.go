@@ -1,5 +1,6 @@
 package constants
 
+// AppHelpTemplate contains the template of dops help text.
 var AppHelpTemplate = `NAME:
    {{.Name}}{{if .Usage}} - {{.Usage}}{{end}}
 

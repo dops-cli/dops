@@ -8,13 +8,23 @@ import (
 	"github.com/urfave/cli/v2"
 )
 
+// RegisteredGlobalFlags contains all global flags.
+// If a global flag is not in this slice, it won't be activated.
 var RegisteredGlobalFlags = []GlobalFlag{debug.Flag{}, raw.Flag{}}
+
+// RegisteredModules contains all available modules.
+// If a module is not in this slice, it won't be activated.
+// Except for the module `modules`, which is registered in the main package.
 var RegisteredModules = []Module{bulkdownload.Module{}, update.Module{}}
 
+// Module is the interface of each module available in dops.
+// Each module must return at least one command.
 type Module interface {
 	GetCommands() []*cli.Command
 }
 
+// GlobalFlag is the interface of each global flag in dops.
+// Each flag module must return at least one flag.
 type GlobalFlag interface {
 	GetFlags() []cli.Flag
 }

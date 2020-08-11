@@ -18,8 +18,6 @@ var wg sync.WaitGroup
 
 type Module struct{}
 
-//var p = say.Printer{ModuleName: "Bulk Download"}
-
 func (Module) GetCommands() []*cli.Command {
 	return []*cli.Command{
 		{

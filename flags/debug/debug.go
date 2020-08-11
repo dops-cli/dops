@@ -4,6 +4,7 @@ import (
 	"github.com/urfave/cli/v2"
 )
 
+// IsDebug returns true if dops is run in debugging mode.
 var IsDebug bool
 
 type Flag struct{}
