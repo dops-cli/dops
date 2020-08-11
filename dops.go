@@ -3,6 +3,7 @@ package main
 import (
 	"github.com/dops-cli/dops/constants"
 	"github.com/dops-cli/dops/module"
+	"github.com/dops-cli/dops/say"
 	"github.com/urfave/cli/v2"
 	"log"
 	"os"
@@ -16,6 +17,9 @@ var (
 
 func init() {
 	cli.AppHelpTemplate = constants.AppHelpTemplate
+	cli.VersionPrinter = func(c *cli.Context) {
+		say.Info("dops is currently on version " + c.App.Version + "!")
+	}
 }
 
 func main() {

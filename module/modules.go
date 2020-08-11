@@ -7,13 +7,13 @@ import (
 	"github.com/urfave/cli/v2"
 )
 
-var RegisteredGlobalFlags = []GFlag{debug.Flag{}}
+var RegisteredGlobalFlags = []GlobalFlag{debug.Flag{}}
 var RegisteredModules = []Module{bulkdownload.Module{}, update.Module{}}
 
 type Module interface {
 	GetCommands() []*cli.Command
 }
 
-type GFlag interface {
+type GlobalFlag interface {
 	GetFlags() []cli.Flag
 }

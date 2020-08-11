@@ -1,7 +1,7 @@
 package update
 
 import (
-	"fmt"
+	"github.com/dops-cli/dops/say"
 	"github.com/urfave/cli/v2"
 )
 
@@ -14,8 +14,8 @@ func (Module) GetCommands() []*cli.Command {
 			Usage:       "",
 			Description: "Updates dops",
 			Action: func(c *cli.Context) error {
-				fmt.Println("Automatic updates are not supported currently.")
-				fmt.Println("Please visit https://github.com/dops-cli/dops/releases to download the current version.")
+				say.Text("Automatic updates are not supported currently.")
+				say.Text("Please visit https://github.com/dops-cli/dops/releases to download the current version.")
 				cli.ShowVersion(c)
 				return nil
 			},
