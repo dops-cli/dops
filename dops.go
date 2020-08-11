@@ -3,6 +3,7 @@ package main
 import (
 	"github.com/dops-cli/dops/constants"
 	"github.com/dops-cli/dops/module"
+	"github.com/dops-cli/dops/module/modules"
 	"github.com/dops-cli/dops/say"
 	"github.com/urfave/cli/v2"
 	"log"
@@ -31,6 +32,8 @@ func main() {
 	for _, m := range module.RegisteredModules {
 		CliCommands = append(CliCommands, m.GetCommands()...)
 	}
+
+	CliCommands = append(CliCommands, modules.Module{}.GetCommands()...)
 
 	app := &cli.App{
 		Name:    "dops",
