@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/dops-cli/dops/modules"
+	"github.com/dops-cli/dops/module"
 	"github.com/urfave/cli/v2"
 	"log"
 	"os"
@@ -19,11 +19,11 @@ func init() {
 
 func main() {
 
-	for _, flag := range modules.RegisteredGlobalFlags {
+	for _, flag := range module.RegisteredGlobalFlags {
 		CliFlags = append(CliFlags, flag.GetFlags()...)
 	}
 
-	for _, module := range modules.RegisteredModules {
+	for _, module := range module.RegisteredModules {
 		CliCommands = append(CliCommands, module.GetCommands()...)
 	}
 

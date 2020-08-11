@@ -1,9 +1,9 @@
-package modules
+package module
 
 import (
 	"github.com/dops-cli/dops/flags/debug"
-	"github.com/dops-cli/dops/modules/bulkdownload"
-	"github.com/dops-cli/dops/modules/update"
+	"github.com/dops-cli/dops/module/bulkdownload"
+	"github.com/dops-cli/dops/module/update"
 	"github.com/urfave/cli/v2"
 )
 
