@@ -19,12 +19,12 @@ func init() {
 
 func main() {
 
-	for _, flag := range module.RegisteredGlobalFlags {
-		CliFlags = append(CliFlags, flag.GetFlags()...)
+	for _, f := range module.RegisteredGlobalFlags {
+		CliFlags = append(CliFlags, f.GetFlags()...)
 	}
 
-	for _, module := range module.RegisteredModules {
-		CliCommands = append(CliCommands, module.GetCommands()...)
+	for _, m := range module.RegisteredModules {
+		CliCommands = append(CliCommands, m.GetCommands()...)
 	}
 
 	app := &cli.App{
