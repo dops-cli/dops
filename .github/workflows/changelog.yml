@@ -1,8 +1,12 @@
-name: changelog-generator
+name: changelog
 
 on: push
 
-- name: Conventional Changelog Action
-  uses: TriPSs/conventional-changelog-action@v3
-  with:
-    github-token: ${{ secrets.github_token }}
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps: 
+      - name: Conventional Changelog Action
+        uses: TriPSs/conventional-changelog-action@v3
+        with:
+          github-token: ${{ secrets.github_token }}
