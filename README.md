@@ -7,10 +7,6 @@
 <img src="https://img.shields.io/github/workflow/status/dops-cli/dops/Go%20Test?style=flat-square" alt="Go Test">
 </a>
 
-<a href="https://opensource.org/licenses/MIT">
-<img src="https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square" alt="License: MIT">
-</a>
-
 <a href="https://github.com/dops-cli/dops/issues">
 <img src="https://img.shields.io/github/issues/dops-cli/dops.svg?style=flat-square" alt="Issues">
 </a>
@@ -21,6 +17,10 @@
 
 <a href="https://github.com/dops-cli/dops/fork">
 <img src="https://img.shields.io/github/forks/dops-cli/dops.svg?style=flat-square" alt="Forks">
+</a>
+
+<a href="https://opensource.org/licenses/MIT">
+<img src="https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square" alt="License: MIT">
 </a>
 
 </p>
