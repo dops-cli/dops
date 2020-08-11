@@ -37,4 +37,4 @@ jobs:
             Current `go.mod` and `go.sum` don't match the source code.
           branch: go-mod-tidy
           branch-suffix: timestamp
-          labels: automerge
+          labels: enhancement
