@@ -2,6 +2,7 @@
 A module based DevOps CLI-Toolkit written in golang.
 
 ![Go Test](https://github.com/dops-cli/dops/workflows/Go%20Test/badge.svg)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## Installation
 
@@ -36,3 +37,8 @@ If you want to learn more about a particular module, you can do so with this com
 ## Versioning
 
 We are in the first major version of `dops`, with every new module, and other significant changes, the `MINOR (v1.↑.0)` number will be increased. For everything else (fixes, docs, refactor, etc.), the `PATCH (v1.X.↑)` number will be increased.
+
+---
+
+> [dops-cli.com](https://dops-cli.com) &nbsp;&middot;&nbsp;
+> GitHub [@dops-cli](https://github.com/dops-cli)
