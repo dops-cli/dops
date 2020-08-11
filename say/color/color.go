@@ -3,6 +3,7 @@ package color
 
 import (
 	"fmt"
+	"github.com/dops-cli/dops/flags/raw"
 	"io"
 	"os"
 	"strconv"
@@ -454,6 +455,11 @@ func colorPrint(format string, p Attribute, a ...interface{}) {
 }
 
 func colorString(format string, p Attribute, a ...interface{}) string {
+
+	if raw.OutputRaw {
+		return format
+	}
+
 	c := getCachedColor(p)
 
 	if len(a) == 0 {

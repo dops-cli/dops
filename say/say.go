@@ -2,6 +2,7 @@ package say
 
 import (
 	"fmt"
+	"github.com/dops-cli/dops/flags/raw"
 	"github.com/dops-cli/dops/say/color"
 	"log"
 )
@@ -14,6 +15,9 @@ var (
 )
 
 func p(prefix string, text ...interface{}) {
+	if raw.OutputRaw {
+		prefix = ""
+	}
 	_, err := fmt.Fprint(color.Output, prefix)
 	if err != nil {
 		log.Fatal(err)
@@ -22,6 +26,10 @@ func p(prefix string, text ...interface{}) {
 	if err != nil {
 		log.Fatal(err)
 	}
+}
+
+func Raw(text ...interface{}) {
+	p("", text...)
 }
 
 func Text(text ...interface{}) {
