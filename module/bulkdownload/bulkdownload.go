@@ -3,17 +3,22 @@ package bulkdownload
 import (
 	"bufio"
 	"fmt"
+	"github.com/dops-cli/dops/say"
+	"github.com/dops-cli/dops/say/color"
 	"github.com/urfave/cli/v2"
 	"io"
 	"net/http"
 	"os"
 	"path/filepath"
+	"strconv"
 	"sync"
 )
 
 var wg sync.WaitGroup
 
 type Module struct{}
+
+//var p = say.Printer{ModuleName: "Bulk Download"}
 
 func (Module) GetCommands() []*cli.Command {
 	return []*cli.Command{
@@ -60,7 +65,7 @@ func (Module) GetCommands() []*cli.Command {
 }
 
 func downloadMultipleFiles(urls []string, outputDir string, concurrentDownloads int) {
-	fmt.Println("Downloading files...")
+	say.Text("Downloading files...")
 
 	guard := make(chan struct{}, concurrentDownloads)
 
@@ -93,7 +98,7 @@ func readLines(path string) ([]string, error) {
 
 func downloadFile(URL string, outputDir string, index int, total int) error {
 	wg.Add(1)
-	fmt.Println(fmt.Sprintf("Downloading %s [%d/%d]", URL, index+1, total))
+	say.Text(fmt.Sprintf("Downloading %s [%s/%s]", URL, color.HiGreenString(strconv.Itoa(index+1)), color.GreenString(strconv.Itoa(total))))
 	response, err := http.Get(URL)
 	if err != nil {
 		return err
