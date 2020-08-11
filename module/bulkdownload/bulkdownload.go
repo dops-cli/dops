@@ -44,19 +44,19 @@ func (Module) GetCommands() []*cli.Command {
 				&cli.StringFlag{
 					Name:    "input",
 					Aliases: []string{"i"},
-					Usage:   "Load URLs from `FILE`",
+					Usage:   "load URLs from `FILE`",
 					Value:   "urls.txt",
 				},
 				&cli.StringFlag{
 					Name:        "output",
 					Aliases:     []string{"o"},
-					Usage:       "Save the downloaded files to `DIR`",
+					Usage:       "save the downloaded files to `DIR`",
 					DefaultText: "current directory",
 				},
 				&cli.IntFlag{
 					Name:    "concurrent",
 					Aliases: []string{"c"},
-					Usage:   "Downloads `NUMBER` files concurrently",
+					Usage:   "downloads `NUMBER` files concurrently",
 					Value:   3,
 				},
 			},
