@@ -1,6 +1,8 @@
 # dops
 A module based DevOps CLI-Toolkit written in golang.
 
+![Go Test](https://github.com/dops-cli/dops/workflows/Go%20Test/badge.svg)
+
 ## Installation
 
 > To install dops just run the following commands
