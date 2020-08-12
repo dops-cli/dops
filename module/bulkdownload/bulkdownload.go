@@ -3,6 +3,7 @@ package bulkdownload
 import (
 	"bufio"
 	"fmt"
+	"github.com/dops-cli/dops/categories"
 	"github.com/dops-cli/dops/say"
 	"github.com/dops-cli/dops/say/color"
 	"github.com/urfave/cli/v2"
@@ -24,6 +25,7 @@ func (Module) GetCommands() []*cli.Command {
 			Name:        "bulkdownload",
 			Usage:       "bulkdownload -input FILE -output DIR -c THREADS",
 			Description: "Download multiple files from a list",
+			Category:    categories.Web,
 			Aliases:     []string{"bd"},
 			Action: func(c *cli.Context) error {
 				inputFile := c.String("input")

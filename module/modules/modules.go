@@ -1,6 +1,7 @@
 package modules
 
 import (
+	"github.com/dops-cli/dops/categories"
 	"github.com/dops-cli/dops/module"
 	"github.com/dops-cli/dops/say"
 	"github.com/urfave/cli/v2"
@@ -16,6 +17,7 @@ func (Module) GetCommands() []*cli.Command {
 			Aliases:     []string{"mods"},
 			Usage:       "",
 			Description: "List and search modules",
+			Category:    categories.Dops,
 			Action: func(c *cli.Context) error {
 				search := c.String("search")
 				list := c.Bool("list")
