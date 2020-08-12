@@ -19,8 +19,8 @@ AUTHOR{{with $length := len .Authors}}{{if ne 1 $length}}S{{end}}{{end}}:
 
 COMMANDS:{{range .VisibleCategories}}{{if .Name}}
    {{.Name}}:{{range .VisibleCommands}}
-     {{join .Names ", "}}{{"\t"}}{{.Description}}{{end}}{{else}}{{range .VisibleCommands}}
-   {{join .Names ", "}}{{"\t"}}{{.Description}}{{end}}{{end}}{{end}}{{end}}{{if .VisibleFlags}}
+     {{join .Names ", "}}{{"\t"}}{{.Usage}}{{end}}{{else}}{{range .VisibleCommands}}
+   {{join .Names ", "}}{{"\t"}}{{.Usage}}{{end}}{{end}}{{end}}{{end}}{{if .VisibleFlags}}
 
 GLOBAL OPTIONS:
    {{range $index, $option := .VisibleFlags}}{{if $index}}
