@@ -25,11 +25,11 @@ func init() {
 
 func main() {
 
-	for _, f := range module.RegisteredGlobalFlags {
+	for _, f := range module.ActiveGlobalFlags {
 		CliFlags = append(CliFlags, f.GetFlags()...)
 	}
 
-	for _, m := range module.RegisteredModules {
+	for _, m := range module.ActiveModules {
 		CliCommands = append(CliCommands, m.GetCommands()...)
 	}
 

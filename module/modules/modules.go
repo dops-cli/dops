@@ -28,7 +28,7 @@ func (Module) GetCommands() []*cli.Command {
 				}
 
 				if search != "" {
-					for _, m := range module.RegisteredModules {
+					for _, m := range module.ActiveModules {
 						for _, cmd := range m.GetCommands() {
 							if r.MatchString(cmd.Name) {
 								foundModules = append(foundModules, cmd.Name)
@@ -36,7 +36,7 @@ func (Module) GetCommands() []*cli.Command {
 						}
 					}
 				} else if list {
-					for _, m := range module.RegisteredModules {
+					for _, m := range module.ActiveModules {
 						for _, cmd := range m.GetCommands() {
 							foundModules = append(foundModules, cmd.Name)
 						}
