@@ -1,4 +1,7 @@
 package categories
 
-var Dops = "dops"
-var Web = "web"
+const (
+	Dops           = "dops"
+	Web            = "web"
+	TextProcessing = "text processing"
+)
