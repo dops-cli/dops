@@ -1,8 +1,7 @@
 env:
   - GO111MODULE=on
   - GOPROXY=https://proxy.golang.org
-  golang:
-    org:before:
+before:
   hooks:
     - go mod download
 builds:
