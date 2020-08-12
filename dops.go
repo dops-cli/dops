@@ -5,7 +5,9 @@ import (
 	"github.com/dops-cli/dops/module"
 	"github.com/dops-cli/dops/module/modules"
 	"github.com/dops-cli/dops/say"
+	"github.com/dops-cli/dops/say/color"
 	"github.com/urfave/cli/v2"
+	"io"
 	"log"
 	"os"
 	"sort"
@@ -18,6 +20,9 @@ var (
 
 func init() {
 	cli.AppHelpTemplate = constants.AppHelpTemplate
+	cli.HelpPrinter = func(w io.Writer, templ string, data interface{}) {
+		cli.HelpPrinterCustom(color.Output, templ, data, nil)
+	}
 	cli.VersionPrinter = func(c *cli.Context) {
 		say.Info("dops is currently on version " + c.App.Version + "!")
 	}

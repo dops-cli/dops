@@ -22,11 +22,10 @@ type Module struct{}
 func (Module) GetCommands() []*cli.Command {
 	return []*cli.Command{
 		{
-			Name:        "bulkdownload",
-			Usage:       "bulkdownload -input FILE -output DIR -c THREADS",
-			Description: "Download multiple files from a list",
-			Category:    categories.Web,
-			Aliases:     []string{"bd"},
+			Name:     "bulkdownload",
+			Usage:    "download multiple files from a list",
+			Category: categories.Web,
+			Aliases:  []string{"bd"},
 			Action: func(c *cli.Context) error {
 				inputFile := c.String("input")
 				outputDir := c.String("output")

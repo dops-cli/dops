@@ -28,6 +28,11 @@ func p(prefix string, text ...interface{}) {
 	}
 }
 
+// Raw outputs formatted text to the terminal.
+func Raw(text ...interface{}) {
+	p("", text...)
+}
+
 // Text outputs formatted text to the terminal.
 func Text(text ...interface{}) {
 	p(DefaultPrefix, text...)

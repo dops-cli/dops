@@ -1,33 +1,20 @@
 package constants
 
+import (
+	"fmt"
+	"github.com/dops-cli/dops/say/color"
+)
+
 // AppHelpTemplate contains the template of dops help text.
-var AppHelpTemplate = `NAME:
-   {{.Name}}{{if .Usage}} - {{.Usage}}{{end}}
+var AppHelpTemplate = fmt.Sprintf(color.HiCyanString("\nDops - CLI DevOps Toolkit") + `
 
-USAGE:
-   {{if .UsageText}}{{.UsageText}}{{else}}{{.HelpName}} {{if .VisibleFlags}}[global options]{{end}}{{if .Commands}} command [command options]{{end}} {{if .ArgsUsage}}{{.ArgsUsage}}{{else}}[arguments...]{{end}}{{end}}{{if .Version}}{{if not .HideVersion}}
-
-VERSION:
-   {{.Version}}{{end}}{{end}}{{if .Description}}
-
-DESCRIPTION:
-   {{.Description}}{{end}}{{if len .Authors}}
-
-AUTHOR{{with $length := len .Authors}}{{if ne 1 $length}}S{{end}}{{end}}:
-   {{range $index, $author := .Authors}}{{if $index}}
-   {{end}}{{$author}}{{end}}{{end}}{{if .VisibleCommands}}
-
-COMMANDS:{{range .VisibleCategories}}{{if .Name}}
-   {{.Name}}:{{range .VisibleCommands}}
-     {{join .Names ", "}}{{"\t"}}{{.Usage}}{{end}}{{else}}{{range .VisibleCommands}}
-   {{join .Names ", "}}{{"\t"}}{{.Usage}}{{end}}{{end}}{{end}}{{end}}{{if .VisibleFlags}}
-
-GLOBAL OPTIONS:
+{{if .VisibleFlags}}` + color.HiYellowString(`Global options`) + `
    {{range $index, $option := .VisibleFlags}}{{if $index}}
-   {{end}}{{$option}}{{end}}{{end}}{{if .Copyright}}
+   {{end}}{{$option}}{{end}}{{end}}
 
-COPYRIGHT:
-   {{.Copyright}}{{end}}
+{{if .VisibleCommands}}` + color.HiYellowString(`Modules`) + `{{range .VisibleCategories}}{{if .Name}}
+[` + color.HiCyanString(`{{.Name}}`) + `]{{range .VisibleCommands}}
+  · ` + color.HiMagentaString(`{{join .Names ", "}}`) + color.HiRedString(`{{"\t|\t"}}`) + `{{.Usage}}{{end}}{{else}}{{range .VisibleCommands}}
+  · ` + color.HiMagentaString(`{{join .Names ", "}}`) + color.HiRedString(`{{"\t|\t"}}`) + `{{.Usage}}{{end}}{{end}}{{end}}{{end}}
 
-Contribute to this tool here: https://github.com/dops-cli <3
-`
+` + color.HiRedString("Contribute to this tool here: https://github.com/dops-cli ") + color.RedString("<3"))
