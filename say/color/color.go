@@ -15,14 +15,6 @@ import (
 )
 
 var (
-	Section   = New(FgHiYellow, Underline).Sprint
-	Primary   = HiCyanString
-	Secondary = HiGreenString
-	Flag      = GreenString
-	Separator = RedString
-)
-
-var (
 	// NoColor defines if the output is colorized or not. It's dynamically set to
 	// false or true based on the stdout's file descriptor referring to a terminal
 	// or not. This is a global option and affects all colors. For more control
