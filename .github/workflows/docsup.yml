@@ -1,0 +1,11 @@
+on: push
+
+name: Update Docs
+jobs:
+  docup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Update Docs
+        uses: dops-cli/docs-action@master
+        env:
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
