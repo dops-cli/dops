@@ -25,7 +25,7 @@ func PrintModules() error {
   {{if .Category}}` + Primary("Category:") + ` {{.Category}}{{end}}{{if .Description}}
 
 ` + Section("Description") + `
-  {{.Description}}{{end}}{{if .VisibleFlags}}
+{{.Description}}{{end}}{{if .VisibleFlags}}
 
 ` + Section("Options") + `
   {{range .VisibleFlags}}` + Flag("{{.}}") + `
