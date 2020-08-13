@@ -3,6 +3,8 @@
 <img src="https://raw.githubusercontent.com/dops-cli/assets/master/DOPS-Icon-Text-Horizontal.svg" alt="Dops">
 </a>
 
+<h1 align="center">:computer: DOPS - CLI DevOps Toolkit</h1>
+
 <p align="center">
 
 <a href="https://github.com/dops-cli/dops/actions?query=workflow%3A%22Go+Test%22">
@@ -42,8 +44,6 @@
 </p>
 
 ----
-
-<h1 align="center">:computer: DOPS - CLI DevOps Toolkit</h1>
 
 ## Installation
 
