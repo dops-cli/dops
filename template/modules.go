@@ -63,7 +63,7 @@ Usage: {{if .UsageText}}{{.UsageText}}{{else}}{{.HelpName}}{{if .VisibleFlags}} 
 
 {{.Description}}{{end}}
 
-{{if .VisibleFlags}}### Options
+{{if .VisibleFlags}}#### Options
 
 ` + "```" + `
 {{range .VisibleFlags}}{{.}}
