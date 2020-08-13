@@ -21,8 +21,8 @@ var (
 func init() {
 	cli.AppHelpTemplate = template.AppHelp
 	cli.CommandHelpTemplate = template.CommandHelp
-	cli.SubcommandHelpTemplate = template.SubcommandHelpTemplate
-	cli.MarkdownDocTemplate = template.MarkdownDocTemplate
+	cli.SubcommandHelpTemplate = template.SubcommandHelp
+	cli.MarkdownDocTemplate = template.MarkdownDoc
 	cli.HelpPrinter = func(w io.Writer, templ string, data interface{}) {
 		cli.HelpPrinterCustom(color.Output, templ, data, nil)
 	}

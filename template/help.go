@@ -33,10 +33,10 @@ var AppHelp = Primary("\nDOPS - CLI DevOps Toolkit") + `
 
 ` + HiRedString("Contribute to this tool here: https://github.com/dops-cli ") + RedString("<3\n")
 
-// SubcommandHelpTemplate is the text template for the subcommand help topic.
+// SubcommandHelp is the text template for the subcommand help topic.
 // cli.go uses text/template to render templates. You can
 // render custom help text by setting this variable.
-var SubcommandHelpTemplate = `NAME:
+var SubcommandHelp = `NAME:
    {{.HelpName}} - {{.Usage}}
 
 USAGE:
@@ -55,7 +55,7 @@ OPTIONS:
    {{end}}{{end}}
 `
 
-var MarkdownDocTemplate = `% {{ .App.Name }} 8
+var MarkdownDoc = `% {{ .App.Name }} 8
 
 # NAME
 
