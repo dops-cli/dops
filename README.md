@@ -38,18 +38,24 @@
 |
 <strong><a href="https://github.com/dops-cli/dops/blob/master/CONTRIBUTING.md">Contributing</a></strong>
 |
-<strong><a href="https://github.com/dops-cli/dops/issues/new?assignees=MarvinJWendt&labels=bug&template=report-a-bug.md&title=">Report Bug</a></strong>
+<strong><a href="https://github.com/dops-cli/dops/issues/new?assignees=MarvinJWendt&labels=bug&template=report-a-bug.md&title=">Report a Bug</a></strong>
 |
 <strong><a href="https://github.com/dops-cli/dops/issues/new?assignees=MarvinJWendt&labels=enhancement&template=request-a-feature.md&title=">Submit Feature Idea</a></strong>
 </p>
 
 ----
 
-## Features
+## What is `dops` ❓
 
-We currently have `5`<!-- feature-count --> different modules.
+Dops is a commandline tool, which consists of many different modules. The goal of Dops is to simplify as much DevOps work as possible. Dops runs on the most common operating systems, so that you have the same toolkit available across multiple platforms. Dops is designed to help eliminate annoying scripts and repetitive processes.  
+Dops is structured in a way that it is very easy to add a new module. So everyone can write their own module in no time to make their own work easier. This also helps others who have a similar problem, who can then improve the module even further with their own ideas. 
 
-## Installation
+## Features 🔥
+
+Dops offers a wide range of different modules (currently there are `5`<!-- feature-count --> modules).  
+The individual modules are listed in the [`MODULES.md`](https://github.com/dops-cli/dops/blob/master/MODULES.md) file with description and usage.
+
+## Installation 💿
 
 > To install dops just run the following commands
 
@@ -88,7 +94,7 @@ iwr -useb dops-cli.com/get/windows | iex
 If you are using a different operating system you can still use `dops`.  
 Go to the latest release: https://github.com/dops-cli/dops/releases/latest and download the version you need.
 
-## Usage
+## Usage 📝
 
 To use `dops` all you have to do is to enter `dops` into a terminal. This will automatically display the built-in help of `dops`.  
 If you want to learn more about a particular module, you can do so with this command: `dops [module] -h`.
