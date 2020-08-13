@@ -1,7 +1,6 @@
 package template
 
 import (
-	"fmt"
 	. "github.com/dops-cli/dops/say/color"
 )
 
@@ -24,7 +23,7 @@ OPTIONS:
 `
 
 // AppHelp contains the template of dops help text.
-var AppHelp = fmt.Sprintf(HiCyanString("\nDops - CLI DevOps Toolkit") + `
+var AppHelp = HiCyanString("\nDops - CLI DevOps Toolkit") + `
 
 {{if .VisibleFlags}}` + New(FgHiYellow, Underline).Sprint(`Global options`) + `
   ` + YellowString(`{{range $index, $option := .VisibleFlags}}{{if $index}}`) + `
@@ -35,4 +34,4 @@ var AppHelp = fmt.Sprintf(HiCyanString("\nDops - CLI DevOps Toolkit") + `
     · ` + HiMagentaString(`{{join .Names ", "}}`) + HiRedString(`{{"\t|\t"}}`) + `{{.Usage}}{{end}}{{else}}{{range .VisibleCommands}}
     · ` + HiMagentaString(`{{join .Names ", "}}`) + HiRedString(`{{"\t|\t"}}`) + `{{.Usage}}{{end}}{{end}}{{end}}{{end}}
 
-` + HiRedString("Contribute to this tool here: https://github.com/dops-cli ") + RedString("<3\n"))
+` + HiRedString("Contribute to this tool here: https://github.com/dops-cli ") + RedString("<3\n")
