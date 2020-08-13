@@ -20,6 +20,7 @@ var (
 
 func init() {
 	cli.AppHelpTemplate = constants.AppHelpTemplate
+	cli.CommandHelpTemplate = constants.CommandHelpTemplate
 	cli.HelpPrinter = func(w io.Writer, templ string, data interface{}) {
 		cli.HelpPrinterCustom(color.Output, templ, data, nil)
 	}
