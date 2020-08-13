@@ -44,8 +44,12 @@ func main() {
 	CliCommands = append(CliCommands, modules.Module{}.GetCommands()...)
 
 	app := &cli.App{
-		Name:    "dops",
-		Version: "v1.5.0", // <---VERSION---> This comment is used for CI, do NOT modify it!
+		Name:     "dops",
+		HelpName: "dops",
+		Usage:    "CLI DevOps Toolkit",
+		Version:  "v1.5.0", // <---VERSION---> This comment is used for CI, do NOT modify it!
+		Flags:    CliFlags,
+		Commands: CliCommands,
 		Authors: []*cli.Author{
 			{
 				Name:  "Marvin Wendt",
@@ -53,10 +57,7 @@ func main() {
 			},
 		},
 		Copyright:              "(c) 2020 Marvin Wendt",
-		HelpName:               "dops",
-		Usage:                  "CLI DevOps Toolkit",
-		Flags:                  CliFlags,
-		Commands:               CliCommands,
+		Writer:                 color.Output,
 		UseShortOptionHandling: true,
 	}
 

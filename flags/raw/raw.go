@@ -15,7 +15,6 @@ func (Flag) GetFlags() []cli.Flag {
 		&cli.BoolFlag{
 			Name:        "raw",
 			Usage:       "print minimal unstyled text",
-			Value:       false,
 			Destination: &OutputRaw,
 		},
 	}

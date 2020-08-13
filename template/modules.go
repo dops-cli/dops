@@ -13,8 +13,10 @@ type Modules struct {
 	Commands cli.Commands
 }
 
-var modules = `{{range .Commands}}` +
-	Primary("\n{{.Name}}") + ` - ` + Secondary("{{.Usage}}") + `
+func PrintModules() error {
+
+	var modules = `{{range .Commands}}` +
+		Primary("\n{{.Name}}") + ` - ` + Secondary("{{.Usage}}") + `
 
   ` + Primary("Usage:") + ` {{if .UsageText}}{{.UsageText}}{{else}}{{.HelpName}}{{if .VisibleFlags}} [options]{{end}} {{if .ArgsUsage}}{{.ArgsUsage}}{{else}}[arguments...]{{end}}{{end}}
   {{if .Aliases}}` + Primary("Aliases:") + `  {{join .Aliases ", "}}{{end}}
@@ -26,8 +28,6 @@ var modules = `{{range .Commands}}` +
 ` + Section("Options") + `
   {{range .VisibleFlags}}` + Flag("{{.}}") + `
   {{end}}{{end}}` + "\n\n" + `{{end}}`
-
-func PrintModules() error {
 
 	var commands []*cli.Command
 

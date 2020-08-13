@@ -1,7 +1,7 @@
 package color
 
 var (
-	Section   = New(FgHiYellow, Underline).Sprint
+	Section   = New(FgHiYellow, Underline).Sprintf
 	Primary   = HiCyanString
 	Secondary = HiGreenString
 	Flag      = GreenString
