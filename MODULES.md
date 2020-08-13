@@ -1,13 +1,16 @@
 
 ### bulkdownload  
 
-> download multiple files from a list  
+> Download multiple files from a list  
 
 Usage:  [options] [arguments...]<br/>
 Aliases: `bd`\
 Category: web
 
+ #### Description
 
+Bulkdownload downloads all files from a list. 
+You can set how many files should be downloaded concurrently..
 
 #### Options
 
@@ -19,25 +22,29 @@ Category: web
 
 ### update  
 
-> updates dops  
+> Updates the dops tool  
 
 Usage:  [arguments...]<br/>
 
 Category: dops
 
+ #### Description
 
+NOTICE: This module is in progress. But you can already see it's usage for further use!
 
 
 
 ### extract-text  
 
-> extracts text using regex from a file  
+> Extracts text using regex from a file  
 
 Usage:  [options] [arguments...]<br/>
 
 Category: text processing
 
+ #### Description
 
+Extract-text can be used to extract text from a file using regex patterns.
 
 #### Options
 
