@@ -4,21 +4,20 @@ import (
 	. "github.com/dops-cli/dops/say/color"
 )
 
+var SectionColor = New(FgHiYellow, Underline)
+
 // CommandHelp contains the template of dops modules help text.
-var CommandHelp = `NAME:
-   {{.HelpName}} - {{.Usage}}
+var CommandHelp = HiCyanString("\n{{.HelpName}}") + ` - ` + HiMagentaString("{{.Usage}}") + `
 
-USAGE:
-   {{if .UsageText}}{{.UsageText}}{{else}}{{.HelpName}}{{if .VisibleFlags}} [command options]{{end}} {{if .ArgsUsage}}{{.ArgsUsage}}{{else}}[arguments...]{{end}}{{end}}{{if .Category}}
+` + HiCyanString("Usage:") + ` {{if .UsageText}}{{.UsageText}}{{else}}{{.HelpName}}{{if .VisibleFlags}} [options]{{end}} {{if .ArgsUsage}}{{.ArgsUsage}}{{else}}[arguments...]{{end}}{{end}}
+{{if .Aliases}}` + HiCyanString("Aliases:") + `  {{join .Aliases ", "}}{{end}}
+{{if .Category}}` + HiCyanString("Category:") + ` {{.Category}}{{end}}{{if .Description}}
 
-CATEGORY:
-   {{.Category}}{{end}}{{if .Description}}
+` + SectionColor.Sprint("Description") + `
+{{.Description}}{{end}}{{if .VisibleFlags}}
 
-DESCRIPTION:
-   {{.Description}}{{end}}{{if .VisibleFlags}}
-
-OPTIONS:
-   {{range .VisibleFlags}}{{.}}
+` + SectionColor.Sprint("Options") + `
+   {{range .VisibleFlags}}` + YellowString("{{.}}") + `
    {{end}}{{end}}
 `
 
