@@ -45,6 +45,20 @@
 
 > To install dops just run the following commands
 
+### Multiplatform using go
+
+> If you have already installed go, you can install `dops` as follows:
+
+```console
+go get github.com/dops-cli/dops
+```
+
+To update `dops` using go, you have to run:
+
+```console
+go get -u github.com/dops-cli/dops
+```
+
 ### Linux
 
 To install `dops` you must run the following command in a terminal:
