@@ -2,7 +2,7 @@ package template
 
 import (
 	"fmt"
-	"github.com/dops-cli/dops/say/color"
+	. "github.com/dops-cli/dops/say/color"
 )
 
 // CommandHelp contains the template of dops modules help text.
@@ -24,15 +24,15 @@ OPTIONS:
 `
 
 // AppHelp contains the template of dops help text.
-var AppHelp = fmt.Sprintf(color.HiCyanString("\nDops - CLI DevOps Toolkit") + `
+var AppHelp = fmt.Sprintf(HiCyanString("\nDops - CLI DevOps Toolkit") + `
 
-{{if .VisibleFlags}}` + color.New(color.FgHiYellow, color.Underline).Sprint(`Global options`) + `
-  ` + color.YellowString(`{{range $index, $option := .VisibleFlags}}{{if $index}}`) + `
-  ` + color.YellowString(`{{end}}{{$option}}{{end}}{{end}}`) + `
+{{if .VisibleFlags}}` + New(FgHiYellow, Underline).Sprint(`Global options`) + `
+  ` + YellowString(`{{range $index, $option := .VisibleFlags}}{{if $index}}`) + `
+  ` + YellowString(`{{end}}{{$option}}{{end}}{{end}}`) + `
 
-{{if .VisibleCommands}}` + color.New(color.FgHiYellow, color.Underline).Sprint(`Modules`) + `{{range .VisibleCategories}}{{if .Name}}
-  [` + color.HiCyanString(`{{.Name}}`) + `]{{range .VisibleCommands}}
-    · ` + color.HiMagentaString(`{{join .Names ", "}}`) + color.HiRedString(`{{"\t|\t"}}`) + `{{.Usage}}{{end}}{{else}}{{range .VisibleCommands}}
-    · ` + color.HiMagentaString(`{{join .Names ", "}}`) + color.HiRedString(`{{"\t|\t"}}`) + `{{.Usage}}{{end}}{{end}}{{end}}{{end}}
+{{if .VisibleCommands}}` + New(FgHiYellow, Underline).Sprint(`Modules`) + `{{range .VisibleCategories}}{{if .Name}}
+  [` + HiCyanString(`{{.Name}}`) + `]{{range .VisibleCommands}}
+    · ` + HiMagentaString(`{{join .Names ", "}}`) + HiRedString(`{{"\t|\t"}}`) + `{{.Usage}}{{end}}{{else}}{{range .VisibleCommands}}
+    · ` + HiMagentaString(`{{join .Names ", "}}`) + HiRedString(`{{"\t|\t"}}`) + `{{.Usage}}{{end}}{{end}}{{end}}{{end}}
 
-` + color.HiRedString("Contribute to this tool here: https://github.com/dops-cli ") + color.RedString("<3\n"))
+` + HiRedString("Contribute to this tool here: https://github.com/dops-cli ") + RedString("<3\n"))
