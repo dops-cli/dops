@@ -45,6 +45,10 @@
 
 ----
 
+## Features
+
+We currently have `3`<!-- feature-count --> different modules.
+
 ## Installation
 
 > To install dops just run the following commands

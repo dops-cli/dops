@@ -7,6 +7,7 @@ import (
 	"github.com/dops-cli/dops/template"
 	"github.com/urfave/cli/v2"
 	"regexp"
+	"strconv"
 )
 
 type Module struct{}
@@ -24,6 +25,7 @@ func (Module) GetCommands() []*cli.Command {
 				list := c.Bool("list")
 				describe := c.Bool("describe")
 				markdown := c.Bool("markdown")
+				count := c.Bool("count")
 
 				var foundModules []string
 
@@ -58,6 +60,9 @@ func (Module) GetCommands() []*cli.Command {
 						return err
 					}
 					return nil
+				} else if count {
+					say.Raw(strconv.Itoa(len(module.ActiveModules) + 2))
+					return nil
 				}
 
 				for _, name := range foundModules {
@@ -86,6 +91,11 @@ func (Module) GetCommands() []*cli.Command {
 					Name:    "markdown",
 					Aliases: []string{"m", "md"},
 					Usage:   "describes all modules with markdown output",
+				},
+				&cli.BoolFlag{
+					Name:    "count",
+					Aliases: []string{"c"},
+					Usage:   "counts all modules",
 				},
 			},
 		},
