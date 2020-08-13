@@ -5,7 +5,7 @@ import (
 )
 
 // CommandHelp contains the template of dops modules help text.
-var CommandHelp = Primary("\n{{.HelpName}}") + ` - ` + Secondary("{{.Usage}}") + `
+var CommandHelp = Primary("\n{{.Name}}") + ` - ` + Secondary("{{.Usage}}") + `
 
 ` + Primary("Usage:") + ` {{if .UsageText}}{{.UsageText}}{{else}}{{.HelpName}}{{if .VisibleFlags}} [options]{{end}} {{if .ArgsUsage}}{{.ArgsUsage}}{{else}}[arguments...]{{end}}{{end}}
 {{if .Aliases}}` + Primary("Aliases:") + `  {{join .Aliases ", "}}{{end}}
