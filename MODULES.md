@@ -4,7 +4,7 @@
 > Download multiple files from a list  
 
 Usage:  [options] [arguments...]<br/>
-Aliases: `bd`\
+Aliases: `bd`<br/>
 Category: web
 
  #### Description
