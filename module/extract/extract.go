@@ -14,9 +14,10 @@ type Module struct{}
 func (Module) GetCommands() []*cli.Command {
 	return []*cli.Command{
 		{
-			Name:     "extract-text",
-			Usage:    "extracts text using regex from a file",
-			Category: categories.TextProcessing,
+			Name:        "extract-text",
+			Usage:       "Extracts text using regex from a file",
+			Description: `Extract-text can be used to extract text from a file using regex patterns.`,
+			Category:    categories.TextProcessing,
 			Flags: []cli.Flag{&cli.StringFlag{
 				Name:    "regex",
 				Aliases: []string{"r"},

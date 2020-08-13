@@ -22,8 +22,10 @@ type Module struct{}
 func (Module) GetCommands() []*cli.Command {
 	return []*cli.Command{
 		{
-			Name:     "bulkdownload",
-			Usage:    "download multiple files from a list",
+			Name:  "bulkdownload",
+			Usage: "Download multiple files from a list",
+			Description: `Bulkdownload downloads all files from a list. 
+You can set how many files should be downloaded concurrently..`,
 			Category: categories.Web,
 			Aliases:  []string{"bd"},
 			Action: func(c *cli.Context) error {

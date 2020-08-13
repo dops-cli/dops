@@ -15,11 +15,13 @@ type Module struct{}
 func (Module) GetCommands() []*cli.Command {
 	return []*cli.Command{
 		{
-			Name:        "modules",
-			Aliases:     []string{"mods"},
-			Usage:       "list and search modules",
-			Description: `The 'modules' command, is used to list and search modules in dops.`,
-			Category:    categories.Dops,
+			Name:    "modules",
+			Aliases: []string{"mods"},
+			Usage:   "List and search modules",
+			Description: `The 'modules' command, is used to list and search modules in dops.
+Furthermore, 'modules' can output all modules and their descriptions at the same time. 
+With the 'markdown' flag, the output text is parsed in markdown. This is for example used in the DOPS-CI toolchain to generate the 'MODULES.md' file.`,
+			Category: categories.Dops,
 			Action: func(c *cli.Context) error {
 				search := c.String("search")
 				list := c.Bool("list")
