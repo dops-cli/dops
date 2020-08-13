@@ -1,4 +1,7 @@
 <!--suppress HtmlDeprecatedAttribute -->
+
+![](https://raw.githubusercontent.com/dops-cli/assets/master/DOPS-Icon-Text-Horizontal.svg)
+
 <h1 align="center"> :computer: Dops - CLI DevOps Toolkit </h1>
 
 <p align="center">
