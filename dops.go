@@ -42,7 +42,7 @@ func main() {
 
 	app := &cli.App{
 		Name:    "dops",
-		Version: "v1.3.0", // <!!!VERSION!!!> This comment is used for CI, do NOT modify it!
+		Version: "v1.3.0", // <---VERSION---> This comment is used for CI, do NOT modify it!
 		Authors: []*cli.Author{
 			{
 				Name:  "Marvin Wendt",
