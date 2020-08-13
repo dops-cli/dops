@@ -1,8 +1,7 @@
 <!--suppress HtmlDeprecatedAttribute -->
-
-![](https://raw.githubusercontent.com/dops-cli/assets/master/DOPS-Icon-Text-Horizontal.svg)
-
-<h1 align="center"> :computer: Dops - CLI DevOps Toolkit </h1>
+<a href="https://github.com/dops-cli/dops/">
+<img src="https://raw.githubusercontent.com/dops-cli/assets/master/DOPS-Icon-Text-Horizontal.svg" alt="Dops">
+</a>
 
 <p align="center">
 
@@ -43,6 +42,8 @@
 </p>
 
 ----
+
+<h1 align="center">:computer: DOPS - CLI DevOps Toolkit</h1>
 
 ## Installation
 
