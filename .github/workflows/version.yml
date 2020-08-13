@@ -1,0 +1,11 @@
+on: push
+
+name: Update Version
+jobs:
+  versioner:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Update Version
+        uses: dops-cli/release-action@v1.0.1
+        env:
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
