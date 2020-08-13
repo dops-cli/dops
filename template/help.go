@@ -23,7 +23,7 @@ OPTIONS:
 `
 
 // AppHelp contains the template of dops help text.
-var AppHelp = HiCyanString("\nDops - CLI DevOps Toolkit") + `
+var AppHelp = HiCyanString("\nDOPS - CLI DevOps Toolkit") + `
 
 {{if .VisibleFlags}}` + New(FgHiYellow, Underline).Sprint(`Global options`) + `
   ` + YellowString(`{{range $index, $option := .VisibleFlags}}{{if $index}}`) + `
