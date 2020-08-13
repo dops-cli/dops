@@ -4,6 +4,7 @@ import (
 	"github.com/dops-cli/dops/categories"
 	"github.com/dops-cli/dops/module"
 	"github.com/dops-cli/dops/say"
+	"github.com/dops-cli/dops/template"
 	"github.com/urfave/cli/v2"
 	"regexp"
 )
@@ -21,6 +22,7 @@ func (Module) GetCommands() []*cli.Command {
 			Action: func(c *cli.Context) error {
 				search := c.String("search")
 				list := c.Bool("list")
+				describe := c.Bool("describe")
 
 				var foundModules []string
 
@@ -43,7 +45,12 @@ func (Module) GetCommands() []*cli.Command {
 							foundModules = append(foundModules, cmd.Name)
 						}
 					}
-
+				} else if describe {
+					err := template.PrintModules()
+					if err != nil {
+						return err
+					}
+					return nil
 				}
 
 				for _, name := range foundModules {
@@ -61,7 +68,12 @@ func (Module) GetCommands() []*cli.Command {
 				&cli.BoolFlag{
 					Name:    "list",
 					Aliases: []string{"l", "ls"},
-					Usage:   "lists all files",
+					Usage:   "lists all modules",
+				},
+				&cli.BoolFlag{
+					Name:    "describe",
+					Aliases: []string{"d"},
+					Usage:   "describes all modules",
 				},
 			},
 		},
