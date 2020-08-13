@@ -13,10 +13,11 @@ type Module struct{}
 func (Module) GetCommands() []*cli.Command {
 	return []*cli.Command{
 		{
-			Name:     "modules",
-			Aliases:  []string{"mods"},
-			Usage:    "list and search modules",
-			Category: categories.Dops,
+			Name:        "modules",
+			Aliases:     []string{"mods"},
+			Usage:       "list and search modules",
+			Description: `The 'modules' command, is used to list and search modules in dops.`,
+			Category:    categories.Dops,
 			Action: func(c *cli.Context) error {
 				search := c.String("search")
 				list := c.Bool("list")
