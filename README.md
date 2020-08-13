@@ -47,7 +47,7 @@
 
 ## Features
 
-We currently have `3`<!-- feature-count --> different modules.
+We currently have `5`<!-- feature-count --> different modules.
 
 ## Installation
 
