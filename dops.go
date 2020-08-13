@@ -54,7 +54,7 @@ func main() {
 		},
 		Copyright: "(c) 2020 Marvin Wendt",
 		HelpName:  "dops",
-		Usage:     "DevOps",
+		Usage:     "CLI DevOps Toolkit",
 		Flags:     CliFlags,
 		Commands:  CliCommands,
 	}
