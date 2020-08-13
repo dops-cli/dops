@@ -20,20 +20,6 @@ You can set how many files should be downloaded concurrently..
 --concurrent NUMBER, -c NUMBER	downloads NUMBER files concurrently (default: 3)
 ```
 
-### update  
-
-> Updates the dops tool  
-
-Usage:  [arguments...]<br/>
-
-Category: dops
-
- #### Description
-
-NOTICE: This module is in progress. But you can already see it's usage for further use!
-
-
-
 ### extract-text  
 
 > Extracts text using regex from a file  
@@ -54,3 +40,17 @@ Extract-text can be used to extract text from a file using regex patterns.
 --output DIR, -o DIR	outputs to directory DIR
 --stdout, -s	prints output to stdout instead of writing to a file (default: false)
 ```
+
+### update  
+
+> Updates the dops tool  
+
+Usage:  [arguments...]<br/>
+
+Category: dops
+
+ #### Description
+
+NOTICE: This module is in progress. But you can already see it's usage for further use!
+
+
