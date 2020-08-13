@@ -1,11 +1,11 @@
 package main
 
 import (
-	"github.com/dops-cli/dops/constants"
 	"github.com/dops-cli/dops/module"
 	"github.com/dops-cli/dops/module/modules"
 	"github.com/dops-cli/dops/say"
 	"github.com/dops-cli/dops/say/color"
+	"github.com/dops-cli/dops/template"
 	"github.com/urfave/cli/v2"
 	"io"
 	"log"
@@ -19,8 +19,8 @@ var (
 )
 
 func init() {
-	cli.AppHelpTemplate = constants.AppHelpTemplate
-	cli.CommandHelpTemplate = constants.CommandHelpTemplate
+	cli.AppHelpTemplate = template.AppHelp
+	cli.CommandHelpTemplate = template.CommandHelp
 	cli.HelpPrinter = func(w io.Writer, templ string, data interface{}) {
 		cli.HelpPrinterCustom(color.Output, templ, data, nil)
 	}

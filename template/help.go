@@ -1,12 +1,30 @@
-package constants
+package template
 
 import (
 	"fmt"
 	"github.com/dops-cli/dops/say/color"
 )
 
-// AppHelpTemplate contains the template of dops help text.
-var AppHelpTemplate = fmt.Sprintf(color.HiCyanString("\nDops - CLI DevOps Toolkit") + `
+// CommandHelp contains the template of dops modules help text.
+var CommandHelp = `NAME:
+   {{.HelpName}} - {{.Usage}}
+
+USAGE:
+   {{if .UsageText}}{{.UsageText}}{{else}}{{.HelpName}}{{if .VisibleFlags}} [command options]{{end}} {{if .ArgsUsage}}{{.ArgsUsage}}{{else}}[arguments...]{{end}}{{end}}{{if .Category}}
+
+CATEGORY:
+   {{.Category}}{{end}}{{if .Description}}
+
+DESCRIPTION:
+   {{.Description}}{{end}}{{if .VisibleFlags}}
+
+OPTIONS:
+   {{range .VisibleFlags}}{{.}}
+   {{end}}{{end}}
+`
+
+// AppHelp contains the template of dops help text.
+var AppHelp = fmt.Sprintf(color.HiCyanString("\nDops - CLI DevOps Toolkit") + `
 
 {{if .VisibleFlags}}` + color.New(color.FgHiYellow, color.Underline).Sprint(`Global options`) + `
   ` + color.YellowString(`{{range $index, $option := .VisibleFlags}}{{if $index}}`) + `
