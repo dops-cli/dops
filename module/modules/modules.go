@@ -23,6 +23,7 @@ func (Module) GetCommands() []*cli.Command {
 				search := c.String("search")
 				list := c.Bool("list")
 				describe := c.Bool("describe")
+				markdown := c.Bool("markdown")
 
 				var foundModules []string
 
@@ -51,6 +52,12 @@ func (Module) GetCommands() []*cli.Command {
 						return err
 					}
 					return nil
+				} else if markdown {
+					err := template.PrintModulesMarkdown()
+					if err != nil {
+						return err
+					}
+					return nil
 				}
 
 				for _, name := range foundModules {
@@ -74,6 +81,11 @@ func (Module) GetCommands() []*cli.Command {
 					Name:    "describe",
 					Aliases: []string{"d"},
 					Usage:   "describes all modules",
+				},
+				&cli.BoolFlag{
+					Name:    "markdown",
+					Aliases: []string{"m", "md"},
+					Usage:   "describes all modules with markdown output",
 				},
 			},
 		},
