@@ -52,11 +52,12 @@ func main() {
 				Email: "dops@marvinjwendt.com",
 			},
 		},
-		Copyright: "(c) 2020 Marvin Wendt",
-		HelpName:  "dops",
-		Usage:     "CLI DevOps Toolkit",
-		Flags:     CliFlags,
-		Commands:  CliCommands,
+		Copyright:              "(c) 2020 Marvin Wendt",
+		HelpName:               "dops",
+		Usage:                  "CLI DevOps Toolkit",
+		Flags:                  CliFlags,
+		Commands:               CliCommands,
+		UseShortOptionHandling: true,
 	}
 
 	sort.Sort(cli.FlagsByName(app.Flags))
