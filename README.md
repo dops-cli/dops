@@ -48,7 +48,7 @@
 ## What is `dops` ❓
 
 Dops is a commandline tool, which consists of many different modules. The goal of Dops is to simplify as much DevOps work as possible. Dops runs on the most common operating systems, so that you have the same toolkit available across multiple platforms. Dops is designed to help eliminate annoying scripts and repetitive processes.  
-Dops is structured in a way that it is very easy to add a new module. So everyone can write their own module in no time to make their own work easier. This also helps others who have a similar problem, who can then improve the module even further with their own ideas. 
+Dops is structured in a way that it is very easy to add a new module. So everyone can write their own module in no time to make their own work easier. This also helps others who have a similar problem, who can then improve the module even further with their own ideas. Which makes adding a module a win-win situation!
 
 ## Features 🔥
 
