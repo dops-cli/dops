@@ -27,7 +27,7 @@ func init() {
 		cli.HelpPrinterCustom(color.Output, templ, data, nil)
 	}
 	cli.VersionPrinter = func(c *cli.Context) {
-		say.Info("dops is currently on version " + c.App.Version + "!")
+		say.Info("dops is currently on version " + color.Primary(c.App.Version) + "!")
 	}
 }
 
