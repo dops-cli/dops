@@ -15,7 +15,7 @@ func (Flag) GetFlags() []cli.Flag {
 		&cli.BoolFlag{
 			Name:        "raw",
 			Aliases:     []string{"r"},
-			Usage:       "print minimal unstyled text",
+			Usage:       "Print minimal unstyled text - good for writing to files",
 			Destination: &OutputRaw,
 		},
 	}
