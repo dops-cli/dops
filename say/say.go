@@ -8,9 +8,9 @@ import (
 )
 
 var (
-	InfoPrefix    = color.HiMagentaString("[dops - info] ")
-	WarningPrefix = color.YellowString("[dops - warning] ")
-	ErrorPrefix   = color.HiRedString("[dops - error] ")
+	InfoPrefix    = color.HiMagentaString("[info] ")
+	WarningPrefix = color.YellowString("[warning] ")
+	ErrorPrefix   = color.HiRedString("[error] ")
 )
 
 func p(prefix string, text ...interface{}) {
