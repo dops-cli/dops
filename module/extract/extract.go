@@ -34,30 +34,37 @@ func (Module) GetCommands() []*cli.Command {
 					Aliases: []string{"o"},
 					Usage:   "outputs to directory `DIR`",
 				},
-				&cli.BoolFlag{
-					Name:    "stdout",
-					Aliases: []string{"s"},
-					Usage:   "prints output to stdout instead of writing to a file",
-				}},
+			},
 			Action: func(c *cli.Context) error {
 				regex := c.String("regex")
 				input := c.Path("input")
+				println(input)
 				output := c.String("output")
-				stdout := c.Bool("stdout")
+
+				var foundStrings []string
 
 				r, err := regexp.Compile(regex)
 				if err != nil {
 					return err
 				}
 
-				file, err := ioutil.ReadFile(input)
-				if err != nil {
-					return err
+				if input != "" {
+					file, err := ioutil.ReadFile(input)
+					if err != nil {
+						return err
+					}
+					foundStrings = r.FindAllString(string(file), -1)
+				} else {
+					bytes, err := ioutil.ReadAll(os.Stdin)
+					if err != nil {
+						return err
+					}
+
+					stdin := string(bytes)
+					foundStrings = r.FindAllString(stdin, -1)
 				}
 
-				foundStrings := r.FindAllString(string(file), -1)
-
-				if stdout {
+				if output == "" {
 					for _, s := range foundStrings {
 						say.Text(s)
 					}
