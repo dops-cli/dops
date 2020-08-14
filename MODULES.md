@@ -38,7 +38,6 @@ Extract-text can be used to extract text from a file using regex patterns.
 --regex PATTERN, -r PATTERN	extracts matching strings with PATTERN
 --input FILE, -i FILE	use FILE as input
 --output DIR, -o DIR	outputs to directory DIR
---stdout, -s	prints output to stdout instead of writing to a file (default: false)
 ```
 
 ### update  
