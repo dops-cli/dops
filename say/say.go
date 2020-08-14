@@ -8,7 +8,6 @@ import (
 )
 
 var (
-	DefaultPrefix = color.CyanString("[dops] ")
 	InfoPrefix    = color.HiMagentaString("[dops - info] ")
 	WarningPrefix = color.YellowString("[dops - warning] ")
 	ErrorPrefix   = color.HiRedString("[dops - error] ")
@@ -28,14 +27,9 @@ func p(prefix string, text ...interface{}) {
 	}
 }
 
-// Raw outputs formatted text to the terminal.
-func Raw(text ...interface{}) {
-	p("", text...)
-}
-
 // Text outputs formatted text to the terminal.
 func Text(text ...interface{}) {
-	p(DefaultPrefix, text...)
+	p("", text...)
 }
 
 // Info outputs formatted text to the terminal.

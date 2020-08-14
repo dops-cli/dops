@@ -63,7 +63,7 @@ With the 'markdown' flag, the output text is parsed in markdown. This is for exa
 					}
 					return nil
 				} else if count {
-					say.Raw(strconv.Itoa(len(module.ActiveModules) + 2))
+					say.Text(strconv.Itoa(len(module.ActiveModules) + 2))
 					return nil
 				}
 
