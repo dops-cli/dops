@@ -38,7 +38,6 @@ func (Module) GetCommands() []*cli.Command {
 			Action: func(c *cli.Context) error {
 				regex := c.String("regex")
 				input := c.Path("input")
-				println(input)
 				output := c.String("output")
 
 				var foundStrings []string
