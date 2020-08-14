@@ -6,6 +6,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Update Version
-        uses: dops-cli/release-action@v1.0.1
+        uses: dops-cli/release-action@v1.0.2
         env:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
