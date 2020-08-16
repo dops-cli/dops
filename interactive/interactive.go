@@ -16,10 +16,6 @@ func ShowTable(app *cview.Application) {
 	app.SetRoot(CviewTable, true)
 }
 
-func ShowEmpty(app *cview.Application) {
-	app.SetRoot(nil, false)
-}
-
 func ShowModule(app *cview.Application, cmd *cli.Command) error {
 	form := cview.NewForm()
 
