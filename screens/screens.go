@@ -95,21 +95,21 @@ func ShowModule(app *cview.Application, cmd *cli.Command) error {
 
 		for _, flag := range BoolFlags {
 			f := *flag
-			form.AddCheckBox(flag.Name, "Message", flag.Value, func(text bool) {
+			form.AddCheckBox(flag.Name+" - "+flag.Usage, "Message", flag.Value, func(text bool) {
 				flags[f.Name] = strconv.FormatBool(text)
 			})
 		}
 
 		for _, flag := range DurationFlags {
 			f := *flag
-			form.AddInputField(flag.Name, flag.Value.String(), fieldWidth, nil, func(text string) {
+			form.AddInputField(flag.Name+" - "+flag.Usage, flag.Value.String(), fieldWidth, nil, func(text string) {
 				flags[f.Name] = text
 			})
 		}
 
 		for _, flag := range Float64Flags {
 			f := *flag
-			form.AddInputField(flag.Name, strconv.FormatFloat(flag.Value, 'G', -1, 64), fieldWidth, cview.InputFieldFloat, func(text string) {
+			form.AddInputField(flag.Name+" - "+flag.Usage, strconv.FormatFloat(flag.Value, 'G', -1, 64), fieldWidth, cview.InputFieldFloat, func(text string) {
 				flags[f.Name] = text
 			})
 		}
@@ -125,14 +125,14 @@ func ShowModule(app *cview.Application, cmd *cli.Command) error {
 			}
 
 			def := strings.Join(stringSlice, ", ")
-			form.AddInputField(flag.Name, def, fieldWidth, nil, func(text string) {
+			form.AddInputField(flag.Name+" - "+flag.Usage, def, fieldWidth, nil, func(text string) {
 				flags[f.Name] = text
 			})
 		}
 
 		for _, flag := range IntFlags {
 			f := *flag
-			form.AddInputField(flag.Name, strconv.Itoa(flag.Value), fieldWidth, cview.InputFieldInteger, func(text string) {
+			form.AddInputField(flag.Name+" - "+flag.Usage, strconv.Itoa(flag.Value), fieldWidth, cview.InputFieldInteger, func(text string) {
 				flags[f.Name] = text
 			})
 		}
@@ -148,21 +148,21 @@ func ShowModule(app *cview.Application, cmd *cli.Command) error {
 			}
 
 			def := strings.Join(stringSlice, ", ")
-			form.AddInputField(flag.Name, def, fieldWidth, nil, func(text string) {
+			form.AddInputField(flag.Name+" - "+flag.Usage, def, fieldWidth, nil, func(text string) {
 				flags[f.Name] = text
 			})
 		}
 
 		for _, flag := range PathFlags {
 			f := *flag
-			form.AddInputField(flag.Name, flag.Value, fieldWidth, nil, func(text string) {
+			form.AddInputField(flag.Name+" - "+flag.Usage, flag.Value, fieldWidth, nil, func(text string) {
 				flags[f.Name] = text
 			})
 		}
 
 		for _, flag := range StringFlags {
 			f := *flag
-			form.AddInputField(flag.Name, flag.Value, fieldWidth, nil, func(text string) {
+			form.AddInputField(flag.Name+" - "+flag.Usage, flag.Value, fieldWidth, nil, func(text string) {
 				flags[f.Name] = text
 			})
 		}
@@ -178,7 +178,7 @@ func ShowModule(app *cview.Application, cmd *cli.Command) error {
 			}
 
 			def := strings.Join(stringSlice, ", ")
-			form.AddInputField(flag.Name, def, fieldWidth, nil, func(text string) {
+			form.AddInputField(flag.Name+" - "+flag.Usage, def, fieldWidth, nil, func(text string) {
 				flags[f.Name] = text
 			})
 		}
@@ -191,7 +191,7 @@ func ShowModule(app *cview.Application, cmd *cli.Command) error {
 				ret = flag.Value.String()
 			}
 
-			form.AddInputField(flag.Name, ret, fieldWidth, nil, func(text string) {
+			form.AddInputField(flag.Name+" - "+flag.Usage, ret, fieldWidth, nil, func(text string) {
 				flags[f.Name] = text
 			})
 		}
