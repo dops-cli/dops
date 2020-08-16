@@ -5,7 +5,7 @@
 
 Usage:  [options] [arguments...]<br/>
 Aliases: `bd`<br/>
-Category: web
+Category: Web
 
  #### Description
 
@@ -26,7 +26,7 @@ You can set how many files should be downloaded concurrently..
 
 Usage:  [options] [arguments...]<br/>
 
-Category: text processing
+Category: Text Processing
 
  #### Description
 
@@ -46,10 +46,37 @@ Extract-text can be used to extract text from a file using regex patterns.
 
 Usage:  [arguments...]<br/>
 
-Category: dops
+Category: Dops
 
  #### Description
 
 NOTICE: This module is in progress. But you can already see it's usage for further use!
 
 
+
+### demo  
+
+> Demo module of dops  
+
+Usage:  [options] [arguments...]<br/>
+
+Category: Dops
+
+ #### Description
+
+NOTICE: This module does nothing, except showing all possible flags for an interactive demo.
+
+#### Options
+
+```
+--Boolean	(default: false)
+--Duration value	(default: 0s)
+--Float64 value	(default: 0)
+--Float64 value	
+--Int value	(default: 0)
+--Int value	
+--Path value	
+--String value	
+--String value	
+--Timestamp value	(default: <nil>)
+```
