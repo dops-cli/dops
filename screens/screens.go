@@ -210,8 +210,13 @@ func ShowModule(app *cview.Application, cmd *cli.Command) error {
 
 		form.SetWrapAround(true)
 
+		flex := cview.NewFlex()
+		flex.AddItem(cview.NewFlex().SetDirection(cview.FlexRow).
+			AddItem(cview.NewTextView().SetText(cmd.Description), 0, 1, false).
+			AddItem(form, 0, 4, true), 0, 1, true)
+
 		form.SetBorder(true).SetTitle(" " + cmd.Name + " - " + cmd.Usage + " ").SetTitleAlign(cview.AlignLeft)
-		CviewApp.SetRoot(form, true)
+		CviewApp.SetRoot(flex, true)
 
 	} else {
 		modal := cview.NewModal()

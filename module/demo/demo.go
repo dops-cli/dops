@@ -12,7 +12,7 @@ func (Module) GetCommands() []*cli.Command {
 		{
 			Name:        "demo",
 			Usage:       "Demo module of dops",
-			Description: "NOTICE: This module does nothing, except showing all possible flags for an interactive demo.",
+			Description: `NOTICE: This module does nothing, except showing all possible flags for an interactive demo.`,
 			Category:    categories.Dops,
 			Action: func(c *cli.Context) error {
 				return nil
