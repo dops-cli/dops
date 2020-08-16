@@ -1,11 +1,11 @@
 package main
 
 import (
+	. "github.com/dops-cli/dops/interactive"
 	"github.com/dops-cli/dops/module"
 	"github.com/dops-cli/dops/module/modules"
 	"github.com/dops-cli/dops/say"
 	"github.com/dops-cli/dops/say/color"
-	. "github.com/dops-cli/dops/screens"
 	"github.com/dops-cli/dops/template"
 	"github.com/gdamore/tcell"
 	"github.com/urfave/cli/v2"

@@ -1,4 +1,4 @@
-package screens
+package interactive
 
 import (
 	"github.com/dops-cli/dops/module"
