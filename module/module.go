@@ -4,10 +4,24 @@ import (
 	"github.com/dops-cli/dops/flags/debug"
 	"github.com/dops-cli/dops/flags/raw"
 	"github.com/dops-cli/dops/module/bulkdownload"
+	"github.com/dops-cli/dops/module/demo"
 	"github.com/dops-cli/dops/module/extract"
 	"github.com/dops-cli/dops/module/update"
 	"github.com/urfave/cli/v2"
 )
+
+// * <<< Add modules and global flags here! >>> *
+func init() {
+	// Add the global flags
+	addGlobalFlag(debug.Flag{})
+	addGlobalFlag(raw.Flag{})
+
+	// Add modules
+	addModule(bulkdownload.Module{})
+	addModule(extract.Module{})
+	addModule(update.Module{})
+	addModule(demo.Module{})
+}
 
 // ActiveGlobalFlags contains all global flags.
 // If a global flag is not in this slice, it won't be activated.
@@ -17,6 +31,8 @@ var ActiveGlobalFlags []GlobalFlag
 // If a module is not in this slice, it won't be activated.
 // Except for the module `modules`, which is registered in the main package.
 var ActiveModules []Module
+
+var CliApp *cli.App
 
 // Module is the interface of each module available in dops.
 // Each module must return at least one command.
@@ -30,16 +46,31 @@ type GlobalFlag interface {
 	GetFlags() []cli.Flag
 }
 
-// * <<< Add modules and global flags here! >>> *
-func init() {
-	// Add the global flags
-	addGlobalFlag(debug.Flag{})
-	addGlobalFlag(raw.Flag{})
+func Run(cmd *cli.Command, flags map[string]string) error {
+	args := []string{"dops"}
+	args = append(args, cmd.Name)
 
-	// Add modules
-	addModule(bulkdownload.Module{})
-	addModule(extract.Module{})
-	addModule(update.Module{})
+	for name, value := range flags {
+		args = append(args, "-"+name+"="+value)
+	}
+
+	err := CliApp.Run(args)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func GetByName(name string) *cli.Command {
+	for _, m := range ActiveModules {
+		for _, c := range m.GetCommands() {
+			if c.Name == name {
+				return c
+			}
+		}
+	}
+	return nil
 }
 
 func addModule(module Module) {

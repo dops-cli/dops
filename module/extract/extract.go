@@ -18,11 +18,12 @@ func (Module) GetCommands() []*cli.Command {
 			Usage:       "Extracts text using regex from a file",
 			Description: `Extract-text can be used to extract text from a file using regex patterns.`,
 			Category:    categories.TextProcessing,
-			Flags: []cli.Flag{&cli.StringFlag{
-				Name:    "regex",
-				Aliases: []string{"r"},
-				Usage:   "extracts matching strings with `PATTERN`",
-			},
+			Flags: []cli.Flag{
+				&cli.StringFlag{
+					Name:    "regex",
+					Aliases: []string{"r"},
+					Usage:   "extracts matching strings with `PATTERN`",
+				},
 				&cli.PathFlag{
 					Name:      "input",
 					Aliases:   []string{"i"},

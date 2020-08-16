@@ -5,7 +5,10 @@ import (
 	"github.com/dops-cli/dops/module/modules"
 	"github.com/dops-cli/dops/say"
 	"github.com/dops-cli/dops/say/color"
+	. "github.com/dops-cli/dops/screens"
 	"github.com/dops-cli/dops/template"
+	"github.com/gdamore/tcell"
+	"github.com/rivo/tview"
 	"github.com/urfave/cli/v2"
 	"io"
 	"log"
@@ -30,7 +33,6 @@ func init() {
 		say.Info("dops is currently on version " + color.Primary(c.App.Version) + "!")
 	}
 }
-
 func main() {
 
 	for _, f := range module.ActiveGlobalFlags {
@@ -43,7 +45,7 @@ func main() {
 
 	CliCommands = append(CliCommands, modules.Module{}.GetCommands()...)
 
-	app := &cli.App{
+	module.CliApp = &cli.App{
 		Name:     "dops",
 		HelpName: "dops",
 		Usage:    "CLI DevOps Toolkit",
@@ -59,12 +61,42 @@ func main() {
 		Copyright:              "(c) 2020 Marvin Wendt",
 		Writer:                 color.Output,
 		UseShortOptionHandling: true,
+		Action: func(context *cli.Context) error {
+			TviewApp = tview.NewApplication()
+			TviewTable = tview.NewTable()
+
+			TviewApp.EnableMouse(true)
+
+			TviewTable.SetTitle("DOPS")
+
+			for i, m := range module.ActiveModules {
+				for j, command := range m.GetCommands() {
+					TviewTable.SetCell(i+j, 0, tview.NewTableCell(command.Name))
+					TviewTable.SetCell(i+j, 1, tview.NewTableCell(command.Usage))
+				}
+			}
+
+			TviewTable.SetSelectable(true, false)
+			TviewTable.Select(0, 0).SetFixed(1, 1).SetDoneFunc(func(key tcell.Key) {
+				if key == tcell.KeyEscape {
+					TviewApp.Stop()
+				}
+			}).SetSelectedFunc(func(row int, column int) {
+				cell := TviewTable.GetCell(row, column)
+				cmd := module.GetByName(cell.Text)
+				ShowModule(TviewApp, cmd)
+			})
+			if err := TviewApp.SetRoot(TviewTable, true).SetFocus(TviewTable).Run(); err != nil {
+				say.Error(err)
+			}
+			return nil
+		},
 	}
 
-	sort.Sort(cli.FlagsByName(app.Flags))
-	sort.Sort(cli.CommandsByName(app.Commands))
+	sort.Sort(cli.FlagsByName(module.CliApp.Flags))
+	sort.Sort(cli.CommandsByName(module.CliApp.Commands))
 
-	err := app.Run(os.Args)
+	err := module.CliApp.Run(os.Args)
 	if err != nil {
 		log.Fatal(err)
 	}

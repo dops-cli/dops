@@ -1,7 +1,8 @@
 package categories
 
 const (
-	Dops           = "dops"
-	Web            = "web"
-	TextProcessing = "text processing"
+	Dops           = "Dops"
+	Web            = "Web"
+	TextProcessing = "Text Processing"
+	Info           = "Info"
 )
