@@ -11,7 +11,6 @@ import (
 	"github.com/urfave/cli/v2"
 	"gitlab.com/tslocum/cview"
 	"io"
-	"log"
 	"os"
 	"sort"
 )
@@ -66,7 +65,6 @@ func main() {
 			CviewTable = cview.NewTable()
 
 			CviewApp.EnableMouse(true)
-
 			CviewTable.SetTitle("DOPS")
 
 			for i, m := range module.ActiveModules {
@@ -84,7 +82,10 @@ func main() {
 			}).SetSelectedFunc(func(row int, column int) {
 				cell := CviewTable.GetCell(row, column)
 				cmd := module.GetByName(cell.Text)
-				ShowModule(CviewApp, cmd)
+				err := ShowModule(CviewApp, cmd)
+				if err != nil {
+					say.Error(err)
+				}
 			})
 			if err := CviewApp.SetRoot(CviewTable, true).SetFocus(CviewTable).Run(); err != nil {
 				say.Error(err)
@@ -98,6 +99,6 @@ func main() {
 
 	err := module.CliApp.Run(os.Args)
 	if err != nil {
-		log.Fatal(err)
+		say.Error(err)
 	}
 }

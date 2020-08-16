@@ -12,11 +12,13 @@ import (
 var CviewApp *cview.Application
 var CviewTable *cview.Table
 
-func ShowTable(app *cview.Application) {
+func ShowInteractiveModuleList(app *cview.Application) {
 	app.SetRoot(CviewTable, true)
 }
 
 func ShowModule(app *cview.Application, cmd *cli.Command) error {
+	fieldWidth := 10
+	flags := make(map[string]string)
 	form := cview.NewForm()
 
 	var BoolFlags []*cli.BoolFlag
@@ -30,63 +32,63 @@ func ShowModule(app *cview.Application, cmd *cli.Command) error {
 	var StringSliceFlags []*cli.StringSliceFlag
 	var TimestampFlags []*cli.TimestampFlag
 
-	flags := make(map[string]string)
-
-	fieldWidth := 10
+	form.SetWrapAround(true)
+	form.SetBorder(true)
+	form.SetTitle(" " + cmd.Name + " - " + cmd.Usage + " ")
+	form.SetTitleAlign(cview.AlignLeft)
 
 	if len(cmd.Flags) > 0 {
 		for _, flag := range cmd.Flags {
 
-			bf, ok := flag.(*cli.BoolFlag)
+			boolFlag, ok := flag.(*cli.BoolFlag)
 			if ok {
-				BoolFlags = append(BoolFlags, bf)
+				BoolFlags = append(BoolFlags, boolFlag)
 			}
 
-			df, ok := flag.(*cli.DurationFlag)
+			durationFlag, ok := flag.(*cli.DurationFlag)
 			if ok {
-				DurationFlags = append(DurationFlags, df)
+				DurationFlags = append(DurationFlags, durationFlag)
 			}
 
-			ff, ok := flag.(*cli.Float64Flag)
+			float64Flag, ok := flag.(*cli.Float64Flag)
 			if ok {
-				Float64Flags = append(Float64Flags, ff)
+				Float64Flags = append(Float64Flags, float64Flag)
 			}
 
-			fsf, ok := flag.(*cli.Float64SliceFlag)
+			float64SliceFlag, ok := flag.(*cli.Float64SliceFlag)
 			if ok {
-				Float64SliceFlags = append(Float64SliceFlags, fsf)
+				Float64SliceFlags = append(Float64SliceFlags, float64SliceFlag)
 			}
 
-			iflag, ok := flag.(*cli.IntFlag)
+			intFlag, ok := flag.(*cli.IntFlag)
 			if ok {
-				IntFlags = append(IntFlags, iflag)
+				IntFlags = append(IntFlags, intFlag)
 			}
 
-			isf, ok := flag.(*cli.IntSliceFlag)
+			intSliceFlag, ok := flag.(*cli.IntSliceFlag)
 			if ok {
-				IntSliceFlags = append(IntSliceFlags, isf)
+				IntSliceFlags = append(IntSliceFlags, intSliceFlag)
 			}
 
-			pf, ok := flag.(*cli.PathFlag)
+			pathFlag, ok := flag.(*cli.PathFlag)
 			if ok {
-				PathFlags = append(PathFlags, pf)
+				PathFlags = append(PathFlags, pathFlag)
 			}
 
-			sf, ok := flag.(*cli.StringFlag)
+			stringFlag, ok := flag.(*cli.StringFlag)
 			if ok {
-				StringFlags = append(StringFlags, sf)
+				StringFlags = append(StringFlags, stringFlag)
 			}
 
-			ssf, ok := flag.(*cli.StringSliceFlag)
+			stringSliceFlag, ok := flag.(*cli.StringSliceFlag)
 			if ok {
-				StringSliceFlags = append(StringSliceFlags, ssf)
+				StringSliceFlags = append(StringSliceFlags, stringSliceFlag)
 			}
 
-			tf, ok := flag.(*cli.TimestampFlag)
+			timestampFlag, ok := flag.(*cli.TimestampFlag)
 			if ok {
-				TimestampFlags = append(TimestampFlags, tf)
+				TimestampFlags = append(TimestampFlags, timestampFlag)
 			}
-
 		}
 
 		for _, flag := range BoolFlags {
@@ -201,17 +203,14 @@ func ShowModule(app *cview.Application, cmd *cli.Command) error {
 		})
 
 		form.AddButton("Cancel", func() {
-			ShowTable(app)
+			ShowInteractiveModuleList(app)
 		})
-
-		form.SetWrapAround(true)
 
 		flex := cview.NewFlex()
 		flex.AddItem(cview.NewFlex().SetDirection(cview.FlexRow).
 			AddItem(cview.NewTextView().SetText(cmd.Description), 0, 1, false).
 			AddItem(form, 0, 4, true), 0, 1, true)
 
-		form.SetBorder(true).SetTitle(" " + cmd.Name + " - " + cmd.Usage + " ").SetTitleAlign(cview.AlignLeft)
 		CviewApp.SetRoot(flex, true)
 
 	} else {
@@ -222,7 +221,7 @@ func ShowModule(app *cview.Application, cmd *cli.Command) error {
 		modal.AddButtons([]string{"Run", "Cancel"})
 		modal.SetDoneFunc(func(buttonIndex int, buttonLabel string) {
 			if buttonLabel == "Cancel" {
-				ShowTable(app)
+				ShowInteractiveModuleList(app)
 			} else if buttonLabel == "Run" {
 				app.Stop()
 				err := module.Run(cmd, nil)
