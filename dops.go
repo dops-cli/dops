@@ -8,8 +8,8 @@ import (
 	. "github.com/dops-cli/dops/screens"
 	"github.com/dops-cli/dops/template"
 	"github.com/gdamore/tcell"
-	"github.com/rivo/tview"
 	"github.com/urfave/cli/v2"
+	"gitlab.com/tslocum/cview"
 	"io"
 	"log"
 	"os"
@@ -62,31 +62,31 @@ func main() {
 		Writer:                 color.Output,
 		UseShortOptionHandling: true,
 		Action: func(context *cli.Context) error {
-			TviewApp = tview.NewApplication()
-			TviewTable = tview.NewTable()
+			CviewApp = cview.NewApplication()
+			CviewTable = cview.NewTable()
 
-			TviewApp.EnableMouse(true)
+			CviewApp.EnableMouse(true)
 
-			TviewTable.SetTitle("DOPS")
+			CviewTable.SetTitle("DOPS")
 
 			for i, m := range module.ActiveModules {
 				for j, command := range m.GetCommands() {
-					TviewTable.SetCell(i+j, 0, tview.NewTableCell(command.Name))
-					TviewTable.SetCell(i+j, 1, tview.NewTableCell(command.Usage))
+					CviewTable.SetCell(i+j, 0, cview.NewTableCell(command.Name))
+					CviewTable.SetCell(i+j, 1, cview.NewTableCell(command.Usage))
 				}
 			}
 
-			TviewTable.SetSelectable(true, false)
-			TviewTable.Select(0, 0).SetFixed(1, 1).SetDoneFunc(func(key tcell.Key) {
+			CviewTable.SetSelectable(true, false)
+			CviewTable.Select(0, 0).SetFixed(1, 1).SetDoneFunc(func(key tcell.Key) {
 				if key == tcell.KeyEscape {
-					TviewApp.Stop()
+					CviewApp.Stop()
 				}
 			}).SetSelectedFunc(func(row int, column int) {
-				cell := TviewTable.GetCell(row, column)
+				cell := CviewTable.GetCell(row, column)
 				cmd := module.GetByName(cell.Text)
-				ShowModule(TviewApp, cmd)
+				ShowModule(CviewApp, cmd)
 			})
-			if err := TviewApp.SetRoot(TviewTable, true).SetFocus(TviewTable).Run(); err != nil {
+			if err := CviewApp.SetRoot(CviewTable, true).SetFocus(CviewTable).Run(); err != nil {
 				say.Error(err)
 			}
 			return nil

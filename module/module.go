@@ -7,7 +7,11 @@ import (
 	"github.com/dops-cli/dops/module/demo"
 	"github.com/dops-cli/dops/module/extract"
 	"github.com/dops-cli/dops/module/update"
+	"github.com/dops-cli/dops/say"
 	"github.com/urfave/cli/v2"
+	"os"
+	"os/exec"
+	"strings"
 )
 
 // * <<< Add modules and global flags here! >>> *
@@ -47,12 +51,20 @@ type GlobalFlag interface {
 }
 
 func Run(cmd *cli.Command, flags map[string]string) error {
+
+	say.Text("\033[2J")
+	clear := exec.Command("clear")
+	clear.Stdout = os.Stdout
+	clear.Run()
+
 	args := []string{"dops"}
 	args = append(args, cmd.Name)
 
 	for name, value := range flags {
 		args = append(args, "-"+name+"="+value)
 	}
+
+	say.Info("Running: ", strings.Join(args, " "))
 
 	err := CliApp.Run(args)
 	if err != nil {

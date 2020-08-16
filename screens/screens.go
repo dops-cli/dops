@@ -3,21 +3,25 @@ package screens
 import (
 	"github.com/dops-cli/dops/module"
 	"github.com/dops-cli/dops/say"
-	"github.com/rivo/tview"
 	"github.com/urfave/cli/v2"
+	"gitlab.com/tslocum/cview"
 	"strconv"
 	"strings"
 )
 
-var TviewApp *tview.Application
-var TviewTable *tview.Table
+var CviewApp *cview.Application
+var CviewTable *cview.Table
 
-func ShowTable(app *tview.Application) {
-	app.SetRoot(TviewTable, true)
+func ShowTable(app *cview.Application) {
+	app.SetRoot(CviewTable, true)
 }
 
-func ShowModule(app *tview.Application, cmd *cli.Command) error {
-	form := tview.NewForm()
+func ShowEmpty(app *cview.Application) {
+	app.SetRoot(nil, false)
+}
+
+func ShowModule(app *cview.Application, cmd *cli.Command) error {
+	form := cview.NewForm()
 
 	var BoolFlags []*cli.BoolFlag
 	var DurationFlags []*cli.DurationFlag
@@ -91,7 +95,7 @@ func ShowModule(app *tview.Application, cmd *cli.Command) error {
 
 		for _, flag := range BoolFlags {
 			f := *flag
-			form.AddCheckbox(flag.Name, flag.Value, func(text bool) {
+			form.AddCheckBox(flag.Name, "Message", flag.Value, func(text bool) {
 				flags[f.Name] = strconv.FormatBool(text)
 			})
 		}
@@ -105,7 +109,7 @@ func ShowModule(app *tview.Application, cmd *cli.Command) error {
 
 		for _, flag := range Float64Flags {
 			f := *flag
-			form.AddInputField(flag.Name, strconv.FormatFloat(flag.Value, 'G', -1, 64), fieldWidth, tview.InputFieldFloat, func(text string) {
+			form.AddInputField(flag.Name, strconv.FormatFloat(flag.Value, 'G', -1, 64), fieldWidth, cview.InputFieldFloat, func(text string) {
 				flags[f.Name] = text
 			})
 		}
@@ -128,7 +132,7 @@ func ShowModule(app *tview.Application, cmd *cli.Command) error {
 
 		for _, flag := range IntFlags {
 			f := *flag
-			form.AddInputField(flag.Name, strconv.Itoa(flag.Value), fieldWidth, tview.InputFieldInteger, func(text string) {
+			form.AddInputField(flag.Name, strconv.Itoa(flag.Value), fieldWidth, cview.InputFieldInteger, func(text string) {
 				flags[f.Name] = text
 			})
 		}
@@ -192,8 +196,25 @@ func ShowModule(app *tview.Application, cmd *cli.Command) error {
 			})
 		}
 
+		form.AddButton("Run", func() {
+			app.Stop()
+			err := module.Run(cmd, flags)
+			if err != nil {
+				panic(err)
+			}
+		})
+
+		form.AddButton("Cancel", func() {
+			ShowTable(app)
+		})
+
+		form.SetWrapAround(true)
+
+		form.SetBorder(true).SetTitle(" " + cmd.Name + " - " + cmd.Usage + " ").SetTitleAlign(cview.AlignLeft)
+		CviewApp.SetRoot(form, true)
+
 	} else {
-		modal := tview.NewModal()
+		modal := cview.NewModal()
 
 		modal.SetTitle("Confirm to run " + cmd.Name)
 		modal.SetText("This module does not have any options. Run it?")
@@ -210,26 +231,10 @@ func ShowModule(app *tview.Application, cmd *cli.Command) error {
 			}
 		})
 
-		err := TviewApp.SetRoot(modal, false).SetFocus(modal).Run()
+		err := CviewApp.SetRoot(modal, true).SetFocus(modal).Run()
 		if err != nil {
 			return err
 		}
 	}
-
-	form.AddButton("Cancel", func() {
-		ShowTable(app)
-	})
-
-	form.AddButton("Run", func() {
-		form.Clear(true)
-		app.Stop()
-		err := module.Run(cmd, flags)
-		if err != nil {
-			panic(err)
-		}
-	})
-
-	form.SetBorder(true).SetTitle(" " + cmd.Name + " - " + cmd.Usage + " ").SetTitleAlign(tview.AlignLeft)
-	TviewApp.SetRoot(form, true)
 	return nil
 }
