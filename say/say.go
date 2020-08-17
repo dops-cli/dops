@@ -5,6 +5,7 @@ import (
 	"log"
 
 	"github.com/dops-cli/dops/flags/raw"
+	"github.com/dops-cli/dops/global"
 	"github.com/dops-cli/dops/say/color"
 )
 
@@ -46,4 +47,12 @@ func Warning(text ...interface{}) {
 // Error outputs formatted text to the terminal.
 func Error(text ...interface{}) {
 	p(ErrorPrefix, text...)
+}
+
+// Fatal outputs formatted text to the terminal.
+func Fatal(text ...interface{}) {
+	if global.CviewApp != nil {
+		global.CviewApp.Stop()
+	}
+	log.Fatal(text...)
 }

@@ -7,12 +7,10 @@ import (
 	"github.com/urfave/cli/v2"
 	"gitlab.com/tslocum/cview"
 
+	. "github.com/dops-cli/dops/global"
 	"github.com/dops-cli/dops/module"
 	"github.com/dops-cli/dops/say"
 )
-
-var CviewApp *cview.Application
-var CviewTable *cview.Table
 
 func ShowInteractiveModuleList(app *cview.Application) {
 	app.SetRoot(CviewTable, true)
@@ -228,7 +226,7 @@ func ShowModule(app *cview.Application, cmd *cli.Command) error {
 				app.Stop()
 				err := module.Run(cmd, nil)
 				if err != nil {
-					say.Error(err)
+					say.Fatal(err)
 				}
 			}
 		})

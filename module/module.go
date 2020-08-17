@@ -1,6 +1,7 @@
 package module
 
 import (
+	"errors"
 	"os"
 	"os/exec"
 	"strings"
@@ -76,15 +77,15 @@ func Run(cmd *cli.Command, flags map[string]string) error {
 	return nil
 }
 
-func GetByName(name string) *cli.Command {
+func GetByName(name string) (*cli.Command, error) {
 	for _, m := range ActiveModules {
 		for _, c := range m.GetCommands() {
 			if c.Name == name {
-				return c
+				return c, nil
 			}
 		}
 	}
-	return nil
+	return nil, errors.New("could not find module by name " + name)
 }
 
 func addModule(module Module) {

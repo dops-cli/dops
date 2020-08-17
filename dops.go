@@ -4,17 +4,20 @@ import (
 	"io"
 	"os"
 	"sort"
+	"strings"
 
 	"github.com/gdamore/tcell"
 	"github.com/urfave/cli/v2"
 	"gitlab.com/tslocum/cview"
 
+	. "github.com/dops-cli/dops/global"
 	. "github.com/dops-cli/dops/interactive"
 	"github.com/dops-cli/dops/module"
 	"github.com/dops-cli/dops/module/modules"
 	"github.com/dops-cli/dops/say"
 	"github.com/dops-cli/dops/say/color"
 	"github.com/dops-cli/dops/template"
+	"github.com/dops-cli/dops/utils"
 )
 
 var (
@@ -50,7 +53,7 @@ func main() {
 		Name:     "dops",
 		HelpName: "dops",
 		Usage:    "CLI DevOps Toolkit",
-		Version:  "v1.13.1", // <---VERSION---> This comment is used for CI, do NOT modify it!
+		Version:  "v1.14.0", // <---VERSION---> This comment is used for CI, do NOT modify it!
 		Flags:    CliFlags,
 		Commands: CliCommands,
 		Authors: []*cli.Author{
@@ -69,10 +72,32 @@ func main() {
 			CviewApp.EnableMouse(true)
 			CviewTable.SetTitle("DOPS")
 
-			for i, m := range module.ActiveModules {
-				for j, command := range m.GetCommands() {
-					CviewTable.SetCell(i+j, 0, cview.NewTableCell(command.Name))
-					CviewTable.SetCell(i+j, 1, cview.NewTableCell(command.Usage))
+			var categories []string
+
+			for _, m := range module.ActiveModules {
+				for _, command := range m.GetCommands() {
+					if !utils.ContainsString(categories, command.Category) {
+						categories = append(categories, command.Category)
+					}
+				}
+			}
+
+			sort.Strings(categories)
+
+			currentRow := 0
+
+			for _, category := range categories {
+				categoryCell := cview.NewTableCell(" --- " + category + " --- ")
+				CviewTable.SetCell(currentRow, 0, categoryCell)
+				currentRow++
+				for _, m := range module.ActiveModules {
+					for _, command := range m.GetCommands() {
+						if command.Category == category {
+							CviewTable.SetCell(currentRow, 0, cview.NewTableCell(command.Name))
+							CviewTable.SetCell(currentRow, 1, cview.NewTableCell(command.Usage))
+							currentRow++
+						}
+					}
 				}
 			}
 
@@ -83,14 +108,20 @@ func main() {
 				}
 			}).SetSelectedFunc(func(row int, column int) {
 				cell := CviewTable.GetCell(row, column)
-				cmd := module.GetByName(cell.Text)
-				err := ShowModule(CviewApp, cmd)
+				if strings.Contains(cell.Text, " --- ") {
+					return
+				}
+				cmd, err := module.GetByName(cell.Text)
 				if err != nil {
-					say.Error(err)
+					say.Fatal(err)
+				}
+				err = ShowModule(CviewApp, cmd)
+				if err != nil {
+					say.Fatal(err)
 				}
 			})
 			if err := CviewApp.SetRoot(CviewTable, true).SetFocus(CviewTable).Run(); err != nil {
-				say.Error(err)
+				say.Fatal(err)
 			}
 			return nil
 		},
@@ -101,6 +132,6 @@ func main() {
 
 	err := module.CliApp.Run(os.Args)
 	if err != nil {
-		say.Error(err)
+		say.Fatal(err)
 	}
 }
