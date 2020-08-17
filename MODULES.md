@@ -1,5 +1,5 @@
-
-### bulkdownload  
+# DOPS - Modules
+## bulkdownload  
 
 > Download multiple files from a list  
 
@@ -7,12 +7,12 @@ Usage:  [options] [arguments...]<br/>
 Aliases: `bd`<br/>
 Category: Web
 
- #### Description
+ ### Description
 
 Bulkdownload downloads all files from a list. 
 You can set how many files should be downloaded concurrently..
 
-#### Options
+### Options
 
 ```
 --input FILE, -i FILE	load URLs from FILE (default: "urls.txt")
@@ -20,7 +20,7 @@ You can set how many files should be downloaded concurrently..
 --concurrent NUMBER, -c NUMBER	downloads NUMBER files concurrently (default: 3)
 ```
 
-### extract-text  
+## extract-text  
 
 > Extracts text using regex from a file  
 
@@ -28,11 +28,11 @@ Usage:  [options] [arguments...]<br/>
 
 Category: Text Processing
 
- #### Description
+ ### Description
 
 Extract-text can be used to extract text from a file using regex patterns.
 
-#### Options
+### Options
 
 ```
 --regex PATTERN, -r PATTERN	extracts matching strings with PATTERN
@@ -40,7 +40,7 @@ Extract-text can be used to extract text from a file using regex patterns.
 --output DIR, -o DIR	outputs to directory DIR
 ```
 
-### update  
+## update  
 
 > Updates the dops tool  
 
@@ -48,13 +48,13 @@ Usage:  [arguments...]<br/>
 
 Category: Dops
 
- #### Description
+ ### Description
 
 NOTICE: This module is in progress. But you can already see it's usage for further use!
 
 
 
-### demo  
+## demo  
 
 > Demo module of dops  
 
@@ -62,11 +62,11 @@ Usage:  [options] [arguments...]<br/>
 
 Category: Dops
 
- #### Description
+ ### Description
 
 NOTICE: This module does nothing, except showing all possible flags for an interactive demo.
 
-#### Options
+### Options
 
 ```
 --Boolean	(default: false)
