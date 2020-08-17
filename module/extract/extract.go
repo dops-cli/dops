@@ -1,12 +1,14 @@
 package extract
 
 import (
-	"github.com/dops-cli/dops/categories"
-	"github.com/dops-cli/dops/say"
-	"github.com/urfave/cli/v2"
 	"io/ioutil"
 	"os"
 	"regexp"
+
+	"github.com/urfave/cli/v2"
+
+	"github.com/dops-cli/dops/categories"
+	"github.com/dops-cli/dops/say"
 )
 
 type Module struct{}

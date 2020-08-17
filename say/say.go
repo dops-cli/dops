@@ -2,9 +2,10 @@ package say
 
 import (
 	"fmt"
+	"log"
+
 	"github.com/dops-cli/dops/flags/raw"
 	"github.com/dops-cli/dops/say/color"
-	"log"
 )
 
 var (

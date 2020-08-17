@@ -1,13 +1,15 @@
 package modules
 
 import (
+	"regexp"
+	"strconv"
+
+	"github.com/urfave/cli/v2"
+
 	"github.com/dops-cli/dops/categories"
 	"github.com/dops-cli/dops/module"
 	"github.com/dops-cli/dops/say"
 	"github.com/dops-cli/dops/template"
-	"github.com/urfave/cli/v2"
-	"regexp"
-	"strconv"
 )
 
 type Module struct{}

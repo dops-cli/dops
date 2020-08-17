@@ -3,16 +3,18 @@ package bulkdownload
 import (
 	"bufio"
 	"fmt"
-	"github.com/dops-cli/dops/categories"
-	"github.com/dops-cli/dops/say"
-	"github.com/dops-cli/dops/say/color"
-	"github.com/urfave/cli/v2"
 	"io"
 	"net/http"
 	"os"
 	"path/filepath"
 	"strconv"
 	"sync"
+
+	"github.com/urfave/cli/v2"
+
+	"github.com/dops-cli/dops/categories"
+	"github.com/dops-cli/dops/say"
+	"github.com/dops-cli/dops/say/color"
 )
 
 var wg sync.WaitGroup

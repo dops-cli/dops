@@ -1,12 +1,14 @@
 package template
 
 import (
+	"strings"
+	"text/template"
+
+	"github.com/urfave/cli/v2"
+
 	"github.com/dops-cli/dops/module"
 	"github.com/dops-cli/dops/say/color"
 	. "github.com/dops-cli/dops/say/color"
-	"github.com/urfave/cli/v2"
-	"strings"
-	"text/template"
 )
 
 var funcMap = template.FuncMap{"join": strings.Join}

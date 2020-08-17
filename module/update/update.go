@@ -1,11 +1,13 @@
 package update
 
 import (
+	"runtime"
+
+	"github.com/urfave/cli/v2"
+
 	"github.com/dops-cli/dops/categories"
 	"github.com/dops-cli/dops/say"
 	"github.com/dops-cli/dops/say/color"
-	"github.com/urfave/cli/v2"
-	"runtime"
 )
 
 type Module struct{}

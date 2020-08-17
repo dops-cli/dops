@@ -1,6 +1,12 @@
 package module
 
 import (
+	"os"
+	"os/exec"
+	"strings"
+
+	"github.com/urfave/cli/v2"
+
 	"github.com/dops-cli/dops/flags/debug"
 	"github.com/dops-cli/dops/flags/raw"
 	"github.com/dops-cli/dops/module/bulkdownload"
@@ -8,10 +14,6 @@ import (
 	"github.com/dops-cli/dops/module/extract"
 	"github.com/dops-cli/dops/module/update"
 	"github.com/dops-cli/dops/say"
-	"github.com/urfave/cli/v2"
-	"os"
-	"os/exec"
-	"strings"
 )
 
 // * <<< Add modules and global flags here! >>> *

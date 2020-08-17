@@ -1,18 +1,20 @@
 package main
 
 import (
+	"io"
+	"os"
+	"sort"
+
+	"github.com/gdamore/tcell"
+	"github.com/urfave/cli/v2"
+	"gitlab.com/tslocum/cview"
+
 	. "github.com/dops-cli/dops/interactive"
 	"github.com/dops-cli/dops/module"
 	"github.com/dops-cli/dops/module/modules"
 	"github.com/dops-cli/dops/say"
 	"github.com/dops-cli/dops/say/color"
 	"github.com/dops-cli/dops/template"
-	"github.com/gdamore/tcell"
-	"github.com/urfave/cli/v2"
-	"gitlab.com/tslocum/cview"
-	"io"
-	"os"
-	"sort"
 )
 
 var (

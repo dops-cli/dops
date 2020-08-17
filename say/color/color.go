@@ -3,12 +3,13 @@ package color
 
 import (
 	"fmt"
-	"github.com/dops-cli/dops/flags/raw"
 	"io"
 	"os"
 	"strconv"
 	"strings"
 	"sync"
+
+	"github.com/dops-cli/dops/flags/raw"
 
 	"github.com/mattn/go-colorable"
 	"github.com/mattn/go-isatty"

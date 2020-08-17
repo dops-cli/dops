@@ -1,8 +1,9 @@
 package demo
 
 import (
-	"github.com/dops-cli/dops/categories"
 	"github.com/urfave/cli/v2"
+
+	"github.com/dops-cli/dops/categories"
 )
 
 type Module struct{}
