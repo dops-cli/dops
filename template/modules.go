@@ -50,8 +50,8 @@ func PrintModules() error {
 }
 
 func PrintModulesMarkdown() error {
-	var modules = `{{range .Commands}}
-### {{.Name}}  
+	var modules = `# DOPS - Modules{{range .Commands}}
+## {{.Name}}  
 
 > {{.Usage}}  
 
@@ -59,11 +59,11 @@ Usage: {{if .UsageText}}{{.UsageText}}{{else}}{{.HelpName}}{{if .VisibleFlags}} 
 {{if .Aliases}}Aliases: ` + "`" + `{{join .Aliases "` + "`, `" + `"}}` + "`" + `{{if .Category}}<br/>{{end}}{{end}}
 {{if .Category}}Category: {{.Category}}{{end}}
 
-{{if .Description}} #### Description
+{{if .Description}} ### Description
 
 {{.Description}}{{end}}
 
-{{if .VisibleFlags}}#### Options
+{{if .VisibleFlags}}### Options
 
 ` + "```" + `
 {{range .VisibleFlags}}{{.}}
