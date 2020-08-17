@@ -10,6 +10,7 @@ import (
 
 	"github.com/dops-cli/dops/flags/debug"
 	"github.com/dops-cli/dops/flags/raw"
+	"github.com/dops-cli/dops/global"
 	"github.com/dops-cli/dops/module/bulkdownload"
 	"github.com/dops-cli/dops/module/demo"
 	"github.com/dops-cli/dops/module/extract"
@@ -78,11 +79,9 @@ func Run(cmd *cli.Command, flags map[string]string) error {
 }
 
 func GetByName(name string) (*cli.Command, error) {
-	for _, m := range ActiveModules {
-		for _, c := range m.GetCommands() {
-			if c.Name == name {
-				return c, nil
-			}
+	for _, c := range global.CliCommands {
+		if c.Name == name {
+			return c, nil
 		}
 	}
 	return nil, errors.New("could not find module by name " + name)

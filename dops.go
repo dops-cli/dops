@@ -20,11 +20,6 @@ import (
 	"github.com/dops-cli/dops/utils"
 )
 
-var (
-	CliFlags    []cli.Flag
-	CliCommands []*cli.Command
-)
-
 func init() {
 	cli.AppHelpTemplate = template.AppHelp
 	cli.CommandHelpTemplate = template.CommandHelp
@@ -37,6 +32,7 @@ func init() {
 		say.Info("dops is currently on version " + color.Primary(c.App.Version) + "!")
 	}
 }
+
 func main() {
 
 	for _, f := range module.ActiveGlobalFlags {
@@ -74,11 +70,9 @@ func main() {
 
 			var categories []string
 
-			for _, m := range module.ActiveModules {
-				for _, command := range m.GetCommands() {
-					if !utils.ContainsString(categories, command.Category) {
-						categories = append(categories, command.Category)
-					}
+			for _, command := range CliCommands {
+				if !utils.ContainsString(categories, command.Category) {
+					categories = append(categories, command.Category)
 				}
 			}
 
@@ -90,13 +84,11 @@ func main() {
 				categoryCell := cview.NewTableCell(" --- " + category + " --- ")
 				CviewTable.SetCell(currentRow, 0, categoryCell)
 				currentRow++
-				for _, m := range module.ActiveModules {
-					for _, command := range m.GetCommands() {
-						if command.Category == category {
-							CviewTable.SetCell(currentRow, 0, cview.NewTableCell(command.Name))
-							CviewTable.SetCell(currentRow, 1, cview.NewTableCell(command.Usage))
-							currentRow++
-						}
+				for _, command := range CliCommands {
+					if command.Category == category {
+						CviewTable.SetCell(currentRow, 0, cview.NewTableCell(command.Name))
+						CviewTable.SetCell(currentRow, 1, cview.NewTableCell(command.Usage))
+						currentRow++
 					}
 				}
 			}
