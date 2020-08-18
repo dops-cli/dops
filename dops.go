@@ -61,12 +61,15 @@ func main() {
 		Copyright:              "(c) 2020 Marvin Wendt",
 		Writer:                 color.Output,
 		UseShortOptionHandling: true,
-		Action: func(context *cli.Context) error {
+		Action: func(ctx *cli.Context) error {
 			CviewApp = cview.NewApplication()
 			CviewTable = cview.NewTable()
 
 			CviewApp.EnableMouse(true)
+
 			CviewTable.SetTitle("DOPS")
+			CviewTable.SetSelectable(true, false)
+			CviewTable.SetScrollBarVisibility(cview.ScrollBarAuto)
 
 			var categories []string
 
@@ -82,6 +85,7 @@ func main() {
 
 			for _, category := range categories {
 				categoryCell := cview.NewTableCell(" --- " + category + " --- ")
+				categoryCell.Color = tcell.Color87
 				CviewTable.SetCell(currentRow, 0, categoryCell)
 				currentRow++
 				for _, command := range CliCommands {
@@ -93,7 +97,6 @@ func main() {
 				}
 			}
 
-			CviewTable.SetSelectable(true, false)
 			CviewTable.Select(0, 0).SetFixed(1, 1).SetDoneFunc(func(key tcell.Key) {
 				if key == tcell.KeyEscape {
 					CviewApp.Stop()
