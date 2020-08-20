@@ -93,7 +93,7 @@ func ShowModule(app *cview.Application, cmd *cli.Command) error {
 
 		for _, flag := range BoolFlags {
 			f := *flag
-			form.AddCheckBox(flag.Name+" - "+flag.Usage, "Message", flag.Value, func(text bool) {
+			form.AddCheckBox(flag.Name+" - "+flag.Usage, "", flag.Value, func(text bool) {
 				flags[f.Name] = strconv.FormatBool(text)
 			})
 		}
