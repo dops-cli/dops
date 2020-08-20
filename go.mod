@@ -9,5 +9,5 @@ require (
 	github.com/mattn/go-isatty v0.0.12
 	github.com/urfave/cli/v2 v2.2.0
 	gitlab.com/tslocum/cview v1.4.8
-	golang.org/x/sys v0.0.0-20200817155316-9781c653f443 // indirect
+	golang.org/x/sys v0.0.0-20200819171115-d785dc25833f // indirect
 )
