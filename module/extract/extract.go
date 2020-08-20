@@ -1,14 +1,11 @@
 package extract
 
 import (
-	"io/ioutil"
-	"os"
 	"regexp"
 
 	"github.com/urfave/cli/v2"
 
 	"github.com/dops-cli/dops/categories"
-	"github.com/dops-cli/dops/say"
 	"github.com/dops-cli/dops/utils"
 )
 
@@ -52,21 +49,8 @@ func (Module) GetCommands() []*cli.Command {
 				}
 
 				foundStrings = r.FindAllString(utils.FileOrStdin(input), -1)
+				utils.FileOrStdout(output, foundStrings)
 
-				if output == "" {
-					for _, s := range foundStrings {
-						say.Text(s)
-					}
-				} else {
-					var out string
-					for _, s := range foundStrings {
-						out += s + "\n"
-					}
-					err := ioutil.WriteFile(output, []byte(out), os.ModeAppend)
-					if err != nil {
-						return err
-					}
-				}
 				return nil
 			},
 		},

@@ -1,6 +1,7 @@
 package utils
 
 import (
+	"fmt"
 	"io/ioutil"
 	"os"
 
@@ -21,4 +22,21 @@ func FileOrStdin(path string) string {
 		say.Fatal(err)
 	}
 	return string(file)
+}
+
+func FileOrStdout(path string, lines []string) {
+	if path == "" {
+		for _, s := range lines {
+			say.Text(s)
+		}
+	} else {
+		var out string
+		for _, s := range lines {
+			out += fmt.Sprintf("%v", s) + "\n"
+		}
+		err := ioutil.WriteFile(path, []byte(out), os.ModeAppend)
+		if err != nil {
+			say.Fatal(err)
+		}
+	}
 }
