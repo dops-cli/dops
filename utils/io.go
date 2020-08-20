@@ -8,6 +8,25 @@ import (
 	"github.com/dops-cli/dops/say"
 )
 
+func WriteFile(path string, content []byte, append bool) {
+	if append {
+		f, err := os.OpenFile(path, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+		if err != nil {
+			say.Fatal(err)
+		}
+		defer f.Close()
+		if _, err := f.Write(content); err != nil {
+			say.Fatal(err)
+		}
+	} else {
+		err := ioutil.WriteFile(path, content, 0644)
+		if err != nil {
+			say.Fatal(err)
+		}
+	}
+
+}
+
 func FileOrStdin(path string) string {
 	if path == "" {
 		bytes, err := ioutil.ReadAll(os.Stdin)
@@ -24,7 +43,7 @@ func FileOrStdin(path string) string {
 	return string(file)
 }
 
-func FileOrStdout(path string, lines []string) {
+func FileOrStdout(path string, lines []string, append bool) {
 	if path == "" {
 		for _, s := range lines {
 			say.Text(s)
@@ -34,9 +53,6 @@ func FileOrStdout(path string, lines []string) {
 		for _, s := range lines {
 			out += fmt.Sprintf("%v", s) + "\n"
 		}
-		err := ioutil.WriteFile(path, []byte(out), os.ModeAppend)
-		if err != nil {
-			say.Fatal(err)
-		}
+		WriteFile(path, []byte(out), append)
 	}
 }

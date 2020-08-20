@@ -35,11 +35,17 @@ func (Module) GetCommands() []*cli.Command {
 					Aliases: []string{"o"},
 					Usage:   "outputs to directory `DIR`",
 				},
+				&cli.BoolFlag{
+					Name:    "append",
+					Aliases: []string{"a"},
+					Usage:   "append instead of overriding output",
+				},
 			},
 			Action: func(c *cli.Context) error {
 				regex := c.String("regex")
 				input := c.Path("input")
 				output := c.String("output")
+				append := c.Bool("append")
 
 				var foundStrings []string
 
@@ -49,7 +55,7 @@ func (Module) GetCommands() []*cli.Command {
 				}
 
 				foundStrings = r.FindAllString(utils.FileOrStdin(input), -1)
-				utils.FileOrStdout(output, foundStrings)
+				utils.FileOrStdout(output, foundStrings, append)
 
 				return nil
 			},
