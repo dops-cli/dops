@@ -50,8 +50,8 @@ func main() {
 		HelpName: "dops",
 		Usage:    "CLI DevOps Toolkit",
 		Version:  "v1.15.1", // <---VERSION---> This comment is used for CI, do NOT modify it!
-		Flags:    CliFlags,
 		Commands: CliCommands,
+		Flags:    CliFlags,
 		Authors: []*cli.Author{
 			{
 				Name:  "Marvin Wendt",
@@ -61,6 +61,7 @@ func main() {
 		Copyright:              "(c) 2020 Marvin Wendt",
 		Writer:                 color.Output,
 		UseShortOptionHandling: true,
+		EnableBashCompletion:   true,
 		Action: func(ctx *cli.Context) error {
 			CviewApp = cview.NewApplication()
 			CviewTable = cview.NewTable()
