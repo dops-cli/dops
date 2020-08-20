@@ -9,6 +9,7 @@ import (
 
 	"github.com/dops-cli/dops/categories"
 	"github.com/dops-cli/dops/say"
+	"github.com/dops-cli/dops/utils"
 )
 
 type Module struct{}
@@ -50,21 +51,7 @@ func (Module) GetCommands() []*cli.Command {
 					return err
 				}
 
-				if input != "" {
-					file, err := ioutil.ReadFile(input)
-					if err != nil {
-						return err
-					}
-					foundStrings = r.FindAllString(string(file), -1)
-				} else {
-					bytes, err := ioutil.ReadAll(os.Stdin)
-					if err != nil {
-						return err
-					}
-
-					stdin := string(bytes)
-					foundStrings = r.FindAllString(stdin, -1)
-				}
+				foundStrings = r.FindAllString(utils.FileOrStdin(input), -1)
 
 				if output == "" {
 					for _, s := range foundStrings {
