@@ -59,7 +59,7 @@ func Run(cmd *cli.Command, flags map[string]string) error {
 	say.Text("\033[2J")
 	clear := exec.Command("clear")
 	clear.Stdout = os.Stdout
-	clear.Run()
+	_ = clear.Run()
 
 	args := []string{"dops"}
 	args = append(args, cmd.Name)
