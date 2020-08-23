@@ -17,7 +17,7 @@ func ShowInteractiveModuleList(app *cview.Application) {
 }
 
 func ShowModule(app *cview.Application, cmd *cli.Command) error {
-	fieldWidth := 10
+	fieldWidth := 0
 	flags := make(map[string]string)
 	form := cview.NewForm()
 
