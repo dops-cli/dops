@@ -3,7 +3,11 @@ package utils
 import (
 	"fmt"
 	"io/ioutil"
+	"log"
+	"net/http"
 	"os"
+	"strconv"
+	"strings"
 
 	"github.com/dops-cli/dops/say"
 )
@@ -27,13 +31,31 @@ func WriteFile(path string, content []byte, append bool) {
 
 }
 
-func FileOrStdin(path string) string {
+func Input(path string) string {
 	if path == "" {
 		bytes, err := ioutil.ReadAll(os.Stdin)
 		if err != nil {
 			say.Fatal(err)
 		}
 		return string(bytes)
+	} else if strings.HasPrefix(path, "https://") || strings.HasPrefix(path, "http://") {
+		var client http.Client
+		resp, err := client.Get(path)
+		if err != nil {
+			say.Fatal(err)
+		}
+		defer resp.Body.Close()
+
+		if resp.StatusCode == http.StatusOK {
+			bodyBytes, err := ioutil.ReadAll(resp.Body)
+			if err != nil {
+				log.Fatal(err)
+			}
+			bodyString := string(bodyBytes)
+			return bodyString
+		} else {
+			return "Error: " + strconv.Itoa(resp.StatusCode)
+		}
 	}
 
 	file, err := ioutil.ReadFile(path)
@@ -43,7 +65,7 @@ func FileOrStdin(path string) string {
 	return string(file)
 }
 
-func FileOrStdout(path string, lines []string, append bool) {
+func Output(path string, lines []string, append bool) {
 	if path == "" {
 		for _, s := range lines {
 			say.Text(s)

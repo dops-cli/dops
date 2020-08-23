@@ -49,7 +49,7 @@ func main() {
 		Name:     "dops",
 		HelpName: "dops",
 		Usage:    "CLI DevOps Toolkit",
-		Version:  "v1.15.1", // <---VERSION---> This comment is used for CI, do NOT modify it!
+		Version:  "v1.16.0", // <---VERSION---> This comment is used for CI, do NOT modify it!
 		Commands: CliCommands,
 		Flags:    CliFlags,
 		Authors: []*cli.Author{
@@ -75,7 +75,7 @@ func main() {
 			var categories []string
 
 			for _, command := range CliCommands {
-				if !utils.ContainsString(categories, command.Category) {
+				if !utils.SliceContainsString(categories, command.Category) {
 					categories = append(categories, command.Category)
 				}
 			}

@@ -54,8 +54,8 @@ func (Module) GetCommands() []*cli.Command {
 					return err
 				}
 
-				foundStrings = r.FindAllString(utils.FileOrStdin(input), -1)
-				utils.FileOrStdout(output, foundStrings, append)
+				foundStrings = r.FindAllString(utils.Input(input), -1)
+				utils.Output(output, foundStrings, append)
 
 				return nil
 			},
