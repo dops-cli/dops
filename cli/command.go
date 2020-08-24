@@ -7,6 +7,20 @@ import (
 	"strings"
 )
 
+var (
+	BoolFlags         []*BoolFlag
+	DurationFlags     []*DurationFlag
+	Float64Flags      []*Float64Flag
+	Float64SliceFlags []*Float64SliceFlag
+	IntFlags          []*IntFlag
+	IntSliceFlags     []*IntSliceFlag
+	PathFlags         []*PathFlag
+	StringFlags       []*StringFlag
+	StringSliceFlags  []*StringSliceFlag
+	TimestampFlags    []*TimestampFlag
+	OptionFlags       []*OptionFlag
+)
+
 // Command is a subcommand for a cli.App.
 type Command struct {
 	// The name of the command
@@ -90,6 +104,9 @@ func (c *Command) FullName() string {
 
 // Run invokes the command given the context, parses ctx.Args() to generate command-specific flags
 func (c *Command) Run(ctx *Context) (err error) {
+
+	SetupFlags(c)
+
 	if len(c.Subcommands) > 0 {
 		return c.startApp(ctx)
 	}
@@ -166,6 +183,71 @@ func (c *Command) Run(ctx *Context) (err error) {
 		context.App.handleExitCoder(context, err)
 	}
 	return err
+}
+
+func SetupFlags(cmd *Command) {
+	for _, flag := range cmd.Flags {
+
+		boolFlag, ok := flag.(*BoolFlag)
+		if ok {
+			BoolFlags = append(BoolFlags, boolFlag)
+		}
+
+		durationFlag, ok := flag.(*DurationFlag)
+		if ok {
+			DurationFlags = append(DurationFlags, durationFlag)
+		}
+
+		float64Flag, ok := flag.(*Float64Flag)
+		if ok {
+			Float64Flags = append(Float64Flags, float64Flag)
+		}
+
+		float64SliceFlag, ok := flag.(*Float64SliceFlag)
+		if ok {
+			Float64SliceFlags = append(Float64SliceFlags, float64SliceFlag)
+		}
+
+		intFlag, ok := flag.(*IntFlag)
+		if ok {
+			IntFlags = append(IntFlags, intFlag)
+		}
+
+		intSliceFlag, ok := flag.(*IntSliceFlag)
+		if ok {
+			IntSliceFlags = append(IntSliceFlags, intSliceFlag)
+		}
+
+		pathFlag, ok := flag.(*PathFlag)
+		if ok {
+			PathFlags = append(PathFlags, pathFlag)
+		}
+
+		stringFlag, ok := flag.(*StringFlag)
+		if ok {
+			StringFlags = append(StringFlags, stringFlag)
+		}
+
+		stringSliceFlag, ok := flag.(*StringSliceFlag)
+		if ok {
+			StringSliceFlags = append(StringSliceFlags, stringSliceFlag)
+		}
+
+		timestampFlag, ok := flag.(*TimestampFlag)
+		if ok {
+			TimestampFlags = append(TimestampFlags, timestampFlag)
+		}
+
+		optionFlag, ok := flag.(*OptionFlag)
+		if ok {
+			OptionFlags = append(OptionFlags, optionFlag)
+		}
+
+		for _, optionFlag := range OptionFlags {
+			f := *optionFlag
+			optionFlag.Usage += " [" + strings.Join(f.Options, " | ") + "]"
+		}
+	}
 }
 
 func (c *Command) newFlagSet() (*flag.FlagSet, error) {

@@ -22,7 +22,7 @@ var wg sync.WaitGroup
 // Module returns the created module
 type Module struct{}
 
-// GetCommands returns the commands of the module
+// GetModuleCommands returns the commands of the module
 func (Module) GetModuleCommands() []*cli.Command {
 	return []*cli.Command{
 		{
