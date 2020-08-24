@@ -247,9 +247,6 @@ func (f *Float64Flag) ApplyInputSourceValue(context *cli.Context, isc InputSourc
 func isEnvVarSet(envVars []string) bool {
 	for _, envVar := range envVars {
 		if _, ok := syscall.Getenv(envVar); ok {
-			// TODO: Can't use this for bools as
-			// set means that it was true or false based on
-			// Bool flag type, should work for other types
 			return true
 		}
 	}

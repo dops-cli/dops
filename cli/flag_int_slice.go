@@ -19,7 +19,6 @@ func NewIntSlice(defaults ...int) *IntSlice {
 	return &IntSlice{slice: append([]int{}, defaults...)}
 }
 
-// TODO: Consistently have specific Set function for Int64 and Float64 ?
 // SetInt directly adds an integer to the list of values
 func (i *IntSlice) SetInt(value int) {
 	if !i.hasBeenSet {
