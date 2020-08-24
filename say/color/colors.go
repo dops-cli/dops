@@ -15,4 +15,7 @@ var (
 
 	// Separator is used for separators
 	Separator = RedString
+
+	// R resets the color
+	R = New(Reset).Sprintf("")
 )

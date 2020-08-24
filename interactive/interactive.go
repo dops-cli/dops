@@ -35,6 +35,7 @@ func ShowModule(app *cview.Application, cmd *cli.Command) error {
 	var StringFlags []*cli.StringFlag
 	var StringSliceFlags []*cli.StringSliceFlag
 	var TimestampFlags []*cli.TimestampFlag
+	var OptionFlags []*cli.OptionFlag
 
 	form.SetWrapAround(true)
 	form.SetBorder(true)
@@ -92,6 +93,11 @@ func ShowModule(app *cview.Application, cmd *cli.Command) error {
 			timestampFlag, ok := flag.(*cli.TimestampFlag)
 			if ok {
 				TimestampFlags = append(TimestampFlags, timestampFlag)
+			}
+
+			optionFlag, ok := flag.(*cli.OptionFlag)
+			if ok {
+				OptionFlags = append(OptionFlags, optionFlag)
 			}
 		}
 
@@ -192,6 +198,14 @@ func ShowModule(app *cview.Application, cmd *cli.Command) error {
 			}
 
 			form.AddInputField(flag.Name+" - "+flag.Usage, ret, fieldWidth, nil, func(text string) {
+				flags[f.Name] = text
+			})
+		}
+
+		for _, flag := range OptionFlags {
+			f := *flag
+
+			form.AddDropDown(flag.Name+" - "+flag.Usage, flag.Options, 0, func(text string, _ int) {
 				flags[f.Name] = text
 			})
 		}

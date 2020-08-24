@@ -1,54 +1,39 @@
 package cli
 
+import (
+	"github.com/dops-cli/dops/say/color"
+)
+
 // AppHelpTemplate is the text template for the Default help topic.
 // cli.go uses text/template to render templates. You can
 // render custom help text by setting this variable.
-var AppHelpTemplate = `NAME:
-   {{.Name}}{{if .Usage}} - {{.Usage}}{{end}}
+var AppHelpTemplate = color.Primary("\nDOPS - CLI DevOps Toolkit") + `
 
-USAGE:
-   {{if .UsageText}}{{.UsageText}}{{else}}{{.HelpName}} {{if .VisibleFlags}}[global options]{{end}}{{if .Commands}} command [command options]{{end}} {{if .ArgsUsage}}{{.ArgsUsage}}{{else}}[arguments...]{{end}}{{end}}{{if .Version}}{{if not .HideVersion}}
+{{if .VisibleFlags}}` + color.Section(`Global options`) + `
+  ` + color.Flag(`{{range $index, $option := .VisibleFlags}}{{if $index}}`) + `
+  ` + color.Flag(`{{end}}{{$option}}{{end}}{{end}}`) + `
 
-VERSION:
-   {{.Version}}{{end}}{{end}}{{if .Description}}
+{{if .VisibleCommands}}` + color.Section(`Modules`) + `{{range .VisibleCategories}}{{if .Name}}
+  [` + color.Primary(`{{.Name}}`) + `]{{range .VisibleCommands}}
+    · ` + color.Secondary(`{{join .Names ", "}}`) + color.Separator(`{{"\t|\t"}}`) + `{{.Usage}}{{end}}{{else}}{{range .VisibleCommands}}
+    · ` + color.Secondary(`{{join .Names ", "}}`) + color.Separator(`{{"\t|\t"}}`) + `{{.Usage}}{{end}}{{end}}{{end}}{{end}}
 
-DESCRIPTION:
-   {{.Description}}{{end}}{{if len .Authors}}
-
-AUTHOR{{with $length := len .Authors}}{{if ne 1 $length}}S{{end}}{{end}}:
-   {{range $index, $author := .Authors}}{{if $index}}
-   {{end}}{{$author}}{{end}}{{end}}{{if .VisibleCommands}}
-
-COMMANDS:{{range .VisibleCategories}}{{if .Name}}
-   {{.Name}}:{{range .VisibleCommands}}
-     {{join .Names ", "}}{{"\t"}}{{.Usage}}{{end}}{{else}}{{range .VisibleCommands}}
-   {{join .Names ", "}}{{"\t"}}{{.Usage}}{{end}}{{end}}{{end}}{{end}}{{if .VisibleFlags}}
-
-GLOBAL OPTIONS:
-   {{range $index, $option := .VisibleFlags}}{{if $index}}
-   {{end}}{{$option}}{{end}}{{end}}{{if .Copyright}}
-
-COPYRIGHT:
-   {{.Copyright}}{{end}}
-`
+` + color.HiRedString("Contribute to this tool here: https://github.com/dops-cli ") + color.RedString("<3\n")
 
 // CommandHelpTemplate is the text template for the command help topic.
 // cli.go uses text/template to render templates. You can
 // render custom help text by setting this variable.
-var CommandHelpTemplate = `NAME:
-   {{.HelpName}} - {{.Usage}}
+var CommandHelpTemplate = color.Primary("\n{{.Name}}") + ` - ` + color.Secondary("{{.Usage}}") + color.R + `
 
-USAGE:
-   {{if .UsageText}}{{.UsageText}}{{else}}{{.HelpName}}{{if .VisibleFlags}} [command options]{{end}} {{if .ArgsUsage}}{{.ArgsUsage}}{{else}}[arguments...]{{end}}{{end}}{{if .Category}}
+{{if .Description}}` + color.Section("Description") + `
+{{.Description}}{{end}}
 
-CATEGORY:
-   {{.Category}}{{end}}{{if .Description}}
+` + color.Primary("Usage:") + ` {{if .UsageText}}{{.UsageText}}{{else}}{{.HelpName}}{{if .VisibleFlags}} [options]{{end}} {{if .ArgsUsage}}{{.ArgsUsage}}{{else}}[arguments...]{{end}}{{end}}
+{{if .Aliases}}` + color.Primary("Aliases:") + `  {{join .Aliases ", "}}{{end}}
+{{if .Category}}` + color.Primary("Category:") + ` {{.Category}}{{end}}
 
-DESCRIPTION:
-   {{.Description}}{{end}}{{if .VisibleFlags}}
-
-OPTIONS:
-   {{range .VisibleFlags}}{{.}}
+{{if .VisibleFlags}}` + color.Section("Options") + `
+   {{range .VisibleFlags}}` + color.Flag("{{.}}") + `
    {{end}}{{end}}
 `
 

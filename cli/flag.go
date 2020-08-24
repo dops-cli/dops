@@ -386,3 +386,12 @@ func flagFromEnvOrFile(envVars []string, filePath string) (val string, ok bool) 
 	}
 	return "", false
 }
+
+func sliceContainsString(s []string, e string) bool {
+	for _, a := range s {
+		if a == e {
+			return true
+		}
+	}
+	return false
+}

@@ -2,10 +2,8 @@ package debug
 
 import (
 	"github.com/dops-cli/dops/cli"
+	"github.com/dops-cli/dops/global/options"
 )
-
-// IsDebug returns true if dops is run in debugging mode.
-var IsDebug bool
 
 // Flag returns the created flag
 type Flag struct{}
@@ -16,7 +14,7 @@ func (Flag) GetFlags() []cli.Flag {
 		&cli.BoolFlag{
 			Name:        "debug",
 			Usage:       "Enables debugging mode - only useful if you are working on dops",
-			Destination: &IsDebug,
+			Destination: &options.IsDebug,
 		},
 	}
 }

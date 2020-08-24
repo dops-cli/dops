@@ -2,11 +2,8 @@ package raw
 
 import (
 	"github.com/dops-cli/dops/cli"
+	"github.com/dops-cli/dops/global/options"
 )
-
-// OutputRaw is true if dops was started with the global raw flag.
-// If OutputRaw is true, dops outputs an unformatted text.
-var OutputRaw bool
 
 // Flag returns the created flag
 type Flag struct{}
@@ -18,7 +15,7 @@ func (Flag) GetFlags() []cli.Flag {
 			Name:        "raw",
 			Aliases:     []string{"r"},
 			Usage:       "Print minimal unstyled text - good for writing to files",
-			Destination: &OutputRaw,
+			Destination: &options.OutputRaw,
 		},
 	}
 }

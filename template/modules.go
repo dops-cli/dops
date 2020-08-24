@@ -8,7 +8,6 @@ import (
 
 	"github.com/dops-cli/dops/module"
 	"github.com/dops-cli/dops/say/color"
-	. "github.com/dops-cli/dops/say/color"
 )
 
 var funcMap = template.FuncMap{"join": strings.Join}
@@ -22,17 +21,17 @@ type Modules struct {
 func PrintModules() error {
 
 	var modules = `{{range .Commands}}` +
-		Primary("\n{{.Name}}") + ` - ` + Secondary("{{.Usage}}") + `
+		color.Primary("\n{{.Name}}") + ` - ` + color.Secondary("{{.Usage}}") + `
 
-  ` + Primary("Usage:") + ` {{if .UsageText}}{{.UsageText}}{{else}}{{.HelpName}}{{if .VisibleFlags}} [options]{{end}} {{if .ArgsUsage}}{{.ArgsUsage}}{{else}}[arguments...]{{end}}{{end}}
-  {{if .Aliases}}` + Primary("Aliases:") + `  {{join .Aliases ", "}}{{end}}
-  {{if .Category}}` + Primary("Category:") + ` {{.Category}}{{end}}{{if .Description}}
+  ` + color.Primary("Usage:") + ` {{if .UsageText}}{{.UsageText}}{{else}}{{.HelpName}}{{if .VisibleFlags}} [options]{{end}} {{if .ArgsUsage}}{{.ArgsUsage}}{{else}}[arguments...]{{end}}{{end}}
+  {{if .Aliases}}` + color.Primary("Aliases:") + `  {{join .Aliases ", "}}{{end}}
+  {{if .Category}}` + color.Primary("Category:") + ` {{.Category}}{{end}}{{if .Description}}
 
-` + Section("Description") + `
+` + color.Section("Description") + `
 {{.Description}}{{end}}{{if .VisibleFlags}}
 
-` + Section("Options") + `
-  {{range .VisibleFlags}}` + Flag("{{.}}") + `
+` + color.Section("Options") + `
+  {{range .VisibleFlags}}` + color.Flag("{{.}}") + `
   {{end}}{{end}}` + "\n\n" + `{{end}}`
 
 	var commands []*cli.Command

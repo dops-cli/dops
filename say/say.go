@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/dops-cli/dops/flags/raw"
 	"github.com/dops-cli/dops/global"
+	"github.com/dops-cli/dops/global/options"
 	"github.com/dops-cli/dops/say/color"
 )
 
@@ -22,7 +22,7 @@ var (
 )
 
 func p(prefix string, text ...interface{}) {
-	if raw.OutputRaw {
+	if options.OutputRaw {
 		prefix = ""
 	}
 	_, err := fmt.Fprint(color.Output, prefix)
