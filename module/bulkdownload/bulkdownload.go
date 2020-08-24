@@ -131,6 +131,9 @@ func downloadFile(URL string, outputDir string, index int, total int) error {
 	defer out.Close()
 
 	_, err = io.Copy(out, response.Body)
+	if err != nil {
+		say.Fatal(err)
+	}
 	wg.Done()
 
 	return nil

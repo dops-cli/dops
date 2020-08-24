@@ -13,7 +13,7 @@ func (Flag) GetFlags() []cli.Flag {
 	return []cli.Flag{
 		&cli.BoolFlag{
 			Name:        "debug",
-			Usage:       "Enables debugging mode - only usefull if you are working on dops",
+			Usage:       "Enables debugging mode - only useful if you are working on dops",
 			Destination: &IsDebug,
 		},
 	}
