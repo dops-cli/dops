@@ -4,16 +4,16 @@ package color
 import (
 	"fmt"
 	"io"
+	"log"
 	"os"
 	"strconv"
 	"strings"
 	"sync"
 
-	"github.com/dops-cli/dops/flags/raw"
-	"github.com/dops-cli/dops/say"
-
 	"github.com/mattn/go-colorable"
 	"github.com/mattn/go-isatty"
+
+	"github.com/dops-cli/dops/flags/raw"
 )
 
 var (
@@ -134,7 +134,7 @@ func Unset() {
 
 	_, err := fmt.Fprintf(Output, "%s[%dm", escape, Reset)
 	if err != nil {
-		say.Fatal(err)
+		log.Fatal(err)
 	}
 }
 
@@ -146,7 +146,7 @@ func (c *Color) Set() *Color {
 
 	_, err := fmt.Fprintf(Output, c.format())
 	if err != nil {
-		say.Fatal(err)
+		log.Fatal(err)
 	}
 	return c
 }
@@ -166,7 +166,7 @@ func (c *Color) setWriter(w io.Writer) *Color {
 
 	_, err := fmt.Fprintf(w, c.format())
 	if err != nil {
-		say.Fatal(err)
+		log.Fatal(err)
 	}
 	return c
 }
@@ -182,7 +182,7 @@ func (c *Color) unsetWriter(w io.Writer) {
 
 	_, err := fmt.Fprintf(w, "%s[%dm", escape, Reset)
 	if err != nil {
-		say.Fatal(err)
+		log.Fatal(err)
 	}
 }
 
@@ -291,7 +291,7 @@ func (c *Color) FprintFunc() func(w io.Writer, a ...interface{}) {
 	return func(w io.Writer, a ...interface{}) {
 		_, err := c.Fprint(w, a...)
 		if err != nil {
-			say.Fatal(err)
+			log.Fatal(err)
 		}
 	}
 }
@@ -302,7 +302,7 @@ func (c *Color) PrintFunc() func(a ...interface{}) {
 	return func(a ...interface{}) {
 		_, err := c.Print(a...)
 		if err != nil {
-			say.Fatal(err)
+			log.Fatal(err)
 		}
 	}
 }
@@ -313,7 +313,7 @@ func (c *Color) FprintfFunc() func(w io.Writer, format string, a ...interface{})
 	return func(w io.Writer, format string, a ...interface{}) {
 		_, err := c.Fprintf(w, format, a...)
 		if err != nil {
-			say.Fatal(err)
+			log.Fatal(err)
 		}
 	}
 }
@@ -324,7 +324,7 @@ func (c *Color) PrintfFunc() func(format string, a ...interface{}) {
 	return func(format string, a ...interface{}) {
 		_, err := c.Printf(format, a...)
 		if err != nil {
-			say.Fatal(err)
+			log.Fatal(err)
 		}
 	}
 }
@@ -335,7 +335,7 @@ func (c *Color) FprintlnFunc() func(w io.Writer, a ...interface{}) {
 	return func(w io.Writer, a ...interface{}) {
 		_, err := c.Fprintln(w, a...)
 		if err != nil {
-			say.Fatal(err)
+			log.Fatal(err)
 		}
 	}
 }
@@ -346,7 +346,7 @@ func (c *Color) PrintlnFunc() func(a ...interface{}) {
 	return func(a ...interface{}) {
 		_, err := c.Println(a...)
 		if err != nil {
-			say.Fatal(err)
+			log.Fatal(err)
 		}
 	}
 }
@@ -490,12 +490,12 @@ func colorPrint(format string, p Attribute, a ...interface{}) {
 	if len(a) == 0 {
 		_, err := c.Print(format)
 		if err != nil {
-			say.Fatal(err)
+			log.Fatal(err)
 		}
 	} else {
 		_, err := c.Printf(format, a...)
 		if err != nil {
-			say.Fatal(err)
+			log.Fatal(err)
 		}
 	}
 }
