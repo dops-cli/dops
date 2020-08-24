@@ -81,3 +81,18 @@ NOTICE: This module does nothing, except showing all possible flags for an inter
 --String value	
 --Timestamp value	(default: <nil>)
 ```
+
+## rename-files  
+
+> Renames all selected files to a specific pattern  
+
+Usage:  [arguments...]<br/>
+Aliases: `rf`<br/>
+Category: IO
+
+ ### Description
+
+This module can be used to rename multiple files according to a specified pattern.
+The pattern could be a timestamp, or the hashcode of the file, among others.
+
+
