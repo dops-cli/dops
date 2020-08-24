@@ -98,6 +98,5 @@ The pattern could be a timestamp, or the hashcode of the file, among others.
 ### Options
 
 ```
---mode value, -m value	
---test value	
+--pattern OPTION, -p OPTION	Rename all files with OPTION
 ```
