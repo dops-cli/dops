@@ -31,8 +31,10 @@
 <img src="https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square" alt="License: MIT">
 </a>
 
+<br/>
+
 <a href="https://github.com/dops-cli/dops/releases">
-<img src="https://img.shields.io/badge/platform-windows%20%7C%20macos%20%7C%20linux-orange?style=flat-square" alt="Downloads">
+<img src="https://img.shields.io/badge/platform-windows%20%7C%20macos%20%7C%20linux-informational?style=for-the-badge" alt="Downloads">
 </a>
 
 </p>
