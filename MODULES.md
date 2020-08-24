@@ -73,12 +73,12 @@ NOTICE: This module does nothing, except showing all possible flags for an inter
 --Boolean	(default: false)
 --Duration value	(default: 0s)
 --Float64 value	(default: 0)
---Float64 value	
+--Float64List value	
 --Int value	(default: 0)
---Int value	
+--IntList value	
 --Path value	
 --String value	
---String value	
+--StringList value	
 --Timestamp value	(default: <nil>)
 ```
 
@@ -86,7 +86,7 @@ NOTICE: This module does nothing, except showing all possible flags for an inter
 
 > Renames all selected files to a specific pattern  
 
-Usage:  [arguments...]<br/>
+Usage:  [options] [arguments...]<br/>
 Aliases: `rf`<br/>
 Category: IO
 
@@ -95,4 +95,9 @@ Category: IO
 This module can be used to rename multiple files according to a specified pattern.
 The pattern could be a timestamp, or the hashcode of the file, among others.
 
+### Options
 
+```
+--mode value, -m value	
+--test value	
+```
