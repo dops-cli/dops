@@ -13,10 +13,12 @@ import (
 
 var funcMap = template.FuncMap{"join": strings.Join}
 
+// Modules is a wrapper for cli.Commands
 type Modules struct {
 	Commands cli.Commands
 }
 
+// PrintModules prints all modules to stdout
 func PrintModules() error {
 
 	var modules = `{{range .Commands}}` +
@@ -36,9 +38,7 @@ func PrintModules() error {
 	var commands []*cli.Command
 
 	for _, m := range module.ActiveModules {
-		for _, cmd := range m.GetCommands() {
-			commands = append(commands, cmd)
-		}
+		commands = append(commands, m.GetCommands()...)
 	}
 
 	t := template.Must(template.New("modules").Funcs(funcMap).Parse(modules))
@@ -51,6 +51,7 @@ func PrintModules() error {
 	return nil
 }
 
+// PrintModulesMarkdown prints all modules in markdown format to stdout
 func PrintModulesMarkdown() error {
 	var modules = `# DOPS - Modules{{range .Commands}}
 ## {{.Name}}  
@@ -75,9 +76,7 @@ Usage: {{if .UsageText}}{{.UsageText}}{{else}}{{.HelpName}}{{if .VisibleFlags}} 
 	var commands []*cli.Command
 
 	for _, m := range module.ActiveModules {
-		for _, cmd := range m.GetCommands() {
-			commands = append(commands, cmd)
-		}
+		commands = append(commands, m.GetCommands()...)
 	}
 
 	t := template.Must(template.New("modules").Funcs(funcMap).Parse(modules))

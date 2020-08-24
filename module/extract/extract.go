@@ -9,8 +9,10 @@ import (
 	"github.com/dops-cli/dops/utils"
 )
 
+// Module returns the created module
 type Module struct{}
 
+// GetCommands returns the commands of the module
 func (Module) GetCommands() []*cli.Command {
 	return []*cli.Command{
 		{
@@ -45,7 +47,7 @@ func (Module) GetCommands() []*cli.Command {
 				regex := c.String("regex")
 				input := c.Path("input")
 				output := c.String("output")
-				append := c.Bool("append")
+				appendFlag := c.Bool("appendFlag")
 
 				var foundStrings []string
 
@@ -55,7 +57,7 @@ func (Module) GetCommands() []*cli.Command {
 				}
 
 				foundStrings = r.FindAllString(utils.Input(input), -1)
-				utils.Output(output, foundStrings, append)
+				utils.Output(output, foundStrings, appendFlag)
 
 				return nil
 			},

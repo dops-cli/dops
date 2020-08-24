@@ -8,8 +8,10 @@ import (
 // If OutputRaw is true, dops outputs an unformatted text.
 var OutputRaw bool
 
+// Flag returns the created flag
 type Flag struct{}
 
+// GetFlags returns the global flags
 func (Flag) GetFlags() []cli.Flag {
 	return []cli.Flag{
 		&cli.BoolFlag{

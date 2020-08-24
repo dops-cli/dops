@@ -40,6 +40,7 @@ var ActiveGlobalFlags []GlobalFlag
 // Except for the module `modules`, which is registered in the main package.
 var ActiveModules []Module
 
+// CliApp is the main component of dops, which contains all modules and flags
 var CliApp *cli.App
 
 // Module is the interface of each module available in dops.
@@ -54,6 +55,7 @@ type GlobalFlag interface {
 	GetFlags() []cli.Flag
 }
 
+// Run runs a specific module with specific flags
 func Run(cmd *cli.Command, flags map[string]string) error {
 
 	say.Text("\033[2J")
@@ -78,6 +80,8 @@ func Run(cmd *cli.Command, flags map[string]string) error {
 	return nil
 }
 
+// GetByName searches for a module by name and returns it.
+// If no module is found, it will return an error.
 func GetByName(name string) (*cli.Command, error) {
 	for _, c := range global.CliCommands {
 		if c.Name == name {

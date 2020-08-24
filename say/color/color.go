@@ -1,4 +1,4 @@
-// Modification of https://github.com/fatih/color/blob/master/color.go
+// Package color is a modification of https://github.com/fatih/color/blob/master/color.go
 package color
 
 import (
@@ -10,6 +10,7 @@ import (
 	"sync"
 
 	"github.com/dops-cli/dops/flags/raw"
+	"github.com/dops-cli/dops/say"
 
 	"github.com/mattn/go-colorable"
 	"github.com/mattn/go-isatty"
@@ -131,7 +132,10 @@ func Unset() {
 		return
 	}
 
-	fmt.Fprintf(Output, "%s[%dm", escape, Reset)
+	_, err := fmt.Fprintf(Output, "%s[%dm", escape, Reset)
+	if err != nil {
+		say.Fatal(err)
+	}
 }
 
 // Set sets the SGR sequence.
@@ -140,7 +144,10 @@ func (c *Color) Set() *Color {
 		return c
 	}
 
-	fmt.Fprintf(Output, c.format())
+	_, err := fmt.Fprintf(Output, c.format())
+	if err != nil {
+		say.Fatal(err)
+	}
 	return c
 }
 
@@ -157,7 +164,10 @@ func (c *Color) setWriter(w io.Writer) *Color {
 		return c
 	}
 
-	fmt.Fprintf(w, c.format())
+	_, err := fmt.Fprintf(w, c.format())
+	if err != nil {
+		say.Fatal(err)
+	}
 	return c
 }
 
@@ -170,7 +180,10 @@ func (c *Color) unsetWriter(w io.Writer) {
 		return
 	}
 
-	fmt.Fprintf(w, "%s[%dm", escape, Reset)
+	_, err := fmt.Fprintf(w, "%s[%dm", escape, Reset)
+	if err != nil {
+		say.Fatal(err)
+	}
 }
 
 // Add is used to chain SGR parameters. Use as many as parameters to combine
@@ -276,7 +289,10 @@ func (c *Color) Sprintf(format string, a ...interface{}) string {
 // colorized with color.Fprint().
 func (c *Color) FprintFunc() func(w io.Writer, a ...interface{}) {
 	return func(w io.Writer, a ...interface{}) {
-		c.Fprint(w, a...)
+		_, err := c.Fprint(w, a...)
+		if err != nil {
+			say.Fatal(err)
+		}
 	}
 }
 
@@ -284,7 +300,10 @@ func (c *Color) FprintFunc() func(w io.Writer, a ...interface{}) {
 // colorized with color.Print().
 func (c *Color) PrintFunc() func(a ...interface{}) {
 	return func(a ...interface{}) {
-		c.Print(a...)
+		_, err := c.Print(a...)
+		if err != nil {
+			say.Fatal(err)
+		}
 	}
 }
 
@@ -292,7 +311,10 @@ func (c *Color) PrintFunc() func(a ...interface{}) {
 // colorized with color.Fprintf().
 func (c *Color) FprintfFunc() func(w io.Writer, format string, a ...interface{}) {
 	return func(w io.Writer, format string, a ...interface{}) {
-		c.Fprintf(w, format, a...)
+		_, err := c.Fprintf(w, format, a...)
+		if err != nil {
+			say.Fatal(err)
+		}
 	}
 }
 
@@ -300,7 +322,10 @@ func (c *Color) FprintfFunc() func(w io.Writer, format string, a ...interface{})
 // colorized with color.Printf().
 func (c *Color) PrintfFunc() func(format string, a ...interface{}) {
 	return func(format string, a ...interface{}) {
-		c.Printf(format, a...)
+		_, err := c.Printf(format, a...)
+		if err != nil {
+			say.Fatal(err)
+		}
 	}
 }
 
@@ -308,7 +333,10 @@ func (c *Color) PrintfFunc() func(format string, a ...interface{}) {
 // colorized with color.Fprintln().
 func (c *Color) FprintlnFunc() func(w io.Writer, a ...interface{}) {
 	return func(w io.Writer, a ...interface{}) {
-		c.Fprintln(w, a...)
+		_, err := c.Fprintln(w, a...)
+		if err != nil {
+			say.Fatal(err)
+		}
 	}
 }
 
@@ -316,7 +344,10 @@ func (c *Color) FprintlnFunc() func(w io.Writer, a ...interface{}) {
 // colorized with color.Println().
 func (c *Color) PrintlnFunc() func(a ...interface{}) {
 	return func(a ...interface{}) {
-		c.Println(a...)
+		_, err := c.Println(a...)
+		if err != nil {
+			say.Fatal(err)
+		}
 	}
 }
 
@@ -457,9 +488,15 @@ func colorPrint(format string, p Attribute, a ...interface{}) {
 	}
 
 	if len(a) == 0 {
-		c.Print(format)
+		_, err := c.Print(format)
+		if err != nil {
+			say.Fatal(err)
+		}
 	} else {
-		c.Printf(format, a...)
+		_, err := c.Printf(format, a...)
+		if err != nil {
+			say.Fatal(err)
+		}
 	}
 }
 

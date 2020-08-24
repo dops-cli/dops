@@ -10,7 +10,7 @@ Category: Web
  ### Description
 
 Bulkdownload downloads all files from a list. 
-You can set how many files should be downloaded concurrently..
+You can set how many files should be downloaded concurrently...
 
 ### Options
 
@@ -51,7 +51,7 @@ Category: Dops
 
  ### Description
 
-NOTICE: This module is in progress. But you can already see it's usage for further use!
+NOTICE: This module is in progress, but you can already see it's usage for further use!
 
 
 

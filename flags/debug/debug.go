@@ -7,8 +7,10 @@ import (
 // IsDebug returns true if dops is run in debugging mode.
 var IsDebug bool
 
+// Flag returns the created flag
 type Flag struct{}
 
+// GetFlags returns the global flags
 func (Flag) GetFlags() []cli.Flag {
 	return []cli.Flag{
 		&cli.BoolFlag{

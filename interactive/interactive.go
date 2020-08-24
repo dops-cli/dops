@@ -12,10 +12,12 @@ import (
 	"github.com/dops-cli/dops/say"
 )
 
+// ShowInteractiveModuleList shows the interactive table of all modules to the user
 func ShowInteractiveModuleList(app *cview.Application) {
 	app.SetRoot(CviewTable, true)
 }
 
+// ShowModule shows the form dialoge for a module to the user
 func ShowModule(app *cview.Application, cmd *cli.Command) error {
 	const fieldWidth = 0
 
@@ -171,9 +173,7 @@ func ShowModule(app *cview.Application, cmd *cli.Command) error {
 
 			var stringSlice []string
 			if flag.Value != nil {
-				for _, s := range flag.Value.Value() {
-					stringSlice = append(stringSlice, s)
-				}
+				stringSlice = append(stringSlice, flag.Value.Value()...)
 			}
 
 			def := strings.Join(stringSlice, ", ")

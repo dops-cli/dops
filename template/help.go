@@ -55,6 +55,7 @@ OPTIONS:
    {{end}}{{end}}
 `
 
+// MarkdownDoc contains the template for generating a module list in markdown
 var MarkdownDoc = `% {{ .App.Name }} 8
 
 # NAME

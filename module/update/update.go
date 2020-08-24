@@ -10,8 +10,10 @@ import (
 	"github.com/dops-cli/dops/say/color"
 )
 
+// Module returns the created module
 type Module struct{}
 
+// GetCommands returns the commands of the module
 func (Module) GetCommands() []*cli.Command {
 	return []*cli.Command{
 		{

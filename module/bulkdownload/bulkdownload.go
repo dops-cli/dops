@@ -19,8 +19,10 @@ import (
 
 var wg sync.WaitGroup
 
+// Module returns the created module
 type Module struct{}
 
+// GetCommands returns the commands of the module
 func (Module) GetCommands() []*cli.Command {
 	return []*cli.Command{
 		{
@@ -103,7 +105,7 @@ func readLines(path string) ([]string, error) {
 func downloadFile(URL string, outputDir string, index int, total int) error {
 	wg.Add(1)
 	say.Text(fmt.Sprintf("Downloading %s [%s/%s]", URL, color.HiGreenString(strconv.Itoa(index+1)), color.GreenString(strconv.Itoa(total))))
-	response, err := http.Get(URL)
+	response, err := http.Get(URL) //nolint:gosec
 	if err != nil {
 		return err
 	}

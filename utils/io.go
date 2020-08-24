@@ -12,6 +12,7 @@ import (
 	"github.com/dops-cli/dops/say"
 )
 
+// WriteFile writes content to path. If append is true, the content will be appended to the file at path.
 func WriteFile(path string, content []byte, append bool) {
 	if append {
 		f, err := os.OpenFile(path, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
@@ -23,7 +24,7 @@ func WriteFile(path string, content []byte, append bool) {
 			say.Fatal(err)
 		}
 	} else {
-		err := ioutil.WriteFile(path, content, 0644)
+		err := ioutil.WriteFile(path, content, 0600)
 		if err != nil {
 			say.Fatal(err)
 		}
@@ -31,6 +32,7 @@ func WriteFile(path string, content []byte, append bool) {
 
 }
 
+// Input is used for flags, which accept input in any form. Input supports HTTP and HTTPS resources, file paths and stdin.
 func Input(path string) string {
 	if path == "" {
 		bytes, err := ioutil.ReadAll(os.Stdin)
@@ -53,9 +55,9 @@ func Input(path string) string {
 			}
 			bodyString := string(bodyBytes)
 			return bodyString
-		} else {
-			return "Error: " + strconv.Itoa(resp.StatusCode)
 		}
+
+		return "Error: " + strconv.Itoa(resp.StatusCode)
 	}
 
 	file, err := ioutil.ReadFile(path)
@@ -65,6 +67,7 @@ func Input(path string) string {
 	return string(file)
 }
 
+// Output is used for flags, which accept output paths. If append is true, the output will be appended to the file at path.
 func Output(path string, lines []string, append bool) {
 	if path == "" {
 		for _, s := range lines {
