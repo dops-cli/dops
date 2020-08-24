@@ -7,14 +7,14 @@ import (
 	"github.com/urfave/cli/v2"
 	"gitlab.com/tslocum/cview"
 
-	. "github.com/dops-cli/dops/global"
+	"github.com/dops-cli/dops/global"
 	"github.com/dops-cli/dops/module"
 	"github.com/dops-cli/dops/say"
 )
 
 // ShowInteractiveModuleList shows the interactive table of all modules to the user
 func ShowInteractiveModuleList(app *cview.Application) {
-	app.SetRoot(CviewTable, true)
+	app.SetRoot(global.CviewTable, true)
 }
 
 // ShowModule shows the form dialoge for a module to the user
@@ -212,7 +212,7 @@ func ShowModule(app *cview.Application, cmd *cli.Command) error {
 			AddItem(cview.NewTextView().SetText(cmd.Description), 0, 1, false).
 			AddItem(form, 0, 4, true), 0, 1, true)
 
-		CviewApp.SetRoot(flex, true)
+		global.CviewApp.SetRoot(flex, true)
 
 	} else {
 		modal := cview.NewModal()
@@ -232,7 +232,7 @@ func ShowModule(app *cview.Application, cmd *cli.Command) error {
 			}
 		})
 
-		err := CviewApp.SetRoot(modal, true).SetFocus(modal).Run()
+		err := global.CviewApp.SetRoot(modal, true).SetFocus(modal).Run()
 		if err != nil {
 			return err
 		}

@@ -10,8 +10,8 @@ import (
 	"github.com/urfave/cli/v2"
 	"gitlab.com/tslocum/cview"
 
-	. "github.com/dops-cli/dops/global"
-	. "github.com/dops-cli/dops/interactive"
+	"github.com/dops-cli/dops/global"
+	"github.com/dops-cli/dops/interactive"
 	"github.com/dops-cli/dops/module"
 	"github.com/dops-cli/dops/module/modules"
 	"github.com/dops-cli/dops/say"
@@ -36,22 +36,22 @@ func init() {
 func main() {
 
 	for _, f := range module.ActiveGlobalFlags {
-		CliFlags = append(CliFlags, f.GetFlags()...)
+		global.CliFlags = append(global.CliFlags, f.GetFlags()...)
 	}
 
 	for _, m := range module.ActiveModules {
-		CliCommands = append(CliCommands, m.GetCommands()...)
+		global.CliCommands = append(global.CliCommands, m.GetCommands()...)
 	}
 
-	CliCommands = append(CliCommands, modules.Module{}.GetCommands()...)
+	global.CliCommands = append(global.CliCommands, modules.Module{}.GetCommands()...)
 
 	module.CliApp = &cli.App{
 		Name:     "dops",
 		HelpName: "dops",
 		Usage:    "CLI DevOps Toolkit",
 		Version:  "v1.16.0", // <---VERSION---> This comment is used for CI, do NOT modify it!
-		Commands: CliCommands,
-		Flags:    CliFlags,
+		Commands: global.CliCommands,
+		Flags:    global.CliFlags,
 		Authors: []*cli.Author{
 			{
 				Name:  "Marvin Wendt",
@@ -63,18 +63,18 @@ func main() {
 		UseShortOptionHandling: true,
 		EnableBashCompletion:   true,
 		Action: func(ctx *cli.Context) error {
-			CviewApp = cview.NewApplication()
-			CviewTable = cview.NewTable()
+			global.CviewApp = cview.NewApplication()
+			global.CviewTable = cview.NewTable()
 
-			CviewApp.EnableMouse(true)
+			global.CviewApp.EnableMouse(true)
 
-			CviewTable.SetTitle("DOPS")
-			CviewTable.SetSelectable(true, false)
-			CviewTable.SetScrollBarVisibility(cview.ScrollBarAuto)
+			global.CviewTable.SetTitle("DOPS")
+			global.CviewTable.SetSelectable(true, false)
+			global.CviewTable.SetScrollBarVisibility(cview.ScrollBarAuto)
 
 			var categories []string
 
-			for _, command := range CliCommands {
+			for _, command := range global.CliCommands {
 				if !utils.SliceContainsString(categories, command.Category) {
 					categories = append(categories, command.Category)
 				}
@@ -87,23 +87,23 @@ func main() {
 			for _, category := range categories {
 				categoryCell := cview.NewTableCell(" --- " + category + " --- ")
 				categoryCell.Color = tcell.Color87
-				CviewTable.SetCell(currentRow, 0, categoryCell)
+				global.CviewTable.SetCell(currentRow, 0, categoryCell)
 				currentRow++
-				for _, command := range CliCommands {
+				for _, command := range global.CliCommands {
 					if command.Category == category {
-						CviewTable.SetCell(currentRow, 0, cview.NewTableCell(command.Name))
-						CviewTable.SetCell(currentRow, 1, cview.NewTableCell(command.Usage))
+						global.CviewTable.SetCell(currentRow, 0, cview.NewTableCell(command.Name))
+						global.CviewTable.SetCell(currentRow, 1, cview.NewTableCell(command.Usage))
 						currentRow++
 					}
 				}
 			}
 
-			CviewTable.Select(0, 0).SetFixed(1, 1).SetDoneFunc(func(key tcell.Key) {
+			global.CviewTable.Select(0, 0).SetFixed(1, 1).SetDoneFunc(func(key tcell.Key) {
 				if key == tcell.KeyEscape {
-					CviewApp.Stop()
+					global.CviewApp.Stop()
 				}
 			}).SetSelectedFunc(func(row int, column int) {
-				cell := CviewTable.GetCell(row, column)
+				cell := global.CviewTable.GetCell(row, column)
 				if strings.Contains(cell.Text, " --- ") {
 					return
 				}
@@ -111,12 +111,12 @@ func main() {
 				if err != nil {
 					say.Fatal(err)
 				}
-				err = ShowModule(CviewApp, cmd)
+				err = interactive.ShowModule(global.CviewApp, cmd)
 				if err != nil {
 					say.Fatal(err)
 				}
 			})
-			if err := CviewApp.SetRoot(CviewTable, true).SetFocus(CviewTable).Run(); err != nil {
+			if err := global.CviewApp.SetRoot(global.CviewTable, true).SetFocus(global.CviewTable).Run(); err != nil {
 				say.Fatal(err)
 			}
 			return nil
