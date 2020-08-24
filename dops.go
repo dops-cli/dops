@@ -30,15 +30,15 @@ func init() {
 
 func main() {
 
-	for _, f := range module.ActiveGlobalFlags {
+	for _, f := range cli.ActiveGlobalFlags {
 		global.CliFlags = append(global.CliFlags, f.GetFlags()...)
 	}
 
-	for _, m := range module.ActiveModules {
-		global.CliCommands = append(global.CliCommands, m.GetCommands()...)
+	for _, m := range cli.ActiveModules {
+		global.CliCommands = append(global.CliCommands, m.GetModuleCommands()...)
 	}
 
-	global.CliCommands = append(global.CliCommands, modules.Module{}.GetCommands()...)
+	global.CliCommands = append(global.CliCommands, modules.Module{}.GetModuleCommands()...)
 
 	module.CliApp = &cli.App{
 		Name:     "dops",

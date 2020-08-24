@@ -7,16 +7,14 @@ import (
 	"github.com/dops-cli/dops/cli"
 
 	"github.com/dops-cli/dops/categories"
-	"github.com/dops-cli/dops/module"
 	"github.com/dops-cli/dops/say"
-	"github.com/dops-cli/dops/template"
 )
 
 // Module returns the created module
 type Module struct{}
 
 // GetCommands returns the commands of the module
-func (Module) GetCommands() []*cli.Command {
+func (Module) GetModuleCommands() []*cli.Command {
 	return []*cli.Command{
 		{
 			Name:    "modules",
@@ -41,33 +39,33 @@ With the 'markdown' flag, the output text is parsed in markdown. This is for exa
 				}
 
 				if search != "" {
-					for _, m := range module.ActiveModules {
-						for _, cmd := range m.GetCommands() {
+					for _, m := range cli.ActiveModules {
+						for _, cmd := range m.GetModuleCommands() {
 							if r.MatchString(cmd.Name) {
 								foundModules = append(foundModules, cmd.Name)
 							}
 						}
 					}
 				} else if list {
-					for _, m := range module.ActiveModules {
-						for _, cmd := range m.GetCommands() {
+					for _, m := range cli.ActiveModules {
+						for _, cmd := range m.GetModuleCommands() {
 							foundModules = append(foundModules, cmd.Name)
 						}
 					}
 				} else if describe {
-					err := template.PrintModules()
+					err := cli.PrintModules()
 					if err != nil {
 						return err
 					}
 					return nil
 				} else if markdown {
-					err := template.PrintModulesMarkdown()
+					err := cli.PrintModulesMarkdown()
 					if err != nil {
 						return err
 					}
 					return nil
 				} else if count {
-					say.Text(strconv.Itoa(len(module.ActiveModules) + 2))
+					say.Text(strconv.Itoa(len(cli.ActiveModules) + 2))
 					return nil
 				}
 

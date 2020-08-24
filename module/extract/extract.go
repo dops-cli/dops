@@ -13,7 +13,7 @@ import (
 type Module struct{}
 
 // GetCommands returns the commands of the module
-func (Module) GetCommands() []*cli.Command {
+func (Module) GetModuleCommands() []*cli.Command {
 	return []*cli.Command{
 		{
 			Name:        "extract-text",

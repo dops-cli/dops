@@ -385,32 +385,6 @@ func TestShowCommandHelp_HelpPrinterCustom(t *testing.T) {
 	}
 }
 
-func TestShowCommandHelp_CommandAliases(t *testing.T) {
-	app := &App{
-		Commands: []*Command{
-			{
-				Name:    "frobbly",
-				Aliases: []string{"fr", "frob", "bork"},
-				Action: func(ctx *Context) error {
-					return nil
-				},
-			},
-		},
-	}
-
-	output := &bytes.Buffer{}
-	app.Writer = output
-	_ = app.Run([]string{"foo", "help", "fr"})
-
-	if !strings.Contains(output.String(), "frobbly") {
-		t.Errorf("expected output to include command name; got: %q", output.String())
-	}
-
-	if strings.Contains(output.String(), "bork") {
-		t.Errorf("expected output to exclude command aliases; got: %q", output.String())
-	}
-}
-
 func TestShowSubcommandHelp_CommandAliases(t *testing.T) {
 	app := &App{
 		Commands: []*Command{

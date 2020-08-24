@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/dops-cli/dops/global"
 	"github.com/dops-cli/dops/global/options"
 	"github.com/dops-cli/dops/say/color"
 )
@@ -57,8 +56,5 @@ func Error(text ...interface{}) {
 
 // Fatal outputs formatted text to the terminal.
 func Fatal(text ...interface{}) {
-	if global.CviewApp != nil {
-		global.CviewApp.Stop()
-	}
 	log.Fatal(text...)
 }
