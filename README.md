@@ -7,12 +7,12 @@
 
 <p align="center">
 
-<a href="https://github.com/dops-cli/dops/actions?query=workflow%3A%22Go+Test%22">
-<img src="https://img.shields.io/github/workflow/status/dops-cli/dops/Go%20Test?style=flat-square" alt="Go Test">
+<a href="https://github.com/dops-cli/dops/releases">
+<img src="https://img.shields.io/github/downloads/dops-cli/dops/total.svg?style=flat-square" alt="Downloads">
 </a>
 
-<a href="https://github.com/dops-cli/dops/issues">
-<img src="https://img.shields.io/github/issues/dops-cli/dops.svg?style=flat-square" alt="Issues">
+<a href="https://github.com/dops-cli/dops/actions?query=workflow%3A%22Go+Test%22">
+<img src="https://img.shields.io/github/workflow/status/dops-cli/dops/Go%20Test?style=flat-square" alt="Go Test">
 </a>
 
 <a href="https://github.com/dops-cli/dops/stargazers">
@@ -21,6 +21,10 @@
 
 <a href="https://github.com/dops-cli/dops/fork">
 <img src="https://img.shields.io/github/forks/dops-cli/dops.svg?style=flat-square" alt="Forks">
+</a>
+
+<a href="https://github.com/dops-cli/dops/issues">
+<img src="https://img.shields.io/github/issues/dops-cli/dops.svg?style=flat-square" alt="Issues">
 </a>
 
 <a href="https://opensource.org/licenses/MIT">
