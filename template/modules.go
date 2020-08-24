@@ -4,7 +4,7 @@ import (
 	"strings"
 	"text/template"
 
-	"github.com/urfave/cli/v2"
+	"github.com/dops-cli/dops/cli"
 
 	"github.com/dops-cli/dops/module"
 	"github.com/dops-cli/dops/say/color"

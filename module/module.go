@@ -6,7 +6,7 @@ import (
 	"os/exec"
 	"strings"
 
-	"github.com/urfave/cli/v2"
+	"github.com/dops-cli/dops/cli"
 
 	"github.com/dops-cli/dops/flags/debug"
 	"github.com/dops-cli/dops/flags/raw"
@@ -14,6 +14,7 @@ import (
 	"github.com/dops-cli/dops/module/bulkdownload"
 	"github.com/dops-cli/dops/module/demo"
 	"github.com/dops-cli/dops/module/extract"
+	"github.com/dops-cli/dops/module/renamefiles"
 	"github.com/dops-cli/dops/module/update"
 	"github.com/dops-cli/dops/say"
 )
@@ -29,6 +30,7 @@ func init() {
 	addModule(extract.Module{})
 	addModule(update.Module{})
 	addModule(demo.Module{})
+	addModule(renamefiles.Module{})
 }
 
 // ActiveGlobalFlags contains all global flags.

@@ -1,7 +1,7 @@
 package raw
 
 import (
-	"github.com/urfave/cli/v2"
+	"github.com/dops-cli/dops/cli"
 )
 
 // OutputRaw is true if dops was started with the global raw flag.

@@ -34,8 +34,8 @@ package modulename
 
 import (
 
+"github.com/dops-cli/dops/cli"
 "github.com/dops-cli/dops/say"
-"github.com/urfave/cli/v2"
 )
 
 // Module returns the created module

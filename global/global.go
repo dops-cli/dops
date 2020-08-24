@@ -1,8 +1,9 @@
 package global
 
 import (
-	"github.com/urfave/cli/v2"
 	"gitlab.com/tslocum/cview"
+
+	"github.com/dops-cli/dops/cli"
 )
 
 var (

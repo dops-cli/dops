@@ -4,8 +4,9 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/urfave/cli/v2"
 	"gitlab.com/tslocum/cview"
+
+	"github.com/dops-cli/dops/cli"
 
 	"github.com/dops-cli/dops/global"
 	"github.com/dops-cli/dops/module"

@@ -12,4 +12,7 @@ const (
 
 	// Info is for modules that return information about something to the user
 	Info = "Info"
+
+	// IO is for modules, which work on the filesystem
+	IO = "IO"
 )

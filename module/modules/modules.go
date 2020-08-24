@@ -4,7 +4,7 @@ import (
 	"regexp"
 	"strconv"
 
-	"github.com/urfave/cli/v2"
+	"github.com/dops-cli/dops/cli"
 
 	"github.com/dops-cli/dops/categories"
 	"github.com/dops-cli/dops/module"

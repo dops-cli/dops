@@ -1,7 +1,7 @@
 package demo
 
 import (
-	"github.com/urfave/cli/v2"
+	"github.com/dops-cli/dops/cli"
 
 	"github.com/dops-cli/dops/categories"
 )
