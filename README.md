@@ -113,6 +113,13 @@ If you want to learn more about a particular module, you can do so with this com
 
 We are in the first major version of `dops`, with every new module, and other significant changes, the `MINOR (v1.↑.0)` number will be increased. For everything else (fixes, docs, refactor, etc.), the `PATCH (v1.X.↑)` number will be increased.
 
+## Attribution
+
+| Package | Original               | Last Original Commit                                                                                                       | License |
+|---------|------------------------|----------------------------------------------------------------------------------------------------------------------------|---------|
+| color   | github.com/fatih/color | [daf2830f2741ebb735b21709a520c5f37d642d85](https://github.com/fatih/color/commit/daf2830f2741ebb735b21709a520c5f37d642d85) | MIT     |
+| cli     | github.com/urfave/cli  | [d2d2098085cee084bc50ae293acf8568cfb348e6](https://github.com/urfave/cli/commit/d2d2098085cee084bc50ae293acf8568cfb348e6)  | MIT     |
+
 ---
 
 > [dops-cli.com](https://dops-cli.com) &nbsp;&middot;&nbsp;
