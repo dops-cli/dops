@@ -1,6 +1,7 @@
 package utils
 
 import (
+	"bufio"
 	"fmt"
 	"io/ioutil"
 	"log"
@@ -11,6 +12,29 @@ import (
 
 	"github.com/dops-cli/dops/say"
 )
+
+// ForEachLineInFile runs cb over all lines in a file
+func ForEachLineInFile(path string, cb func(line string) error) error {
+	file, err := os.Open(path)
+	if err != nil {
+		return err
+	}
+	defer file.Close()
+
+	scanner := bufio.NewScanner(file)
+	for scanner.Scan() {
+		err = cb(scanner.Text())
+		if err != nil {
+			return err
+		}
+	}
+
+	if err := scanner.Err(); err != nil {
+		return err
+	}
+
+	return nil
+}
 
 // WriteFile writes content to path. If append is true, the content will be appended to the file at path.
 func WriteFile(path string, content []byte, append bool) {

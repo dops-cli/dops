@@ -4,12 +4,12 @@ import (
 	"log"
 )
 
-// RequireOneFlag checks that only one provided flag is not nil
-func RequireOneFlag(flags ...interface{}) {
+// IncompatibleFlags checks that only one provided flag is not nil
+func IncompatibleFlags(flags ...interface{}) {
 	var flagCount int
 
 	for _, flag := range flags {
-		if flag != nil {
+		if flag != nil && flag != false && flag != "" {
 			flagCount++
 		}
 	}

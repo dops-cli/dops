@@ -41,22 +41,13 @@ func main() {
 	global.CliCommands = append(global.CliCommands, modules.Module{}.GetModuleCommands()...)
 
 	module.CliApp = &cli.App{
-		Name:     "dops",
-		HelpName: "dops",
-		Usage:    "CLI DevOps Toolkit",
-		Version:  "v1.16.1", // <---VERSION---> This comment is used for CI, do NOT modify it!
-		Commands: global.CliCommands,
-		Flags:    global.CliFlags,
-		Authors: []*cli.Author{
-			{
-				Name:  "Marvin Wendt",
-				Email: "dops@marvinjwendt.com",
-			},
-		},
-		Copyright:              "(c) 2020 Marvin Wendt",
-		Writer:                 color.Output,
-		UseShortOptionHandling: true,
-		EnableBashCompletion:   true,
+		Name:                 "dops",
+		HelpName:             "dops",
+		Usage:                "CLI DevOps Toolkit",
+		Version:              "v1.16.1", // <---VERSION---> This comment is used for CI, do NOT modify it!
+		Commands:             global.CliCommands,
+		Flags:                global.CliFlags,
+		EnableBashCompletion: true,
 		Action: func(ctx *cli.Context) error {
 			global.CviewApp = cview.NewApplication()
 			global.CviewTable = cview.NewTable()
@@ -116,6 +107,15 @@ func main() {
 			}
 			return nil
 		},
+		Authors: []*cli.Author{
+			{
+				Name:  "Marvin Wendt",
+				Email: "dops@marvinjwendt.com",
+			},
+		},
+		Copyright:              "(c) 2020 Marvin Wendt",
+		Writer:                 color.Output,
+		UseShortOptionHandling: true,
 	}
 
 	sort.Sort(cli.FlagsByName(module.CliApp.Flags))

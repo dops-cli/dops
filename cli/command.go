@@ -242,11 +242,11 @@ func SetupFlags(cmd *Command) {
 		if ok {
 			OptionFlags = append(OptionFlags, optionFlag)
 		}
+	}
 
-		for _, optionFlag := range OptionFlags {
-			f := *optionFlag
-			optionFlag.Usage += " [" + strings.Join(f.Options, " | ") + "]"
-		}
+	for _, optionFlag := range OptionFlags {
+		f := *optionFlag
+		optionFlag.Usage += " [" + strings.Join(f.Options, " | ") + "]"
 	}
 }
 
