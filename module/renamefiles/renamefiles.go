@@ -81,7 +81,7 @@ The pattern could be a timestamp, or the hashcode of the file, among others.`,
 
 						err := os.Rename(renamed, originalName)
 						if err != nil {
-							say.Error("Could not restore file", renamed+".", "Did you rename/move/delete it?")
+							say.Error("Could not restore file", renamed+".", "Did you rename/move/delete it? If not, then it was a duplicate.")
 						}
 						return nil
 					})
