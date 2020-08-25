@@ -4,13 +4,13 @@ import (
 	"crypto/md5"
 	"crypto/sha1"
 	"encoding/hex"
-	"errors"
 	"fmt"
 	"io"
 	"io/ioutil"
 	"os"
 	"path"
 	"path/filepath"
+	"sort"
 	"strings"
 
 	"github.com/dops-cli/dops/categories"
@@ -66,16 +66,19 @@ The pattern could be a timestamp, or the hashcode of the file, among others.`,
 
 				backupFilePath := filepath.Dir(dir) + string(os.PathSeparator) + ".dops-filename-backup"
 
-				if backup {
-					if _, err := os.Stat(backupFilePath); err == nil {
-						return errors.New("backup file already exists")
-					}
-				}
+				// if backup {
+				// 	if _, err := os.Stat(backupFilePath); err == nil {
+				// 		return errors.New("backup file already exists")
+				// 	}
+				// }
 
 				if loadBackup {
 
 					err := utils.ForEachLineInFile(backupFilePath, func(line string) error {
 						content := strings.Split(line, "|")
+						if line == "\n" || line == "" {
+							return nil
+						}
 						originalName := content[0]
 						renamed := content[1]
 
@@ -94,6 +97,11 @@ The pattern could be a timestamp, or the hashcode of the file, among others.`,
 
 				for _, file := range files {
 					info, err := os.Stat(file)
+
+					if info.Name() == filepath.Base(backupFilePath) {
+						continue
+					}
+
 					if err != nil {
 						return err
 					}
@@ -133,15 +141,33 @@ The pattern could be a timestamp, or the hashcode of the file, among others.`,
 					newName := filepath.Dir(file) + string(os.PathSeparator) + hex.EncodeToString(hasher.Sum(hasherContent)) + path.Ext(file)
 					err = os.Rename(file, newName)
 					if err != nil {
-						return err
+						say.Error(err)
 					}
 
 					if backup {
-						// file, _ = filepath.Abs(file)
-						// newName, _ = filepath.Abs(newName)
 						utils.WriteFile(backupFilePath, []byte(file+"|"+newName+"\n"), true)
 					}
 
+				}
+
+				if backup {
+					file, err := ioutil.ReadFile(backupFilePath)
+					if err != nil {
+						return err
+					}
+
+					lines := strings.Split(string(file), "\n")
+					lines = utils.UniqueStringSlice(lines)
+					sort.Strings(lines)
+					lines = append(lines, "")
+
+					for i, v := range lines {
+						if v == "\n" {
+							lines = append(lines[:i], lines[i+1:]...)
+						}
+					}
+
+					utils.WriteFile(backupFilePath, []byte(strings.Join(lines, "\n")), false)
 				}
 
 				return nil
