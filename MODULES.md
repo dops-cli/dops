@@ -98,5 +98,9 @@ The pattern could be a timestamp, or the hashcode of the file, among others.
 ### Options
 
 ```
+--directory PATH, --dir PATH, -d PATH	PATH in which the files should be renamed
 --pattern OPTION, -p OPTION	Rename all files with OPTION
+--recursive, -r	Rename files in subdirectories too (default: false)
+--disablebackup, --db	Disable file name backups (default: false)
+--loadbackup, -l, --lb	Reverts the filenames to the original (default: false)
 ```
