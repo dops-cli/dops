@@ -81,7 +81,7 @@ The pattern could be a timestamp, or the hashcode of the file, among others.`,
 
 						err := os.Rename(renamed, originalName)
 						if err != nil {
-							return err
+							say.Error("Could not restore file", renamed+".", "Did you rename/move/delete it?")
 						}
 						return nil
 					})
@@ -92,8 +92,6 @@ The pattern could be a timestamp, or the hashcode of the file, among others.`,
 					return nil
 				}
 
-				hasher := sha1.New()
-
 				for _, file := range files {
 					info, err := os.Stat(file)
 					if err != nil {
@@ -103,6 +101,13 @@ The pattern could be a timestamp, or the hashcode of the file, among others.`,
 						continue
 					}
 
+					content, err := os.Open(file)
+					if err != nil {
+						return err
+					}
+
+					hasher := sha1.New()
+
 					switch option {
 					case "sha-1":
 						hasher = sha1.New()
@@ -110,11 +115,6 @@ The pattern could be a timestamp, or the hashcode of the file, among others.`,
 					case "md5":
 						hasher = md5.New()
 						break
-					}
-
-					content, err := os.Open(file)
-					if err != nil {
-						return err
 					}
 
 					if _, err := io.Copy(hasher, content); err != nil {
@@ -126,9 +126,11 @@ The pattern could be a timestamp, or the hashcode of the file, among others.`,
 						return err
 					}
 
-					fmt.Printf("%s -> %s%s\n", file, hex.EncodeToString(hasher.Sum(nil)), filepath.Ext(file))
+					var hasherContent []byte
 
-					newName := filepath.Dir(file) + string(os.PathSeparator) + hex.EncodeToString(hasher.Sum(nil)) + path.Ext(file)
+					fmt.Printf("%s -> %s%s\n", file, hex.EncodeToString(hasher.Sum(hasherContent)), filepath.Ext(file))
+
+					newName := filepath.Dir(file) + string(os.PathSeparator) + hex.EncodeToString(hasher.Sum(hasherContent)) + path.Ext(file)
 					err = os.Rename(file, newName)
 					if err != nil {
 						return err
