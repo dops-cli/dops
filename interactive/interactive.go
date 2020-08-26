@@ -138,19 +138,19 @@ func ShowModule(app *cview.Application, cmd *cli.Command) error {
 		form.SetBorder(true)
 		form.SetTitle(" " + cmd.Name + " - " + cmd.Usage + " ")
 		form.SetTitleAlign(cview.AlignLeft)
-
-		form.AddButton("Run", func() {
-			app.Stop()
-			err := module.Run(cmd, flags)
-			if err != nil {
-				panic(err)
-			}
-		})
-
-		form.AddButton("Cancel", func() {
-			ShowInteractiveModuleList(app)
-		})
 	}
+
+	form.AddButton("Run", func() {
+		app.Stop()
+		err := module.Run(cmd, flags)
+		if err != nil {
+			panic(err)
+		}
+	})
+
+	form.AddButton("Cancel", func() {
+		ShowInteractiveModuleList(app)
+	})
 
 	flex := cview.NewFlex()
 	flex.AddItem(cview.NewFlex().SetDirection(cview.FlexRow).

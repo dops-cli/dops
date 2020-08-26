@@ -31,6 +31,7 @@ func (Module) GetModuleCommands() []*cli.Command {
 				&cli.StringFlag{Name: "String"},
 				&cli.StringSliceFlag{Name: "StringList"},
 				&cli.TimestampFlag{Name: "Timestamp"},
+				&cli.OptionFlag{Name: "Options"},
 			},
 		},
 	}

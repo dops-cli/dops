@@ -185,7 +185,22 @@ func (c *Command) Run(ctx *Context) (err error) {
 	return err
 }
 
+// SetupFlags setups the flags for the current selected module
 func SetupFlags(cmd *Command) {
+
+	// Remove all flags that might be set by selecting another module and canceling the input form
+	BoolFlags = []*BoolFlag{}
+	DurationFlags = []*DurationFlag{}
+	Float64Flags = []*Float64Flag{}
+	Float64SliceFlags = []*Float64SliceFlag{}
+	IntFlags = []*IntFlag{}
+	IntSliceFlags = []*IntSliceFlag{}
+	PathFlags = []*PathFlag{}
+	StringFlags = []*StringFlag{}
+	StringSliceFlags = []*StringSliceFlag{}
+	TimestampFlags = []*TimestampFlag{}
+	OptionFlags = []*OptionFlag{}
+
 	for _, f := range cmd.Flags {
 
 		boolFlag, ok := f.(*BoolFlag)
