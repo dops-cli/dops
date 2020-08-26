@@ -6,6 +6,7 @@ import (
 	"flag"
 	"fmt"
 	"io/ioutil"
+	"log"
 	"strings"
 	"testing"
 )
@@ -360,7 +361,10 @@ func TestCommand_Run_CustomShellCompleteAcceptsMalformedFlags(t *testing.T) {
 						},
 					},
 					BashComplete: func(c *Context) {
-						fmt.Fprintf(c.App.Writer, "found %d args", c.NArg())
+						_, err := fmt.Fprintf(c.App.Writer, "found %d args", c.NArg())
+						if err != nil {
+							log.Fatal(err)
+						}
 					},
 				},
 			},

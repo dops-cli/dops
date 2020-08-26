@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io"
 	"io/ioutil"
+	"log"
 	"os"
 	"reflect"
 	"regexp"
@@ -25,7 +26,10 @@ var boolFlagTests = []struct {
 func resetEnv(env []string) {
 	for _, e := range env {
 		fields := strings.SplitN(e, "=", 2)
-		os.Setenv(fields[0], fields[1])
+		err := os.Setenv(fields[0], fields[1])
+		if err != nil {
+			log.Fatal(err)
+		}
 	}
 }
 
@@ -1723,7 +1727,10 @@ func TestFlagFromFile(t *testing.T) {
 
 	defer resetEnv(os.Environ())
 	os.Clearenv()
-	os.Setenv("APP_FOO", "123")
+	err = os.Setenv("APP_FOO", "123")
+	if err != nil {
+		log.Fatal(err)
+	}
 
 	_, _ = io.WriteString(temp, "abc")
 	_ = temp.Close()

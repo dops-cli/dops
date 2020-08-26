@@ -98,6 +98,10 @@ The pattern could be a timestamp, or the hashcode of the file, among others.`,
 				for _, file := range files {
 					info, err := os.Stat(file)
 
+					if info == nil {
+						continue
+					}
+
 					if info.Name() == filepath.Base(backupFilePath) {
 						continue
 					}

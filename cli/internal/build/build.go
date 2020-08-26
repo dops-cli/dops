@@ -232,10 +232,10 @@ func checkBinarySizeActionFunc(_ *cli.Context) (err error) {
 	desiredMaxSizeString := fmt.Sprintf(mbStringFormatter, desiredMaxBinarySize)
 
 	// show guidance
-	fmt.Println(fmt.Sprintf("\n%s is the current binary size", roundedFileSizeString))
+	fmt.Printf("\n%s is the current binary size\n", roundedFileSizeString)
 	// show guidance for min size
 	if isLessThanDesiredMin {
-		fmt.Println(fmt.Sprintf("  %s %s is the target min size", goodNewsEmoji, desiredMinSizeString))
+		fmt.Printf("  %s %s is the target min size\n", goodNewsEmoji, desiredMinSizeString)
 		fmt.Println("") // visual spacing
 		fmt.Println("     The binary is smaller than the target min size, which is great news!")
 		fmt.Println("     That means that your changes are shrinking the binary size.")
@@ -246,11 +246,11 @@ func checkBinarySizeActionFunc(_ *cli.Context) (err error) {
 		fmt.Println("") // visual spacing
 		os.Exit(1)
 	} else {
-		fmt.Println(fmt.Sprintf("  %s %s is the target min size", checksPassedEmoji, desiredMinSizeString))
+		fmt.Printf("  %s %s is the target min size\n", checksPassedEmoji, desiredMinSizeString)
 	}
 	// show guidance for max size
 	if isMoreThanDesiredMax {
-		fmt.Println(fmt.Sprintf("  %s %s is the target max size", badNewsEmoji, desiredMaxSizeString))
+		fmt.Printf("  %s %s is the target max size\n", badNewsEmoji, desiredMaxSizeString)
 		fmt.Println("") // visual spacing
 		fmt.Println("     The binary is larger than the target max size.")
 		fmt.Println("     That means that your changes are increasing the binary size.")
@@ -264,7 +264,7 @@ func checkBinarySizeActionFunc(_ *cli.Context) (err error) {
 		fmt.Println("") // visual spacing
 		os.Exit(1)
 	} else {
-		fmt.Println(fmt.Sprintf("  %s %s is the target max size", checksPassedEmoji, desiredMaxSizeString))
+		fmt.Printf("  %s %s is the target max size", checksPassedEmoji, desiredMaxSizeString)
 	}
 
 	return nil

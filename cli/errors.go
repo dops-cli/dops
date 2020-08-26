@@ -3,6 +3,7 @@ package cli
 import (
 	"fmt"
 	"io"
+	"log"
 	"os"
 	"strings"
 )
@@ -131,7 +132,10 @@ func handleMultiError(multiErr MultiError) int {
 		if multiErr2, ok := merr.(MultiError); ok {
 			code = handleMultiError(multiErr2)
 		} else if merr != nil {
-			fmt.Fprintln(ErrWriter, merr)
+			_, err := fmt.Fprintln(ErrWriter, merr)
+			if err != nil {
+				log.Fatal(err)
+			}
 			if exitErr, ok := merr.(ExitCoder); ok {
 				code = exitErr.ExitCode()
 			}

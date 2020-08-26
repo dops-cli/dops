@@ -13,12 +13,12 @@ type Timestamp struct {
 	layout     string
 }
 
-// Timestamp constructor
+// NewTimestamp constructor
 func NewTimestamp(timestamp time.Time) *Timestamp {
 	return &Timestamp{timestamp: &timestamp}
 }
 
-// Set the timestamp value directly
+// SetTimestamp sets the timestamp value directly
 func (t *Timestamp) SetTimestamp(value time.Time) {
 	if !t.hasBeenSet {
 		t.timestamp = &value
@@ -26,12 +26,12 @@ func (t *Timestamp) SetTimestamp(value time.Time) {
 	}
 }
 
-// Set the timestamp string layout for future parsing
+// SetLayout sets the timestamp string layout for future parsing
 func (t *Timestamp) SetLayout(layout string) {
 	t.layout = layout
 }
 
-// Parses the string value to timestamp
+// Set parses the string value to timestamp
 func (t *Timestamp) Set(value string) error {
 	timestamp, err := time.Parse(t.layout, value)
 	if err != nil {

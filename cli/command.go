@@ -186,59 +186,59 @@ func (c *Command) Run(ctx *Context) (err error) {
 }
 
 func SetupFlags(cmd *Command) {
-	for _, flag := range cmd.Flags {
+	for _, f := range cmd.Flags {
 
-		boolFlag, ok := flag.(*BoolFlag)
+		boolFlag, ok := f.(*BoolFlag)
 		if ok {
 			BoolFlags = append(BoolFlags, boolFlag)
 		}
 
-		durationFlag, ok := flag.(*DurationFlag)
+		durationFlag, ok := f.(*DurationFlag)
 		if ok {
 			DurationFlags = append(DurationFlags, durationFlag)
 		}
 
-		float64Flag, ok := flag.(*Float64Flag)
+		float64Flag, ok := f.(*Float64Flag)
 		if ok {
 			Float64Flags = append(Float64Flags, float64Flag)
 		}
 
-		float64SliceFlag, ok := flag.(*Float64SliceFlag)
+		float64SliceFlag, ok := f.(*Float64SliceFlag)
 		if ok {
 			Float64SliceFlags = append(Float64SliceFlags, float64SliceFlag)
 		}
 
-		intFlag, ok := flag.(*IntFlag)
+		intFlag, ok := f.(*IntFlag)
 		if ok {
 			IntFlags = append(IntFlags, intFlag)
 		}
 
-		intSliceFlag, ok := flag.(*IntSliceFlag)
+		intSliceFlag, ok := f.(*IntSliceFlag)
 		if ok {
 			IntSliceFlags = append(IntSliceFlags, intSliceFlag)
 		}
 
-		pathFlag, ok := flag.(*PathFlag)
+		pathFlag, ok := f.(*PathFlag)
 		if ok {
 			PathFlags = append(PathFlags, pathFlag)
 		}
 
-		stringFlag, ok := flag.(*StringFlag)
+		stringFlag, ok := f.(*StringFlag)
 		if ok {
 			StringFlags = append(StringFlags, stringFlag)
 		}
 
-		stringSliceFlag, ok := flag.(*StringSliceFlag)
+		stringSliceFlag, ok := f.(*StringSliceFlag)
 		if ok {
 			StringSliceFlags = append(StringSliceFlags, stringSliceFlag)
 		}
 
-		timestampFlag, ok := flag.(*TimestampFlag)
+		timestampFlag, ok := f.(*TimestampFlag)
 		if ok {
 			TimestampFlags = append(TimestampFlags, timestampFlag)
 		}
 
-		optionFlag, ok := flag.(*OptionFlag)
+		optionFlag, ok := f.(*OptionFlag)
 		if ok {
 			OptionFlags = append(OptionFlags, optionFlag)
 		}

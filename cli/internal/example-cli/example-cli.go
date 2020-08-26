@@ -3,9 +3,14 @@
 package main
 
 import (
+	"log"
+
 	"github.com/dops-cli/dops/cli"
 )
 
 func main() {
-	(&cli.App{}).Run([]string{})
+	err := (&cli.App{}).Run([]string{})
+	if err != nil {
+		log.Fatal(err)
+	}
 }
