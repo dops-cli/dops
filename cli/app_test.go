@@ -7,7 +7,6 @@ import (
 	"fmt"
 	"io"
 	"io/ioutil"
-	"log"
 	"os"
 	"reflect"
 	"strings"
@@ -48,10 +47,7 @@ func ExampleApp_Run() {
 		Authors:   []*Author{{Name: "Oliver Allen", Email: "oliver@toyshop.example.com"}},
 	}
 
-	err := app.Run(os.Args)
-	if err != nil {
-		log.Fatal(err)
-	}
+	app.Run(os.Args)
 	// Output:
 	// Hello Jeremy
 }

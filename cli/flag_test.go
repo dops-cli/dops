@@ -26,10 +26,7 @@ var boolFlagTests = []struct {
 func resetEnv(env []string) {
 	for _, e := range env {
 		fields := strings.SplitN(e, "=", 2)
-		err := os.Setenv(fields[0], fields[1])
-		if err != nil {
-			log.Fatal(err)
-		}
+		_ = os.Setenv(fields[0], fields[1])
 	}
 }
 
