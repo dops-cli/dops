@@ -80,6 +80,7 @@ NOTICE: This module does nothing, except showing all possible flags for an inter
 --String value	
 --StringList value	
 --Timestamp value	(default: <nil>)
+--Options value	
 ```
 
 ## rename-files  
