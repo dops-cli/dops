@@ -4,7 +4,8 @@ package cli
 type CommandCategories interface {
 	// AddCommand adds a command to a category, creating a new category if necessary.
 	AddCommand(category string, command *Command)
-	// categories returns a copy of the category slice
+
+	// Categories returns a copy of the category slice
 	Categories() []CommandCategory
 }
 
@@ -15,18 +16,23 @@ func newCommandCategories() CommandCategories {
 	return &ret
 }
 
+// Less reports whether the element with
+// index i should sort before the element with index j.
 func (c *commandCategories) Less(i, j int) bool {
 	return lexicographicLess((*c)[i].Name(), (*c)[j].Name())
 }
 
+// Len returns the amount of categories
 func (c *commandCategories) Len() int {
 	return len(*c)
 }
 
+// Swap swaps the elements with indexes i and j.
 func (c *commandCategories) Swap(i, j int) {
 	(*c)[i], (*c)[j] = (*c)[j], (*c)[i]
 }
 
+// AddCommand adds a command to a category
 func (c *commandCategories) AddCommand(category string, command *Command) {
 	for _, commandCategory := range []*commandCategory(*c) {
 		if commandCategory.name == category {
@@ -39,6 +45,7 @@ func (c *commandCategories) AddCommand(category string, command *Command) {
 	*c = newVal
 }
 
+// Categories returns all categories
 func (c *commandCategories) Categories() []CommandCategory {
 	ret := make([]CommandCategory, len(*c))
 	for i, cat := range *c {
@@ -60,10 +67,12 @@ type commandCategory struct {
 	commands []*Command
 }
 
+// Name returns the category name string
 func (c *commandCategory) Name() string {
 	return c.name
 }
 
+// VisibleCommands returns a slice of the Commands with Hidden=false
 func (c *commandCategory) VisibleCommands() []*Command {
 	if c.commands == nil {
 		c.commands = []*Command{}

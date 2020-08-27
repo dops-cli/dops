@@ -67,10 +67,13 @@ var FlagFileHinter FlagFileHintFunc = withFileHint
 // FlagsByName is a slice of Flag.
 type FlagsByName []Flag
 
+// Len is the number of elements in the collection.
 func (f FlagsByName) Len() int {
 	return len(f)
 }
 
+// Less reports whether the element with
+// index i should sort before the element with index j.
 func (f FlagsByName) Less(i, j int) bool {
 	if len(f[j].Names()) == 0 {
 		return false
@@ -80,6 +83,7 @@ func (f FlagsByName) Less(i, j int) bool {
 	return lexicographicLess(f[i].Names()[0], f[j].Names()[0])
 }
 
+// Swap swaps the elements with indexes i and j.
 func (f FlagsByName) Swap(i, j int) {
 	f[i], f[j] = f[j], f[i]
 }

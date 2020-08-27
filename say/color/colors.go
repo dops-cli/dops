@@ -5,16 +5,16 @@ var (
 	Section = New(FgHiYellow, Underline).Sprintf
 
 	// Primary is used for primary texts
-	Primary = HiCyanString
+	Primary = SHiCyan
 
 	// Secondary is used for secondary texts
-	Secondary = HiGreenString
+	Secondary = SHiGreen
 
 	// Flag is used for global and local flags
-	Flag = GreenString
+	Flag = SGreen
 
 	// Separator is used for separators
-	Separator = RedString
+	Separator = SRed
 
 	// R resets the color
 	R = New(Reset).Sprintf("")
