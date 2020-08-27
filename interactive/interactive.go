@@ -7,7 +7,6 @@ import (
 	"gitlab.com/tslocum/cview"
 
 	"github.com/dops-cli/dops/cli"
-	. "github.com/dops-cli/dops/cli"
 	"github.com/dops-cli/dops/global"
 	"github.com/dops-cli/dops/module"
 	"github.com/dops-cli/dops/say"
@@ -22,33 +21,33 @@ func ShowInteractiveModuleList(app *cview.Application) {
 func ShowModule(app *cview.Application, cmd *cli.Command) error {
 	const fieldWidth = 0
 
-	SetupFlags(cmd)
+	cli.SetupFlags(cmd)
 
 	flags := make(map[string]string)
 	form := cview.NewForm()
 
-	for _, flag := range BoolFlags {
+	for _, flag := range cli.BoolFlags {
 		f := *flag
 		form.AddCheckBox(flag.Name+" - "+flag.Usage, "", flag.Value, func(text bool) {
 			flags[f.Name] = strconv.FormatBool(text)
 		})
 	}
 
-	for _, flag := range DurationFlags {
+	for _, flag := range cli.DurationFlags {
 		f := *flag
 		form.AddInputField(flag.Name+" - "+flag.Usage, flag.Value.String(), fieldWidth, nil, func(text string) {
 			flags[f.Name] = text
 		})
 	}
 
-	for _, flag := range Float64Flags {
+	for _, flag := range cli.Float64Flags {
 		f := *flag
 		form.AddInputField(flag.Name+" - "+flag.Usage, strconv.FormatFloat(flag.Value, 'G', -1, 64), fieldWidth, cview.InputFieldFloat, func(text string) {
 			flags[f.Name] = text
 		})
 	}
 
-	for _, flag := range Float64SliceFlags {
+	for _, flag := range cli.Float64SliceFlags {
 		f := *flag
 
 		var stringSlice []string
@@ -64,14 +63,14 @@ func ShowModule(app *cview.Application, cmd *cli.Command) error {
 		})
 	}
 
-	for _, flag := range IntFlags {
+	for _, flag := range cli.IntFlags {
 		f := *flag
 		form.AddInputField(flag.Name+" - "+flag.Usage, strconv.Itoa(flag.Value), fieldWidth, cview.InputFieldInteger, func(text string) {
 			flags[f.Name] = text
 		})
 	}
 
-	for _, flag := range IntSliceFlags {
+	for _, flag := range cli.IntSliceFlags {
 		f := *flag
 
 		stringSlice := []string{""}
@@ -87,21 +86,21 @@ func ShowModule(app *cview.Application, cmd *cli.Command) error {
 		})
 	}
 
-	for _, flag := range PathFlags {
+	for _, flag := range cli.PathFlags {
 		f := *flag
 		form.AddInputField(flag.Name+" - "+flag.Usage, flag.Value, fieldWidth, nil, func(text string) {
 			flags[f.Name] = text
 		})
 	}
 
-	for _, flag := range StringFlags {
+	for _, flag := range cli.StringFlags {
 		f := *flag
 		form.AddInputField(flag.Name+" - "+flag.Usage, flag.Value, fieldWidth, nil, func(text string) {
 			flags[f.Name] = text
 		})
 	}
 
-	for _, flag := range StringSliceFlags {
+	for _, flag := range cli.StringSliceFlags {
 		f := *flag
 
 		var stringSlice []string
@@ -115,7 +114,7 @@ func ShowModule(app *cview.Application, cmd *cli.Command) error {
 		})
 	}
 
-	for _, flag := range TimestampFlags {
+	for _, flag := range cli.TimestampFlags {
 		f := *flag
 
 		var ret string
@@ -128,17 +127,17 @@ func ShowModule(app *cview.Application, cmd *cli.Command) error {
 		})
 	}
 
-	for _, flag := range OptionFlags {
+	for _, flag := range cli.OptionFlags {
 		f := *flag
 		form.AddDropDown(flag.Name+" - "+flag.Usage, flag.Options, 0, func(text string, _ int) {
 			flags[f.Name] = text
 		})
-
-		form.SetWrapAround(true)
-		form.SetBorder(true)
-		form.SetTitle(" " + cmd.Name + " - " + cmd.Usage + " ")
-		form.SetTitleAlign(cview.AlignLeft)
 	}
+
+	form.SetWrapAround(true)
+	form.SetBorder(true)
+	form.SetTitle(" " + cmd.Name + " - " + cmd.Usage + " ")
+	form.SetTitleAlign(cview.AlignLeft)
 
 	form.AddButton("Run", func() {
 		app.Stop()

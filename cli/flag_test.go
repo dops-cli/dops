@@ -749,7 +749,7 @@ func TestFloat64FlagApply_SetsAllNames(t *testing.T) {
 
 	err := set.Parse([]string{"--noodles", "1.3", "-N", "11", "--nurbles", "43.33333"})
 	expect(t, err, nil)
-	expect(t, v, float64(43.33333))
+	expect(t, v, 43.33333)
 }
 
 var float64SliceFlagTests = []struct {

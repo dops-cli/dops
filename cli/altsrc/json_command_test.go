@@ -313,7 +313,7 @@ func TestCommandJSONFileFlagHasDefaultGlobalEnvJSONSetGlobalEnvWinsNested(t *tes
 }
 
 func writeTempFile(t *testing.T, name string, content string) func() {
-	if err := ioutil.WriteFile(name, []byte(content), 0666); err != nil {
+	if err := ioutil.WriteFile(name, []byte(content), 0600); err != nil {
 		t.Fatalf("cannot write %q: %v", name, err)
 	}
 	return func() {

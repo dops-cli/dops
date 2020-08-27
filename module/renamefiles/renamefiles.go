@@ -1,8 +1,8 @@
 package renamefiles
 
 import (
-	"crypto/md5"
-	"crypto/sha1"
+	"crypto/md5"  //nolint:gosec
+	"crypto/sha1" //nolint:gosec
 	"encoding/hex"
 	"fmt"
 	"io"
@@ -118,15 +118,13 @@ The pattern could be a timestamp, or the hashcode of the file, among others.`,
 						return err
 					}
 
-					hasher := sha1.New()
+					hasher := sha1.New() //nolint:gosec
 
 					switch option {
 					case "sha-1":
-						hasher = sha1.New()
-						break
+						hasher = sha1.New() //nolint:gosec
 					case "md5":
-						hasher = md5.New()
-						break
+						hasher = md5.New() //nolint:gosec
 					}
 
 					if _, err := io.Copy(hasher, content); err != nil {

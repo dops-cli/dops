@@ -66,15 +66,15 @@ func (i *Int64Slice) Get() interface{} {
 
 // Int64SliceFlag is a flag with type *Int64Slice
 type Int64SliceFlag struct {
-	Name        string
 	Aliases     []string
-	Usage       string
 	EnvVars     []string
+	Name        string
+	Usage       string
 	FilePath    string
+	DefaultText string
+	Value       *Int64Slice
 	Required    bool
 	Hidden      bool
-	Value       *Int64Slice
-	DefaultText string
 	HasBeenSet  bool
 }
 

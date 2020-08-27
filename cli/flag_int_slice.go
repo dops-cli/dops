@@ -76,15 +76,15 @@ func (i *IntSlice) Get() interface{} {
 
 // IntSliceFlag is a flag with type *IntSlice
 type IntSliceFlag struct {
-	Name        string
 	Aliases     []string
-	Usage       string
 	EnvVars     []string
+	Name        string
+	Usage       string
 	FilePath    string
+	DefaultText string
+	Value       *IntSlice
 	Required    bool
 	Hidden      bool
-	Value       *IntSlice
-	DefaultText string
 	HasBeenSet  bool
 }
 

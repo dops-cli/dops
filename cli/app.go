@@ -449,7 +449,7 @@ func (a *App) Command(name string) *Command {
 // VisibleCategories returns a slice of categories and commands that are
 // Hidden=false
 func (a *App) VisibleCategories() []CommandCategory {
-	ret := []CommandCategory{}
+	var ret []CommandCategory
 	for _, category := range a.categories.Categories() {
 		if visible := func() CommandCategory {
 			if len(category.VisibleCommands()) > 0 {

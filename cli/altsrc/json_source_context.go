@@ -125,7 +125,7 @@ func (x *jsonSource) StringSlice(name string) ([]string, error) {
 	case []string:
 		return v, nil
 	case []interface{}:
-		c := []string{}
+		var c []string
 		for _, s := range v {
 			if str, ok := s.(string); ok {
 				c = append(c, str)
@@ -148,7 +148,7 @@ func (x *jsonSource) IntSlice(name string) ([]int, error) {
 	case []int:
 		return v, nil
 	case []interface{}:
-		c := []int{}
+		var c []int
 		for _, s := range v {
 			if i2, ok := s.(int); ok {
 				c = append(c, i2)

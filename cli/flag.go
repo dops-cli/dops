@@ -188,7 +188,7 @@ func prefixedNames(names []string, placeholder string) string {
 
 func withEnvHint(envVars []string, str string) string {
 	envText := ""
-	if envVars != nil && len(envVars) > 0 {
+	if len(envVars) > 0 {
 		prefix := "$"
 		suffix := ""
 		sep := ", $"

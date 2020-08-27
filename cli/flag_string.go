@@ -4,17 +4,17 @@ import "flag"
 
 // StringFlag is a flag with type string
 type StringFlag struct {
-	Name        string
 	Aliases     []string
-	Usage       string
 	EnvVars     []string
+	Name        string
+	Usage       string
 	FilePath    string
-	Required    bool
-	Hidden      bool
-	TakesFile   bool
 	Value       string
 	DefaultText string
 	Destination *string
+	Required    bool
+	Hidden      bool
+	TakesFile   bool
 	HasBeenSet  bool
 }
 

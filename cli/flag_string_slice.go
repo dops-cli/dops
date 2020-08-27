@@ -60,18 +60,18 @@ func (s *StringSlice) Get() interface{} {
 
 // StringSliceFlag is a flag with type *StringSlice
 type StringSliceFlag struct {
-	Name        string
 	Aliases     []string
-	Usage       string
 	EnvVars     []string
+	Name        string
+	Usage       string
 	FilePath    string
+	DefaultText string
+	Value       *StringSlice
+	Destination *StringSlice
 	Required    bool
 	Hidden      bool
 	TakesFile   bool
-	Value       *StringSlice
-	DefaultText string
 	HasBeenSet  bool
-	Destination *StringSlice
 }
 
 // IsSet returns whether or not the flag has been set through env or file

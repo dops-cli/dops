@@ -97,7 +97,7 @@ func NewErrorWithFormat(m string) *ErrorWithFormat {
 }
 
 func (f *ErrorWithFormat) Format(s fmt.State, _ rune) {
-	fmt.Fprintf(s, "This the format: %v", f.error)
+	_, _ = fmt.Fprintf(s, "This the format: %v", f.error)
 }
 
 func TestHandleExitCoder_ErrorWithFormat(t *testing.T) {

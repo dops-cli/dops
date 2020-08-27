@@ -228,7 +228,7 @@ func TestShowCommandHelp_HelpPrinter(t *testing.T) {
 			name:     "no-command",
 			template: "",
 			printer: func(w io.Writer, templ string, data interface{}) {
-				fmt.Fprint(w, "yo")
+				_, _ = fmt.Fprint(w, "yo")
 			},
 			command:      "",
 			wantTemplate: SubcommandHelpTemplate,
@@ -238,7 +238,7 @@ func TestShowCommandHelp_HelpPrinter(t *testing.T) {
 			name:     "standard-command",
 			template: "",
 			printer: func(w io.Writer, templ string, data interface{}) {
-				fmt.Fprint(w, "yo")
+				_, _ = fmt.Fprint(w, "yo")
 			},
 			command:      "my-command",
 			wantTemplate: CommandHelpTemplate,
@@ -313,7 +313,7 @@ func TestShowCommandHelp_HelpPrinterCustom(t *testing.T) {
 			name:     "no-command",
 			template: "",
 			printer: func(w io.Writer, templ string, data interface{}, fm map[string]interface{}) {
-				fmt.Fprint(w, "yo")
+				_, _ = fmt.Fprint(w, "yo")
 			},
 			command:      "",
 			wantTemplate: SubcommandHelpTemplate,
@@ -323,7 +323,7 @@ func TestShowCommandHelp_HelpPrinterCustom(t *testing.T) {
 			name:     "standard-command",
 			template: "",
 			printer: func(w io.Writer, templ string, data interface{}, fm map[string]interface{}) {
-				fmt.Fprint(w, "yo")
+				_, _ = fmt.Fprint(w, "yo")
 			},
 			command:      "my-command",
 			wantTemplate: CommandHelpTemplate,
@@ -541,7 +541,7 @@ func TestShowAppHelp_HelpPrinter(t *testing.T) {
 			name:     "standard-command",
 			template: "",
 			printer: func(w io.Writer, templ string, data interface{}) {
-				fmt.Fprint(w, "yo")
+				_, _ = fmt.Fprint(w, "yo")
 			},
 			wantTemplate: AppHelpTemplate,
 			wantOutput:   "yo",
@@ -608,7 +608,7 @@ func TestShowAppHelp_HelpPrinterCustom(t *testing.T) {
 			name:     "standard-command",
 			template: "",
 			printer: func(w io.Writer, templ string, data interface{}, fm map[string]interface{}) {
-				fmt.Fprint(w, "yo")
+				_, _ = fmt.Fprint(w, "yo")
 			},
 			wantTemplate: AppHelpTemplate,
 			wantOutput:   "yo",

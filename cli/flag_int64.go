@@ -8,16 +8,16 @@ import (
 
 // Int64Flag is a flag with type int64
 type Int64Flag struct {
-	Name        string
 	Aliases     []string
-	Usage       string
 	EnvVars     []string
+	Name        string
+	Usage       string
 	FilePath    string
+	DefaultText string
+	Value       int64
+	Destination *int64
 	Required    bool
 	Hidden      bool
-	Value       int64
-	DefaultText string
-	Destination *int64
 	HasBeenSet  bool
 }
 
