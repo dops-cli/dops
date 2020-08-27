@@ -6,6 +6,7 @@ import (
 	"strings"
 )
 
+// Option contains the selected option and a slice of all available options
 type Option struct {
 	Option  string
 	Options []string

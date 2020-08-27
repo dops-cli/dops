@@ -62,6 +62,7 @@ func unmarshalMap(i interface{}) (ret map[interface{}]interface{}, err error) {
 	return ret, nil
 }
 
+// UnmarshalTOML unmarshalls toml
 func (tm *tomlMap) UnmarshalTOML(i interface{}) error {
 	if tmp, err := unmarshalMap(i); err == nil {
 		tm.Map = tmp

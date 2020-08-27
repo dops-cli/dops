@@ -10,14 +10,14 @@ import (
 
 var (
 	// InfoPrefix should be used, when any kind of information is shown to the user, which is not part of the modules result
-	InfoPrefix = color.HiMagentaString("[info] ")
+	InfoPrefix = color.SHiMagenta("[info] ")
 
 	// WarningPrefix should be used, when a warning is displayed to the user
-	WarningPrefix = color.YellowString("[warning] ")
+	WarningPrefix = color.SYellow("[warning] ")
 
 	// ErrorPrefix should be used, when the module fails at something, but keeps running.
 	// If the error is fatal, use say.Fatal
-	ErrorPrefix = color.HiRedString("[error] ")
+	ErrorPrefix = color.SHiRed("[error] ")
 )
 
 func p(prefix string, text ...interface{}) {

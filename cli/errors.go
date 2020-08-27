@@ -90,6 +90,7 @@ func (ee *exitError) Error() string {
 	return fmt.Sprintf("%v", ee.message)
 }
 
+// ExitCode returns the exit code
 func (ee *exitError) ExitCode() int {
 	return ee.exitCode
 }

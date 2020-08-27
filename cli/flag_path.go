@@ -2,6 +2,7 @@ package cli
 
 import "flag"
 
+// PathFlag is a flag type, which accepts file or directory paths
 type PathFlag struct {
 	Aliases     []string
 	EnvVars     []string

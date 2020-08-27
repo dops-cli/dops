@@ -8,17 +8,28 @@ import (
 )
 
 var (
-	BoolFlags         []*BoolFlag
-	DurationFlags     []*DurationFlag
-	Float64Flags      []*Float64Flag
+	// BoolFlags contains all flags of the specific type which were set when running a module
+	BoolFlags []*BoolFlag
+	// DurationFlags contains all flags of the specific type which were set when running a module
+	DurationFlags []*DurationFlag
+	// Float64Flags contains all flags of the specific type which were set when running a module
+	Float64Flags []*Float64Flag
+	// Float64SliceFlags contains all flags of the specific type which were set when running a module
 	Float64SliceFlags []*Float64SliceFlag
-	IntFlags          []*IntFlag
-	IntSliceFlags     []*IntSliceFlag
-	PathFlags         []*PathFlag
-	StringFlags       []*StringFlag
-	StringSliceFlags  []*StringSliceFlag
-	TimestampFlags    []*TimestampFlag
-	OptionFlags       []*OptionFlag
+	// IntFlags contains all flags of the specific type which were set when running a module
+	IntFlags []*IntFlag
+	// IntSliceFlags contains all flags of the specific type which were set when running a module
+	IntSliceFlags []*IntSliceFlag
+	// PathFlags contains all flags of the specific type which were set when running a module
+	PathFlags []*PathFlag
+	// StringFlags contains all flags of the specific type which were set when running a module
+	StringFlags []*StringFlag
+	// StringSliceFlags contains all flags of the specific type which were set when running a module
+	StringSliceFlags []*StringSliceFlag
+	// TimestampFlags contains all flags of the specific type which were set when running a module
+	TimestampFlags []*TimestampFlag
+	// OptionFlags contains all flags of the specific type which were set when running a module
+	OptionFlags []*OptionFlag
 )
 
 // Command is a subcommand for a cli.App.

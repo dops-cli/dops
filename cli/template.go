@@ -21,7 +21,7 @@ var AppHelpTemplate = color.Primary("\nDOPS - CLI DevOps Toolkit") + `
     · ` + color.Secondary(`{{join .Names ", "}}`) + color.Separator(`{{"\t|\t"}}`) + `{{.Usage}}{{end}}{{else}}{{range .VisibleCommands}}
     · ` + color.Secondary(`{{join .Names ", "}}`) + color.Separator(`{{"\t|\t"}}`) + `{{.Usage}}{{end}}{{end}}{{end}}{{end}}
 
-` + color.HiRedString("Contribute to this tool here: https://github.com/dops-cli ") + color.RedString("<3\n")
+` + color.SHiRed("Contribute to this tool here: https://github.com/dops-cli ") + color.SRed("<3\n")
 
 // CommandHelpTemplate is the text template for the command help topic.
 // cli.go uses text/template to render templates. You can
@@ -62,6 +62,7 @@ OPTIONS:
    {{end}}{{end}}
 `
 
+// MarkdownDocTemplate is the template used for markdown documentation
 var MarkdownDocTemplate = `% {{ .App.Name }} 8
 
 # NAME
@@ -93,6 +94,7 @@ var MarkdownDocTemplate = `% {{ .App.Name }} 8
 {{ range $v := .Commands }}
 {{ $v }}{{ end }}{{ end }}`
 
+// FishCompletionTemplate is the template, which resolves to fish autocompletion
 var FishCompletionTemplate = `# {{ .App.Name }} fish shell completion
 
 function __fish_{{ .App.Name }}_no_subcommand --description 'Test if there has been any subcommand yet'

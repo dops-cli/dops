@@ -57,10 +57,12 @@ func NewJSONSource(data []byte) (InputSourceContext, error) {
 	return &jsonSource{deserialized: deserialized}, nil
 }
 
+// Source returns the source of the file
 func (x *jsonSource) Source() string {
 	return x.file
 }
 
+// Int returns name as a string
 func (x *jsonSource) Int(name string) (int, error) {
 	i, err := x.getValue(name)
 	if err != nil {
@@ -78,6 +80,7 @@ func (x *jsonSource) Int(name string) (int, error) {
 	}
 }
 
+// Duration returns name as a duration
 func (x *jsonSource) Duration(name string) (time.Duration, error) {
 	i, err := x.getValue(name)
 	if err != nil {
@@ -90,6 +93,7 @@ func (x *jsonSource) Duration(name string) (time.Duration, error) {
 	return v, nil
 }
 
+// Float64 returns name as a float64
 func (x *jsonSource) Float64(name string) (float64, error) {
 	i, err := x.getValue(name)
 	if err != nil {
@@ -102,6 +106,7 @@ func (x *jsonSource) Float64(name string) (float64, error) {
 	return v, nil
 }
 
+// String  returns name as a string
 func (x *jsonSource) String(name string) (string, error) {
 	i, err := x.getValue(name)
 	if err != nil {
@@ -114,6 +119,7 @@ func (x *jsonSource) String(name string) (string, error) {
 	return v, nil
 }
 
+// StringSlice returns name as a string slice
 func (x *jsonSource) StringSlice(name string) ([]string, error) {
 	i, err := x.getValue(name)
 	if err != nil {
@@ -137,6 +143,7 @@ func (x *jsonSource) StringSlice(name string) ([]string, error) {
 	}
 }
 
+// IntSlice returns name as an int slice
 func (x *jsonSource) IntSlice(name string) ([]int, error) {
 	i, err := x.getValue(name)
 	if err != nil {
@@ -160,6 +167,7 @@ func (x *jsonSource) IntSlice(name string) ([]int, error) {
 	}
 }
 
+// Generic returns name as a generic
 func (x *jsonSource) Generic(name string) (cli.Generic, error) {
 	i, err := x.getValue(name)
 	if err != nil {
@@ -172,6 +180,7 @@ func (x *jsonSource) Generic(name string) (cli.Generic, error) {
 	return v, nil
 }
 
+// Bool returns name as a boolean
 func (x *jsonSource) Bool(name string) (bool, error) {
 	i, err := x.getValue(name)
 	if err != nil {

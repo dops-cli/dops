@@ -515,71 +515,71 @@ func colorString(format string, p Attribute, a ...interface{}) string {
 	return c.SprintfFunc()(format, a...)
 }
 
-// Black is a convenient helper function to print with black foreground. A
+// Blackf is a convenient helper function to print with black foreground. A
 // newline is appended to format by default.
 func Blackf(format string, a ...interface{}) { colorPrint(format, FgBlack, a...) }
 
-// Red is a convenient helper function to print with red foreground. A
+// Redf is a convenient helper function to print with red foreground. A
 // newline is appended to format by default.
 func Redf(format string, a ...interface{}) { colorPrint(format, FgRed, a...) }
 
-// Green is a convenient helper function to print with green foreground. A
+// Greenf is a convenient helper function to print with green foreground. A
 // newline is appended to format by default.
 func Greenf(format string, a ...interface{}) { colorPrint(format, FgGreen, a...) }
 
-// Yellow is a convenient helper function to print with yellow foreground.
+// Yellowf is a convenient helper function to print with yellow foreground.
 // A newline is appended to format by default.
 func Yellowf(format string, a ...interface{}) { colorPrint(format, FgYellow, a...) }
 
-// Blue is a convenient helper function to print with blue foreground. A
+// Bluef is a convenient helper function to print with blue foreground. A
 // newline is appended to format by default.
 func Bluef(format string, a ...interface{}) { colorPrint(format, FgBlue, a...) }
 
-// Magenta is a convenient helper function to print with magenta foreground.
+// Magentaf is a convenient helper function to print with magenta foreground.
 // A newline is appended to format by default.
 func Magentaf(format string, a ...interface{}) { colorPrint(format, FgMagenta, a...) }
 
-// Cyan is a convenient helper function to print with cyan foreground. A
+// Cyanf is a convenient helper function to print with cyan foreground. A
 // newline is appended to format by default.
 func Cyanf(format string, a ...interface{}) { colorPrint(format, FgCyan, a...) }
 
-// White is a convenient helper function to print with white foreground. A
+// Whitef is a convenient helper function to print with white foreground. A
 // newline is appended to format by default.
 func Whitef(format string, a ...interface{}) { colorPrint(format, FgWhite, a...) }
 
-// BlackString is a convenient helper function to return a string with black
+// SBlack is a convenient helper function to return a string with black
 // foreground.
-func BlackString(format string, a ...interface{}) string { return colorString(format, FgBlack, a...) }
+func SBlack(format string, a ...interface{}) string { return colorString(format, FgBlack, a...) }
 
-// RedString is a convenient helper function to return a string with red
+// SRed is a convenient helper function to return a string with red
 // foreground.
-func RedString(format string, a ...interface{}) string { return colorString(format, FgRed, a...) }
+func SRed(format string, a ...interface{}) string { return colorString(format, FgRed, a...) }
 
-// GreenString is a convenient helper function to return a string with green
+// SGreen is a convenient helper function to return a string with green
 // foreground.
-func GreenString(format string, a ...interface{}) string { return colorString(format, FgGreen, a...) }
+func SGreen(format string, a ...interface{}) string { return colorString(format, FgGreen, a...) }
 
-// YellowString is a convenient helper function to return a string with yellow
+// SYellow is a convenient helper function to return a string with yellow
 // foreground.
-func YellowString(format string, a ...interface{}) string { return colorString(format, FgYellow, a...) }
+func SYellow(format string, a ...interface{}) string { return colorString(format, FgYellow, a...) }
 
-// BlueString is a convenient helper function to return a string with blue
+// SBlue is a convenient helper function to return a string with blue
 // foreground.
-func BlueString(format string, a ...interface{}) string { return colorString(format, FgBlue, a...) }
+func SBlue(format string, a ...interface{}) string { return colorString(format, FgBlue, a...) }
 
-// MagentaString is a convenient helper function to return a string with magenta
+// SMagenta is a convenient helper function to return a string with magenta
 // foreground.
-func MagentaString(format string, a ...interface{}) string {
+func SMagenta(format string, a ...interface{}) string {
 	return colorString(format, FgMagenta, a...)
 }
 
-// CyanString is a convenient helper function to return a string with cyan
+// SCyan is a convenient helper function to return a string with cyan
 // foreground.
-func CyanString(format string, a ...interface{}) string { return colorString(format, FgCyan, a...) }
+func SCyan(format string, a ...interface{}) string { return colorString(format, FgCyan, a...) }
 
-// WhiteString is a convenient helper function to return a string with white
+// SWhite is a convenient helper function to return a string with white
 // foreground.
-func WhiteString(format string, a ...interface{}) string { return colorString(format, FgWhite, a...) }
+func SWhite(format string, a ...interface{}) string { return colorString(format, FgWhite, a...) }
 
 // HiBlackf is a convenient helper function to print with hi-intensity black foreground. A
 // newline is appended to format by default.
@@ -613,44 +613,44 @@ func HiCyanf(format string, a ...interface{}) { colorPrint(format, FgHiCyan, a..
 // newline is appended to format by default.
 func HiWhitef(format string, a ...interface{}) { colorPrint(format, FgHiWhite, a...) }
 
-// HiBlackString is a convenient helper function to return a string with hi-intensity black
+// SHiBlack is a convenient helper function to return a string with hi-intensity black
 // foreground.
-func HiBlackString(format string, a ...interface{}) string {
+func SHiBlack(format string, a ...interface{}) string {
 	return colorString(format, FgHiBlack, a...)
 }
 
-// HiRedString is a convenient helper function to return a string with hi-intensity red
+// SHiRed is a convenient helper function to return a string with hi-intensity red
 // foreground.
-func HiRedString(format string, a ...interface{}) string { return colorString(format, FgHiRed, a...) }
+func SHiRed(format string, a ...interface{}) string { return colorString(format, FgHiRed, a...) }
 
-// HiGreenString is a convenient helper function to return a string with hi-intensity green
+// SHiGreen is a convenient helper function to return a string with hi-intensity green
 // foreground.
-func HiGreenString(format string, a ...interface{}) string {
+func SHiGreen(format string, a ...interface{}) string {
 	return colorString(format, FgHiGreen, a...)
 }
 
-// HiYellowString is a convenient helper function to return a string with hi-intensity yellow
+// SHiYellow is a convenient helper function to return a string with hi-intensity yellow
 // foreground.
-func HiYellowString(format string, a ...interface{}) string {
+func SHiYellow(format string, a ...interface{}) string {
 	return colorString(format, FgHiYellow, a...)
 }
 
-// HiBlueString is a convenient helper function to return a string with hi-intensity blue
+// SHiBlue is a convenient helper function to return a string with hi-intensity blue
 // foreground.
-func HiBlueString(format string, a ...interface{}) string { return colorString(format, FgHiBlue, a...) }
+func SHiBlue(format string, a ...interface{}) string { return colorString(format, FgHiBlue, a...) }
 
-// HiMagentaString is a convenient helper function to return a string with hi-intensity magenta
+// SHiMagenta is a convenient helper function to return a string with hi-intensity magenta
 // foreground.
-func HiMagentaString(format string, a ...interface{}) string {
+func SHiMagenta(format string, a ...interface{}) string {
 	return colorString(format, FgHiMagenta, a...)
 }
 
-// HiCyanString is a convenient helper function to return a string with hi-intensity cyan
+// SHiCyan is a convenient helper function to return a string with hi-intensity cyan
 // foreground.
-func HiCyanString(format string, a ...interface{}) string { return colorString(format, FgHiCyan, a...) }
+func SHiCyan(format string, a ...interface{}) string { return colorString(format, FgHiCyan, a...) }
 
-// HiWhiteString is a convenient helper function to return a string with hi-intensity white
+// SHiWhite is a convenient helper function to return a string with hi-intensity white
 // foreground.
-func HiWhiteString(format string, a ...interface{}) string {
+func SHiWhite(format string, a ...interface{}) string {
 	return colorString(format, FgHiWhite, a...)
 }

@@ -159,6 +159,7 @@ func printFlagSuggestions(lastArg string, flags []Flag, writer io.Writer) {
 	}
 }
 
+// DefaultCompleteWithFlags prints flag suggestions
 func DefaultCompleteWithFlags(cmd *Command) func(c *Context) {
 	return func(c *Context) {
 		if len(os.Args) > 2 {
