@@ -8,7 +8,9 @@ require (
 	github.com/gdamore/tcell v1.4.0
 	github.com/mattn/go-colorable v0.1.7
 	github.com/mattn/go-isatty v0.0.12
+	github.com/sparrc/go-ping v0.0.0-20190613174326-4e5b6552494c
 	gitlab.com/tslocum/cview v1.4.8
+	golang.org/x/net v0.0.0-20200822124328-c89045814202 // indirect
 	golang.org/x/sys v0.0.0-20200826173525-f9321e4c35a6 // indirect
 	gopkg.in/yaml.v2 v2.2.2
 )

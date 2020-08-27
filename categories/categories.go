@@ -15,4 +15,7 @@ const (
 
 	// IO is for modules, which work on the filesystem
 	IO = "IO"
+
+	// Statistics is for modules, which return a statistic of something to the user
+	Statistics = "Statistics"
 )

@@ -7,6 +7,7 @@ import (
 	"strings"
 
 	"github.com/dops-cli/dops/cli"
+	"github.com/dops-cli/dops/module/ping"
 
 	"github.com/dops-cli/dops/flags/debug"
 	"github.com/dops-cli/dops/flags/raw"
@@ -31,6 +32,7 @@ func init() {
 	addModule(update.Module{})
 	addModule(demo.Module{})
 	addModule(renamefiles.Module{})
+	addModule(ping.Module{})
 }
 
 // CliApp is the main component of dops, which contains all modules and flags
