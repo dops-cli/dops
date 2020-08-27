@@ -1,0 +1,2 @@
+cli/autocomplete/* -linguist-detectable
+cli/testdata/* -linguist-detectable
