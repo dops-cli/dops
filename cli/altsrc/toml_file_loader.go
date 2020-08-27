@@ -56,7 +56,7 @@ func unmarshalMap(i interface{}) (ret map[interface{}]interface{}, err error) {
 		case reflect.Array, reflect.Slice:
 			ret[key] = val.([]interface{})
 		default:
-			return nil, fmt.Errorf("Unsupported: type = %#v", v.Kind())
+			return nil, fmt.Errorf("unsupported: type = %#v", v.Kind())
 		}
 	}
 	return ret, nil

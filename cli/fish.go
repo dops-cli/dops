@@ -172,7 +172,7 @@ func fishAddFileFlag(flag Flag, completion io.StringWriter) {
 			return
 		}
 	}
-	completion.WriteString(" -f")
+	_, _ = completion.WriteString(" -f")
 }
 
 func (a *App) fishSubcommandHelper(allCommands []string) string {

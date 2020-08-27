@@ -246,5 +246,5 @@ func incorrectTypeForFlagError(name, expectedTypeName string, value interface{})
 		valueTypeName = valueType.Name()
 	}
 
-	return fmt.Errorf("Mismatched type for flag '%s'. Expected '%s' but actual is '%s'", name, expectedTypeName, valueTypeName)
+	return fmt.Errorf("mismatched type for flag '%s' - expected '%s' but actual is '%s'", name, expectedTypeName, valueTypeName)
 }

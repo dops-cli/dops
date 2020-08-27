@@ -88,18 +88,24 @@ type Command struct {
 	CustomHelpTemplate string
 }
 
+// Commands contains all commands
 type Commands []*Command
 
+// CommandsByName contains all commands, sorted by name
 type CommandsByName []*Command
 
+// Len is the number of elements in the collection.
 func (c CommandsByName) Len() int {
 	return len(c)
 }
 
+// Less reports whether the element with
+// index i should sort before the element with index j.
 func (c CommandsByName) Less(i, j int) bool {
 	return lexicographicLess(c[i].Name, c[j].Name)
 }
 
+// Swap swaps the elements with indexes i and j.
 func (c CommandsByName) Swap(i, j int) {
 	c[i], c[j] = c[j], c[i]
 }
