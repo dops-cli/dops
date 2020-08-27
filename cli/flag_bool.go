@@ -8,16 +8,16 @@ import (
 
 // BoolFlag is a flag with type bool
 type BoolFlag struct {
-	Name        string
 	Aliases     []string
-	Usage       string
 	EnvVars     []string
+	Name        string
+	Usage       string
 	FilePath    string
+	DefaultText string
+	Destination *bool
 	Required    bool
 	Hidden      bool
 	Value       bool
-	DefaultText string
-	Destination *bool
 	HasBeenSet  bool
 }
 

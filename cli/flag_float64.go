@@ -8,16 +8,16 @@ import (
 
 // Float64Flag is a flag with type float64
 type Float64Flag struct {
-	Name        string
 	Aliases     []string
-	Usage       string
 	EnvVars     []string
+	Name        string
+	Usage       string
 	FilePath    string
+	DefaultText string
+	Value       float64
+	Destination *float64
 	Required    bool
 	Hidden      bool
-	Value       float64
-	DefaultText string
-	Destination *float64
 	HasBeenSet  bool
 }
 

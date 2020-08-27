@@ -42,19 +42,19 @@ func (i *Option) String() string {
 
 // OptionFlag is a flag with type string
 type OptionFlag struct {
-	Name        string
 	Aliases     []string
-	Usage       string
 	EnvVars     []string
+	Options     []string
+	Name        string
+	Usage       string
 	FilePath    string
+	DefaultText string
+	Value       *Option
+	Destination *string
 	Required    bool
 	Hidden      bool
 	TakesFile   bool
-	Value       *Option
-	DefaultText string
-	Destination *string
 	HasBeenSet  bool
-	Options     []string
 }
 
 // IsSet returns whether or not the flag has been set through env or file

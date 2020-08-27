@@ -8,16 +8,16 @@ import (
 
 // UintFlag is a flag with type uint
 type UintFlag struct {
-	Name        string
 	Aliases     []string
-	Usage       string
 	EnvVars     []string
+	Name        string
+	Usage       string
 	FilePath    string
+	DefaultText string
+	Value       uint
+	Destination *uint
 	Required    bool
 	Hidden      bool
-	Value       uint
-	DefaultText string
-	Destination *uint
 	HasBeenSet  bool
 }
 

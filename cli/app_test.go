@@ -47,7 +47,7 @@ func ExampleApp_Run() {
 		Authors:   []*Author{{Name: "Oliver Allen", Email: "oliver@toyshop.example.com"}},
 	}
 
-	app.Run(os.Args)
+	_ = app.Run(os.Args)
 	// Output:
 	// Hello Jeremy
 }
@@ -1439,7 +1439,8 @@ func TestApp_VisibleCategories(t *testing.T) {
 	}
 
 	app.Setup()
-	expect(t, []CommandCategory{}, app.VisibleCategories())
+	var e []CommandCategory
+	expect(t, e, app.VisibleCategories())
 }
 
 func TestApp_Run_DoesNotOverwriteErrorFromBefore(t *testing.T) {

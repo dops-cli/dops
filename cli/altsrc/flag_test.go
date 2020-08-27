@@ -324,7 +324,7 @@ func runTest(_ *testing.T, test testApplyInputSource) *cli.Context {
 	c := cli.NewContext(nil, set, nil)
 	if test.EnvVarName != "" && test.EnvVarValue != "" {
 		_ = os.Setenv(test.EnvVarName, test.EnvVarValue)
-		defer os.Setenv(test.EnvVarName, "")
+		defer func() { _ = os.Setenv(test.EnvVarName, "") }()
 	}
 
 	_ = test.Flag.Apply(set)

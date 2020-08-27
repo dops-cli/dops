@@ -8,16 +8,16 @@ import (
 
 // IntFlag is a flag with type int
 type IntFlag struct {
-	Name        string
 	Aliases     []string
-	Usage       string
 	EnvVars     []string
+	Name        string
+	Usage       string
 	FilePath    string
+	DefaultText string
+	Value       int
+	Destination *int
 	Required    bool
 	Hidden      bool
-	Value       int
-	DefaultText string
-	Destination *int
 	HasBeenSet  bool
 }
 

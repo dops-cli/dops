@@ -8,16 +8,16 @@ import (
 
 // Uint64Flag is a flag with type uint64
 type Uint64Flag struct {
-	Name        string
 	Aliases     []string
-	Usage       string
 	EnvVars     []string
+	Name        string
+	Usage       string
 	FilePath    string
+	DefaultText string
+	Value       uint64
+	Destination *uint64
 	Required    bool
 	Hidden      bool
-	Value       uint64
-	DefaultText string
-	Destination *uint64
 	HasBeenSet  bool
 }
 

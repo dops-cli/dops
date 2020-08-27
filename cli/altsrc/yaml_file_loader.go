@@ -66,7 +66,7 @@ func loadDataFrom(filePath string) ([]byte, error) {
 	if u.Host != "" { // i have a host, now do i support the scheme?
 		switch u.Scheme {
 		case "http", "https":
-			res, err := http.Get(filePath)
+			res, err := http.Get(filePath) //nolint:gosec
 			if err != nil {
 				return nil, err
 			}
@@ -76,13 +76,13 @@ func loadDataFrom(filePath string) ([]byte, error) {
 		}
 	} else if u.Path != "" { // i dont have a host, but I have a path. I am a local file.
 		if _, notFoundFileErr := os.Stat(filePath); notFoundFileErr != nil {
-			return nil, fmt.Errorf("Cannot read from file: '%s' because it does not exist.", filePath)
+			return nil, fmt.Errorf("cannot read from file: '%s' because it does not exist", filePath)
 		}
 		return ioutil.ReadFile(filePath)
 	} else if runtime.GOOS == "windows" && strings.Contains(u.String(), "\\") {
 		// on Windows systems u.Path is always empty, so we need to check the string directly.
 		if _, notFoundFileErr := os.Stat(filePath); notFoundFileErr != nil {
-			return nil, fmt.Errorf("Cannot read from file: '%s' because it does not exist.", filePath)
+			return nil, fmt.Errorf("cannot read from file: '%s' because it does not exist", filePath)
 		}
 		return ioutil.ReadFile(filePath)
 	}

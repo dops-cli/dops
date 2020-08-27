@@ -13,16 +13,16 @@ type Generic interface {
 
 // GenericFlag is a flag with type Generic
 type GenericFlag struct {
-	Name        string
 	Aliases     []string
-	Usage       string
 	EnvVars     []string
+	Name        string
+	Usage       string
 	FilePath    string
+	Value       Generic
+	DefaultText string
 	Required    bool
 	Hidden      bool
 	TakesFile   bool
-	Value       Generic
-	DefaultText string
 	HasBeenSet  bool
 }
 
