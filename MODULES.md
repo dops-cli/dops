@@ -127,3 +127,24 @@ Ping pings a host on the web via ICMP
 --size SIZE, -s SIZE	Pings with packets of size SIZE (default: 16)
 --source IP ADDRESS	Source IP ADDRESS of the ping (default: your hosts IP)
 ```
+
+## random-generator  
+
+> Generate random values (string, integers, emails, etc..)  
+
+Usage:  [options] [arguments...]<br/>
+Aliases: `rg`<br/>
+Category: Generators
+
+ ### Description
+
+This module generates random values of specific types like string, integer, email etc.
+You can set the number of generations and the seed.
+
+NOTICE: This random values are not cryptographically secure!
+
+### Options
+
+```
+--seed SEED, -s SEED	Uses SEED for the random generation (default: calculated by current time (nanoseconds))
+```

@@ -62,7 +62,7 @@ Dops is structured in a way that it is very easy to add a new module. So everyon
 
 ## Features 🔥
 
-Dops offers a wide range of different modules (currently there are `8`<!-- feature-count --> modules).  
+Dops offers a wide range of different modules (currently there are `9`<!-- feature-count --> modules).  
 The individual modules are listed in the [`MODULES.md`](https://github.com/dops-cli/dops/blob/master/MODULES.md) file with description and usage.
 
 ## Installation 💿
