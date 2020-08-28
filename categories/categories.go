@@ -18,4 +18,7 @@ const (
 
 	// Statistics is for modules, which return a statistic of something to the user
 	Statistics = "Statistics"
+
+	// Generators is for modules, which generate something (random values, etc..)
+	Generators = "Generators"
 )

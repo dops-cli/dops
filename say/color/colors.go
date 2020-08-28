@@ -1,5 +1,17 @@
 package color
 
+import "github.com/gdamore/tcell"
+
+const (
+	ButtonBackgroundColor = tcell.ColorGray
+
+	FieldBackgroundColor = tcell.ColorGray
+
+	TitleColor = tcell.Color87
+
+	ModalBackgroundColor = tcell.ColorOrangeRed
+)
+
 var (
 	// Section is used for sections
 	Section = New(FgHiYellow, Underline).Sprintf

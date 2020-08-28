@@ -3,11 +3,14 @@ package cli
 import (
 	"fmt"
 	"io"
+	"log"
 	"os"
 	"strings"
 	"text/tabwriter"
 	"text/template"
 	"unicode/utf8"
+
+	"github.com/dops-cli/dops/global/options"
 )
 
 var helpCommand = &Command{
@@ -277,8 +280,8 @@ func printHelpCustom(out io.Writer, templ string, data interface{}, customFuncs 
 	if err != nil {
 		// If the writer is closed, t.Execute will fail, and there's nothing
 		// we can do to recover.
-		if os.Getenv("CLI_TEMPLATE_ERROR_DEBUG") != "" {
-			_, _ = fmt.Fprintf(ErrWriter, "CLI TEMPLATE ERROR: %#v\n", err)
+		if options.IsDebug {
+			log.Fatal(err)
 		}
 		return
 	}

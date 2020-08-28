@@ -1,6 +1,6 @@
 name: Go Test
 
-on: [push, pull_request]
+on: [ push, pull_request ]
 
 jobs:
 
@@ -9,7 +9,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [macos-latest, windows-latest, ubuntu-latest]
+        os: [ macos-latest, windows-latest, ubuntu-latest ]
     steps:
 
       - name: Set up Go 1.x.x

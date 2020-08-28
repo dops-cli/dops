@@ -86,6 +86,8 @@ type Command struct {
 	// cli.go uses text/template to render templates. You can
 	// render custom help text by setting this variable.
 	CustomHelpTemplate string
+
+	isSubcommand bool
 }
 
 // Commands contains all commands
@@ -290,6 +292,19 @@ func (c *Command) useShortOptionHandling() bool {
 	return c.UseShortOptionHandling
 }
 
+// IsSubcommand returns if the command is a subcommand
+func (c *Command) IsSubcommand() bool {
+
+	for _, m := range ActiveModules {
+		for _, command := range m.GetModuleCommands() {
+			if c.Name == command.Name {
+				return false
+			}
+		}
+	}
+	return true
+}
+
 func (c *Command) parseFlags(args Args, shellComplete bool) (*flag.FlagSet, error) {
 	set, err := c.newFlagSet()
 	if err != nil {
@@ -389,7 +404,7 @@ func (c *Command) startApp(ctx *Context) error {
 		app.Commands[index].commandNamePath = []string{c.Name, cc.Name}
 	}
 
-	return app.RunAsSubcommand(ctx)
+	return app.RunAsSubcommand(ctx, c)
 }
 
 // VisibleFlags returns a slice of the Flags with Hidden=false

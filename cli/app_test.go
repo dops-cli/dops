@@ -344,7 +344,7 @@ func TestApp_RunAsSubCommandIncorrectUsage(t *testing.T) {
 	_ = set.Parse([]string{"", "---foo"})
 	c := &Context{flagSet: set}
 
-	err := a.RunAsSubcommand(c)
+	err := a.RunAsSubcommand(c, nil)
 
 	expect(t, err, errors.New("bad flag syntax: ---foo"))
 }

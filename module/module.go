@@ -8,6 +8,7 @@ import (
 
 	"github.com/dops-cli/dops/cli"
 	"github.com/dops-cli/dops/module/ping"
+	"github.com/dops-cli/dops/module/randomgenerator"
 
 	"github.com/dops-cli/dops/flags/debug"
 	"github.com/dops-cli/dops/flags/raw"
@@ -33,13 +34,14 @@ func init() {
 	addModule(demo.Module{})
 	addModule(renamefiles.Module{})
 	addModule(ping.Module{})
+	addModule(randomgenerator.Module{})
 }
 
 // CliApp is the main component of dops, which contains all modules and flags
 var CliApp *cli.App
 
 // Run runs a specific module with specific flags
-func Run(cmd *cli.Command, flags map[string]string) error {
+func Run(flags []string) error {
 
 	say.Text("\033[2J")
 	clear := exec.Command("clear")
@@ -47,11 +49,7 @@ func Run(cmd *cli.Command, flags map[string]string) error {
 	_ = clear.Run()
 
 	args := []string{"dops"}
-	args = append(args, cmd.Name)
-
-	for name, value := range flags {
-		args = append(args, "-"+name+"="+value)
-	}
+	args = append(args, flags...)
 
 	say.Info("Running: ", strings.Join(args, " "))
 

@@ -93,12 +93,15 @@ type App struct {
 	// i.e. foobar -o -v -> foobar -ov
 	UseShortOptionHandling bool
 
-	didSetup bool
+	didSetup    bool
+	aliases     []string
+	category    string
+	isSubmodule bool
 }
 
-// Tries to find out when this binary was compiled.
+// CompileTime tries to find out when this binary was compiled.
 // Returns the current time if it fails to find it.
-func compileTime() time.Time {
+func CompileTime() time.Time {
 	info, err := os.Stat(os.Args[0])
 	if err != nil {
 		return time.Now()
@@ -116,7 +119,7 @@ func NewApp() *App {
 		UsageText:    "",
 		BashComplete: DefaultAppComplete,
 		Action:       helpCommand.Action,
-		Compiled:     compileTime(),
+		Compiled:     CompileTime(),
 		Writer:       os.Stdout,
 		ErrWriter:    os.Stderr,
 	}
@@ -157,7 +160,7 @@ func (a *App) Setup() {
 	}
 
 	if a.Compiled == (time.Time{}) {
-		a.Compiled = compileTime()
+		a.Compiled = CompileTime()
 	}
 
 	if a.Writer == nil {
@@ -172,7 +175,7 @@ func (a *App) Setup() {
 
 	for _, c := range a.Commands {
 		if c.HelpName == "" {
-			c.HelpName = fmt.Sprintf("%s %s", a.HelpName, c.Name)
+			c.HelpName = fmt.Sprintf("%s [options] %s", a.HelpName, c.Name)
 		}
 		newCommands = append(newCommands, c)
 	}
@@ -330,16 +333,21 @@ func (a *App) RunAndExitOnError() {
 	}
 }
 
+// IsSubmodule returns if the app instance is a submodule
+func (a *App) IsSubmodule() bool {
+	return a.isSubmodule
+}
+
 // RunAsSubcommand invokes the subcommand given the context, parses ctx.Args() to
 // generate command-specific flags
-func (a *App) RunAsSubcommand(ctx *Context) (err error) {
+func (a *App) RunAsSubcommand(ctx *Context, parentCommand *Command) (err error) {
 	// Setup also handles HideHelp and HideHelpCommand
 	a.Setup()
 
 	var newCmds []*Command
 	for _, c := range a.Commands {
 		if c.HelpName == "" {
-			c.HelpName = fmt.Sprintf("%s %s", a.HelpName, c.Name)
+			c.HelpName = fmt.Sprintf("%s [options] %s", a.HelpName, c.Name)
 		}
 		newCmds = append(newCmds, c)
 	}
@@ -353,7 +361,8 @@ func (a *App) RunAsSubcommand(ctx *Context) (err error) {
 	err = parseIter(set, a, ctx.Args().Tail(), ctx.shellComplete)
 	nerr := normalizeFlags(a.Flags, set)
 	newContext := NewContext(a, set, ctx)
-
+	a.category = parentCommand.Category
+	a.aliases = parentCommand.Aliases
 	if nerr != nil {
 		_, _ = fmt.Fprintln(a.Writer, nerr)
 		_, _ = fmt.Fprintln(a.Writer)
@@ -461,6 +470,16 @@ func (a *App) VisibleCategories() []CommandCategory {
 		}
 	}
 	return ret
+}
+
+// Aliases returns the aliases of the app
+func (a *App) Aliases() []string {
+	return a.aliases
+}
+
+// Category returns the category of the app
+func (a *App) Category() string {
+	return a.category
 }
 
 // VisibleCommands returns a slice of the Commands with Hidden=false

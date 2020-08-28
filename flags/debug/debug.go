@@ -12,6 +12,7 @@ type Flag struct{}
 func (Flag) GetFlags() []cli.Flag {
 	return []cli.Flag{
 		&cli.BoolFlag{
+			Aliases:     []string{"d"},
 			Name:        "debug",
 			Usage:       "Enables debugging mode - only useful if you are working on dops",
 			Destination: &options.IsDebug,

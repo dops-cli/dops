@@ -43,22 +43,23 @@ var CommandHelpTemplate = color.Primary("\n{{.Name}}") + ` - ` + color.Secondary
 // SubcommandHelpTemplate is the text template for the subcommand help topic.
 // cli.go uses text/template to render templates. You can
 // render custom help text by setting this variable.
-var SubcommandHelpTemplate = `NAME:
-   {{.HelpName}} - {{.Usage}}
+var SubcommandHelpTemplate = color.Primary("\n{{.Name}}") + ` - ` + color.Secondary("{{.Usage}}") + color.R + `
 
-USAGE:
-   {{if .UsageText}}{{.UsageText}}{{else}}{{.HelpName}} command{{if .VisibleFlags}} [command options]{{end}} {{if .ArgsUsage}}{{.ArgsUsage}}{{else}}[arguments...]{{end}}{{end}}{{if .Description}}
+{{if .Description}}` + color.Section("Description") + `
+{{.Description}}{{end}}
 
-DESCRIPTION:
-   {{.Description}}{{end}}
+` + color.Primary("Usage:") + ` {{if .UsageText}}{{.UsageText}}{{else}}{{.HelpName}} command{{if .VisibleFlags}} [command options]{{end}} {{if .ArgsUsage}}{{.ArgsUsage}}{{else}}[arguments...]{{end}}{{end}}
 
-COMMANDS:{{range .VisibleCategories}}{{if .Name}}
-   {{.Name}}:{{range .VisibleCommands}}
-     {{join .Names ", "}}{{"\t"}}{{.Usage}}{{end}}{{else}}{{range .VisibleCommands}}
-   {{join .Names ", "}}{{"\t"}}{{.Usage}}{{end}}{{end}}{{end}}{{if .VisibleFlags}}
+{{if .Aliases}}` + color.Primary("Aliases:") + `  {{join .Aliases ", "}}{{end}}
+{{if .Category}}` + color.Primary("Category:") + ` {{.Category}}{{end}}
 
-OPTIONS:
-   {{range .VisibleFlags}}{{.}}
+{{if .VisibleCommands}}` + color.Section(`Commands`) + `{{range .VisibleCategories}}{{if .Name}}
+  [` + color.Primary(`{{.Name}}`) + `]{{range .VisibleCommands}}
+    · ` + color.Secondary(`{{join .Names ", "}}`) + color.Separator(`{{"\t|\t"}}`) + `{{.Usage}}{{end}}{{else}}{{range .VisibleCommands}}
+    · ` + color.Secondary(`{{join .Names ", "}}`) + color.Separator(`{{"\t|\t"}}`) + `{{.Usage}}{{end}}{{end}}{{end}}{{end}}
+
+{{if .VisibleFlags}}` + color.Section("Options") + `
+   {{range .VisibleFlags}}` + color.Flag("{{.}}") + `
    {{end}}{{end}}
 `
 

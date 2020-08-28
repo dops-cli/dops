@@ -816,7 +816,7 @@ func TestHideHelpCommand_RunAsSubcommand(t *testing.T) {
 		},
 	}
 
-	err := app.RunAsSubcommand(newContextFromStringSlice([]string{"", "help"}))
+	err := app.RunAsSubcommand(newContextFromStringSlice([]string{"", "help"}), nil)
 	if err == nil {
 		t.Fatalf("expected a non-nil error")
 	}
@@ -824,7 +824,7 @@ func TestHideHelpCommand_RunAsSubcommand(t *testing.T) {
 		t.Errorf("Run returned unexpected error: %v", err)
 	}
 
-	err = app.RunAsSubcommand(newContextFromStringSlice([]string{"", "--help"}))
+	err = app.RunAsSubcommand(newContextFromStringSlice([]string{"", "--help"}), nil)
 	if err != nil {
 		t.Errorf("Run returned unexpected error: %v", err)
 	}
@@ -841,12 +841,12 @@ func TestHideHelpCommand_RunAsSubcommand_False(t *testing.T) {
 		},
 	}
 
-	err := app.RunAsSubcommand(newContextFromStringSlice([]string{"", "help"}))
+	err := app.RunAsSubcommand(newContextFromStringSlice([]string{"", "help"}), nil)
 	if err != nil {
 		t.Errorf("Run returned unexpected error: %v", err)
 	}
 
-	err = app.RunAsSubcommand(newContextFromStringSlice([]string{"", "--help"}))
+	err = app.RunAsSubcommand(newContextFromStringSlice([]string{"", "--help"}), nil)
 	if err != nil {
 		t.Errorf("Run returned unexpected error: %v", err)
 	}
