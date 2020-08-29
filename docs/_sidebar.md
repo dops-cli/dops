@@ -1,4 +1,4 @@
 - Getting Started
   - [Quick Start](quick_start.md)
 - Contributing to dops
-- Modules <!-- <<CI-MODULES-START>> -->
+- Modules <!-- <<CI-MODULES>> -->
