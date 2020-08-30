@@ -301,7 +301,7 @@ func stringifyFlag(f Flag) string {
 	usageWithDefault := strings.TrimSpace(usage + defaultValueString)
 
 	return withEnvHint(flagStringSliceField(f, "EnvVars"),
-		fmt.Sprintf("%s\t%s", prefixedNames(f.Names(), placeholder), usageWithDefault))
+		fmt.Sprintf("%s\t|\t%s", prefixedNames(f.Names(), placeholder), usageWithDefault))
 }
 
 func stringifyIntSliceFlag(f *IntSliceFlag) string {

@@ -1,7 +1,11 @@
 package cli
 
 import (
+	"bytes"
+	"fmt"
+	"log"
 	"strings"
+	"text/tabwriter"
 	"text/template"
 
 	"github.com/dops-cli/dops/say/color"
@@ -148,6 +152,92 @@ func PrintModules() error {
 	}
 
 	return nil
+}
+
+// CommandDocumentation returns the documentation used at https://dops-cli.com for a module
+func CommandDocumentation(cmd *Command, parent *Command) string {
+
+	var docs string
+
+	docs += "# " + cmd.Name + "\n\n"
+	docs += "> " + cmd.Usage + "\n\n"
+
+	docs += cmd.Description + "\n\n"
+	if cmd.Warning != "" {
+		docs += "> [!WARNING]\n"
+		docs += cmd.Warning + "  \n\n"
+	}
+	if cmd.Tip != "" {
+		docs += "> [!TIP]\n"
+		docs += cmd.Tip + "  \n\n"
+	}
+	if cmd.Note != "" {
+		docs += "> [!NOTE]\n"
+		docs += cmd.Note + "  \n\n"
+	}
+
+	docs += "## Usage\n\n"
+	docs += "> `dops [options] "
+	if parent != nil {
+		docs += parent.Name + " "
+		if len(parent.Flags) > 0 {
+			docs += "[options] "
+		}
+	}
+	docs += cmd.Name + " "
+	if cmd.UsageText != "" {
+		docs += cmd.UsageText + " "
+	} else if cmd.HelpName != "" {
+		docs += cmd.HelpName + " "
+	}
+	if len(cmd.VisibleFlags()) > 0 {
+		docs += "[options] "
+	}
+	if len(cmd.Subcommands) > 0 {
+		docs += "subcommand "
+	}
+	if cmd.ArgsUsage != "" {
+		docs += cmd.ArgsUsage + " "
+	} else {
+		docs += "[arguments...]"
+	}
+
+	docs += "`\n\n"
+
+	docs += "**Category:** " + cmd.Category + "  \n"
+	if len(cmd.Aliases) > 0 {
+		docs += "**Aliases:** `" + strings.Join(cmd.Aliases, ", ") + "`  \n"
+	}
+	if len(cmd.Flags) > 0 {
+		docs += "## Options\n"
+		docs += "```flags\n"
+		for _, flag := range cmd.Flags {
+			docs += flag.String() + "  \n"
+		}
+		docs += "```\n"
+	}
+	if len(cmd.Subcommands) > 0 {
+		for _, scmd := range cmd.Subcommands {
+			docs += CommandDocumentation(scmd, cmd)
+		}
+	}
+
+	// docs += "\n</details>\n\n"
+
+	var buf bytes.Buffer
+	w := tabwriter.NewWriter(&buf, 1, 8, 2, ' ', 0)
+
+	_, err := fmt.Fprint(w, docs)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	err = w.Flush()
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	return buf.String()
 }
 
 // PrintModulesMarkdown prints all modules in markdown format to stdout

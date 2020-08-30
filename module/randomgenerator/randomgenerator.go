@@ -4,6 +4,7 @@ import (
 	"crypto/sha512"
 	"encoding/binary"
 	"io"
+	"math"
 	"math/rand"
 	"time"
 
@@ -23,9 +24,8 @@ func (Module) GetModuleCommands() []*cli.Command {
 			Aliases: []string{"rg"},
 			Usage:   "Generate random values (string, integers, emails, etc..)",
 			Description: `This module generates random values of specific types like string, integer, email etc.
-You can set the number of generations and the seed.
-
-NOTICE: This random values are not cryptographically secure!`,
+You can set the number of generations and the seed.`,
+			Warning:  "The generated random values are not cryptographically secure!",
 			Category: categories.Generators,
 			Action: func(c *cli.Context) error {
 				_ = cli.ShowCommandHelp(c, "")
@@ -85,6 +85,7 @@ NOTICE: This random values are not cryptographically secure!`,
 						&cli.IntFlag{
 							Name:  "max",
 							Usage: "Maximum `NUMBER` to be generated",
+							Value: math.MaxInt64,
 						},
 					},
 				},

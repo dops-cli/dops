@@ -2,6 +2,7 @@ package modules
 
 import (
 	"regexp"
+	"sort"
 	"strconv"
 
 	"github.com/dops-cli/dops/cli"
@@ -27,9 +28,11 @@ With the 'markdown' flag, the output text is parsed in markdown. This is for exa
 			Action: func(c *cli.Context) error {
 				search := c.String("search")
 				list := c.Bool("list")
-				describe := c.Bool("describe")
 				markdown := c.Bool("markdown")
 				count := c.Bool("count")
+				gd := c.Bool("generate-docs")
+
+				cli.IncompatibleFlags(search, list, markdown, count, gd)
 
 				var foundModules []string
 
@@ -52,12 +55,6 @@ With the 'markdown' flag, the output text is parsed in markdown. This is for exa
 							foundModules = append(foundModules, cmd.Name)
 						}
 					}
-				} else if describe {
-					err := cli.PrintModules()
-					if err != nil {
-						return err
-					}
-					return nil
 				} else if markdown {
 					err := cli.PrintModulesMarkdown()
 					if err != nil {
@@ -67,7 +64,15 @@ With the 'markdown' flag, the output text is parsed in markdown. This is for exa
 				} else if count {
 					say.Text(strconv.Itoa(len(cli.ActiveModules) + 2))
 					return nil
+				} else if gd {
+					// err := cli.GenerateDocs()
+					// if err != nil {
+					// 	return err
+					// }
+					// return nil
 				}
+
+				sort.Strings(foundModules)
 
 				for _, name := range foundModules {
 					say.Text(name)
@@ -79,27 +84,27 @@ With the 'markdown' flag, the output text is parsed in markdown. This is for exa
 				&cli.StringFlag{
 					Name:    "search",
 					Aliases: []string{"s"},
-					Usage:   "searches for `MODULE` using regex",
+					Usage:   "Searches for `MODULE` using regex",
 				},
 				&cli.BoolFlag{
 					Name:    "list",
 					Aliases: []string{"l", "ls"},
-					Usage:   "lists all modules",
-				},
-				&cli.BoolFlag{
-					Name:    "describe",
-					Aliases: []string{"d"},
-					Usage:   "describes all modules",
+					Usage:   "Lists all modules",
 				},
 				&cli.BoolFlag{
 					Name:    "markdown",
 					Aliases: []string{"m", "md"},
-					Usage:   "describes all modules with markdown output",
+					Usage:   "Describes all modules with markdown output",
+				},
+				&cli.BoolFlag{
+					Name:    "generate-docs",
+					Aliases: []string{"gen-doc", "gd"},
+					Usage:   "Generate the markdown for the official documentation of dops",
 				},
 				&cli.BoolFlag{
 					Name:    "count",
 					Aliases: []string{"c"},
-					Usage:   "counts all modules",
+					Usage:   "Returns the total module count of dops",
 				},
 			},
 		},

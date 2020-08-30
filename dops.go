@@ -76,6 +76,9 @@ func main() {
 				global.CviewTable.SetCell(currentRow, 0, categoryCell)
 				currentRow++
 				for _, command := range global.CliCommands {
+					if command.Hidden {
+						continue
+					}
 					if command.Category == category {
 						global.CviewTable.SetCell(currentRow, 0, cview.NewTableCell(command.Name))
 						global.CviewTable.SetCell(currentRow, 1, cview.NewTableCell(command.Usage))

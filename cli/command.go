@@ -44,6 +44,12 @@ type Command struct {
 	UsageText string
 	// A longer explanation of how the command works
 	Description string
+	// Note is for notes about a module
+	Note string
+	// Tip is for tips that help to use a module
+	Tip string
+	// Warning contains a string that should be displayed as a warning to the user
+	Warning string
 	// A short description of the arguments of this command
 	ArgsUsage string
 	// The category the command is part of

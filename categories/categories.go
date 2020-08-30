@@ -11,7 +11,7 @@ const (
 	TextProcessing = "Text Processing"
 
 	// Info is for modules that return information about something to the user
-	Info = "Info"
+	Info = "Note"
 
 	// IO is for modules, which work on the filesystem
 	IO = "IO"
