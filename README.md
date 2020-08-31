@@ -71,7 +71,7 @@ The individual modules are listed in the [`MODULES.md`](https://github.com/dops-
 
 ### Multiplatform using go
 
-> If you have already installed go, you can install `dops` as follows:
+> If you have already installed [go](https://golang.org/), you can install `dops` as follows:
 
 ```console
 go get github.com/dops-cli/dops
