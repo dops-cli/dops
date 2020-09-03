@@ -209,12 +209,22 @@ func CommandDocumentation(cmd *Command, parent *Command) string {
 		docs += "**Aliases:** `" + strings.Join(cmd.Aliases, ", ") + "`  \n"
 	}
 	if len(cmd.Flags) > 0 {
-		docs += "## Options\n"
+		docs += "\n### Options\n"
 		docs += "```flags\n"
 		for _, flag := range cmd.Flags {
 			docs += flag.String() + "  \n"
 		}
 		docs += "```\n"
+	}
+	if len(cmd.Examples) > 0 {
+		docs += "### Examples\n\n"
+		for _, example := range cmd.Examples {
+			docs += "> [!TIP]\n"
+			docs += "> " + example.ShortDescription + "  \n"
+			docs += "> ```command\n"
+			docs += "> " + example.Usage + "\n"
+			docs += "> ```\n\n"
+		}
 	}
 	if len(cmd.Subcommands) > 0 {
 		for _, scmd := range cmd.Subcommands {

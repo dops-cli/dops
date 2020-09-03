@@ -14,7 +14,8 @@ The generated random values are not cryptographically secure!
 
 **Category:** Generators  
 **Aliases:** `rg`  
-## Options
+
+### Options
 ```flags
 --seed SEED, -s SEED  |  Uses SEED for the random generation (default: calculated by current time (nanoseconds))  
 ```
@@ -30,7 +31,8 @@ The generated random values are not cryptographically secure!
 
 **Category:**   
 **Aliases:** `s`  
-## Options
+
+### Options
 ```flags
 --chars CHARS, -c CHARS     |  Use CHARS to generate a random string (default: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789")  
 --length LENGTH, -l LENGTH  |  Generate a random string of length LENGTH (default: 8)  
@@ -47,7 +49,8 @@ The generated random values are not cryptographically secure!
 
 **Category:**   
 **Aliases:** `i, n, number`  
-## Options
+
+### Options
 ```flags
 --min NUMBER  |  Minimum NUMBER to be generated (default: 0)  
 --max NUMBER  |  Maximum NUMBER to be generated (default: 9223372036854775807)  

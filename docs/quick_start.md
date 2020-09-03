@@ -22,7 +22,7 @@ curl -s https://dops-cli.com/get/linux | sudo bash
 
 #### ** Compile from source **
 
-```sh
+```bash
 go get github.com/dops-cli/dops
 ```
 

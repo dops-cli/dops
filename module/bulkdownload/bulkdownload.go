@@ -66,6 +66,12 @@ You can set how many files should be downloaded concurrently..`,
 					Value:   3,
 				},
 			},
+			Examples: []cli.Example{
+				{
+					ShortDescription: "Download all files from urls.txt, with 5 concurrent connections, to the current directory.",
+					Usage:            "dops bulkdownload -i urls.txt -c 5",
+				},
+			},
 		},
 	}
 }

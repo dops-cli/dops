@@ -32,7 +32,7 @@ var (
 	OptionFlags []*OptionFlag
 )
 
-// Command is a subcommand for a cli.App.
+// Command is a command for a cli.App.
 type Command struct {
 	// The name of the command
 	Name string
@@ -40,6 +40,8 @@ type Command struct {
 	Aliases []string
 	// A short description of the usage of this command
 	Usage string
+	// Examples
+	Examples []Example
 	// Custom text to show on USAGE section of help
 	UsageText string
 	// A longer explanation of how the command works
@@ -94,6 +96,12 @@ type Command struct {
 	CustomHelpTemplate string
 
 	isSubcommand bool
+}
+
+// Example contains command usage examples
+type Example struct {
+	ShortDescription string
+	Usage            string
 }
 
 // Commands contains all commands

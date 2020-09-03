@@ -11,7 +11,8 @@ The pattern could be a timestamp, or the hashcode of the file, among others.
 
 **Category:** IO  
 **Aliases:** `rf`  
-## Options
+
+### Options
 ```flags
 --directory PATH, --dir PATH, -d PATH  |  PATH in which the files should be renamed  
 --pattern OPTION, -p OPTION            |  Rename all files with OPTION  
