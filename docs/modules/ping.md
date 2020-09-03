@@ -9,7 +9,8 @@ Ping pings a host on the web via ICMP
 > `dops [options] ping [options] [arguments...]`
 
 **Category:** Statistics  
-## Options
+
+### Options
 ```flags
 --target HOST, -t HOST, --host HOST  |  Pings HOST  
 --count COUNT, -c COUNT              |  send COUNT pings - 0 for infinite (default: 0)  

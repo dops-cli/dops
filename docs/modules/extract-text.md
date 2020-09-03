@@ -9,7 +9,8 @@ Extract-text can be used to extract text from a file using regex patterns.
 > `dops [options] extract-text [options] [arguments...]`
 
 **Category:** Text Processing  
-## Options
+
+### Options
 ```flags
 --regex PATTERN, -r PATTERN  |  extracts matching strings with PATTERN  
 --input FILE, -i FILE        |  use FILE as input  
