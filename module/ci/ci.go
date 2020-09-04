@@ -7,6 +7,7 @@ import (
 
 	"github.com/dops-cli/dops/categories"
 	"github.com/dops-cli/dops/cli"
+	"github.com/dops-cli/dops/say"
 	"github.com/dops-cli/dops/utils"
 )
 
@@ -24,6 +25,8 @@ func (Module) GetModuleCommands() []*cli.Command {
 			Category:    categories.Dops,
 			Action: func(context *cli.Context) error {
 
+				say.Info("Generating documentation for modules...")
+
 				var commands []*cli.Command
 
 				for _, m := range cli.ActiveModules {
@@ -33,6 +36,7 @@ func (Module) GetModuleCommands() []*cli.Command {
 				sort.Sort(cli.CommandsByName(commands))
 
 				for _, cmd := range commands {
+					say.Info(" - Generating documentation for", cmd.Name)
 					doc := cli.CommandDocumentation(cmd, nil)
 					err := ioutil.WriteFile("./docs/modules/"+cmd.Name+".md", []byte(doc), 0600)
 					if err != nil {
@@ -65,6 +69,8 @@ func (Module) GetModuleCommands() []*cli.Command {
 				newSidebarContent += after
 
 				utils.WriteFile(sidebarPath, []byte(newSidebarContent), false)
+
+				say.Success("Documentation successfully generated!")
 
 				return nil
 			},
