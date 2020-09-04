@@ -19,6 +19,9 @@ var (
 	// ErrorPrefix should be used, when the module fails at something, but keeps running.
 	// If the error is fatal, use say.Fatal
 	ErrorPrefix = color.SHiRed("[error] ")
+
+	// SuccessPrefix should be used, when something succeeded.
+	SuccessPrefix = color.SHiRed("[success] ")
 )
 
 func p(prefix string, text ...interface{}) {
@@ -38,6 +41,11 @@ func p(prefix string, text ...interface{}) {
 // Text outputs formatted text to the terminal.
 func Text(text ...interface{}) {
 	p("", text...)
+}
+
+// Success outputs formatted text to the terminal.
+func Success(text ...interface{}) {
+	p(SuccessPrefix, text...)
 }
 
 // Info outputs formatted text to the terminal.
