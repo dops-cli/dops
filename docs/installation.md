@@ -52,14 +52,15 @@ curl -s https://dops-cli.com/get/linux | sudo bash
 
 #### ** Compile from source **
 
+### Compile from Source with Golang
+
 > [!NOTE]
 > To compile dops from source, you have to have [go](https://golang.org/) installed.
 
 Compiling dops from source has the benefit that the command is the same on every platform.\
 You have to have [go](https://golang.org/) installed to use this command.\
-It is not recommended installing go only for the installation of dops.
+It is not recommended to install go only for the installation of dops.
 
-### Golang Command
 
 > [!WARNING]
 > Make sure you don't run this command in a folder which contains a `go.mod` file, otherwise you will add dops as a dependency to your go module.
