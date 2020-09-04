@@ -3,9 +3,11 @@ package say
 import (
 	"fmt"
 	"log"
+	"os"
 
 	"github.com/dops-cli/dops/global"
 	"github.com/dops-cli/dops/global/options"
+	"github.com/dops-cli/dops/progressbar"
 	"github.com/dops-cli/dops/say/color"
 )
 
@@ -67,4 +69,22 @@ func Error(text ...interface{}) {
 func Fatal(text ...interface{}) {
 	global.CviewApp.Stop()
 	log.Fatal(text...)
+}
+
+func ProgressBar(totalSteps int) *progressbar.ProgressBar {
+	bar := progressbar.NewOptions(
+		totalSteps,
+		progressbar.OptionSetWriter(os.Stderr),
+		progressbar.OptionShowCount(),
+		progressbar.OptionShowIts(),
+		progressbar.OptionFullWidth(),
+		progressbar.OptionOnCompletion(func() {
+			fmt.Fprint(os.Stderr, "\n")
+		}),
+		progressbar.OptionSetPredictTime(true),
+		progressbar.OptionSpinnerType(14),
+	)
+	bar.RenderBlank()
+
+	return bar
 }

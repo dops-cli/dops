@@ -25,8 +25,6 @@ func (Module) GetModuleCommands() []*cli.Command {
 			Category:    categories.Dops,
 			Action: func(context *cli.Context) error {
 
-				say.Info("Generating documentation for modules...")
-
 				var commands []*cli.Command
 
 				for _, m := range cli.ActiveModules {
@@ -35,8 +33,12 @@ func (Module) GetModuleCommands() []*cli.Command {
 
 				sort.Sort(cli.CommandsByName(commands))
 
+				say.Info("Generating documentation...")
+
+				bar := say.ProgressBar(len(commands))
 				for _, cmd := range commands {
-					say.Info(" - Generating documentation for", cmd.Name)
+					bar.Describe("Generating docs for: " + cmd.Name)
+					bar.Add(1)
 					doc := cli.CommandDocumentation(cmd, nil)
 					err := ioutil.WriteFile("./docs/modules/"+cmd.Name+".md", []byte(doc), 0600)
 					if err != nil {
