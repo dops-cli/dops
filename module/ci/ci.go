@@ -59,7 +59,7 @@ func (Module) GetModuleCommands() []*cli.Command {
 				newSidebarContent += before + "\n"
 
 				for _, cmd := range commands {
-					newSidebarContent += "    - [" + cmd.Name + "](modules/" + cmd.Name + ".md)\n"
+					newSidebarContent += "  - [" + cmd.Name + "](modules/" + cmd.Name + ".md)\n"
 				}
 
 				newSidebarContent += after
