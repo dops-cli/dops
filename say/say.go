@@ -21,7 +21,7 @@ var (
 	ErrorPrefix = color.SHiRed("[error] ")
 
 	// SuccessPrefix should be used, when something succeeded.
-	SuccessPrefix = color.SHiRed("[success] ")
+	SuccessPrefix = color.SGreen("[success] ")
 )
 
 func p(prefix string, text ...interface{}) {
