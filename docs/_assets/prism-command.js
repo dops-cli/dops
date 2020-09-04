@@ -16,3 +16,5 @@ Prism.languages.command = {
     'operator': /\+/,
     'punctuation': /[{};:]/
 };
+
+Prism.languages.commandline = Prism.languages.command
