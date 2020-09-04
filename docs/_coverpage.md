@@ -10,6 +10,6 @@
 - Open Source
 
 [Usage](usage.md)
-[Module Documentation](modules/modules.md)
+[Module Documentation](modules/_modules.md)
 [GitHub](https://github.com/dops-cli/dops/)
 [Installation](installation.md)
