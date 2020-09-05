@@ -53,5 +53,5 @@ The generated random values are not cryptographically secure!
 ### Options
 ```flags
 --min NUMBER  |  Minimum NUMBER to be generated (default: 0)  
---max NUMBER  |  Maximum NUMBER to be generated (default: 9223372036854775807)  
+--max NUMBER  |  Maximum NUMBER to be generated (default: 2147483647)  
 ```
