@@ -8,6 +8,7 @@ import (
 	"math"
 	"os"
 	"regexp"
+	"strconv"
 	"strings"
 	"sync"
 	"time"
@@ -481,6 +482,16 @@ func (p *ProgressBar) ChangeMax64(newMax int64) {
 // rendered line width. this function is not thread-safe,
 // so it must be called with an acquired lock.
 func (p *ProgressBar) render() error {
+
+	if options.Raw || options.CI {
+		if p.config.description != "" {
+			fmt.Print("[" + strconv.Itoa(int(p.state.currentNum)) + "/" + strconv.Itoa(int(p.config.max)) + "] ")
+			fmt.Print(p.config.description)
+			fmt.Println("")
+		}
+		return nil
+	}
+
 	// make sure that the rendering is not happening too quickly
 	// but always show if the currentNum reaches the max
 	if time.Since(p.state.lastShown).Nanoseconds() < p.config.throttleDuration.Nanoseconds() &&
