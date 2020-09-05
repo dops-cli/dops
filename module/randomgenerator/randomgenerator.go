@@ -85,7 +85,7 @@ You can set the number of generations and the seed.`,
 						&cli.IntFlag{
 							Name:  "max",
 							Usage: "Maximum `NUMBER` to be generated",
-							Value: math.MaxInt64,
+							Value: math.MaxInt32,
 						},
 					},
 				},
