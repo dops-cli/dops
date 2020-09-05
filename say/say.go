@@ -27,7 +27,7 @@ var (
 )
 
 func p(prefix string, text ...interface{}) {
-	if options.OutputRaw {
+	if options.Raw {
 		prefix = ""
 	}
 	_, err := fmt.Fprint(color.Output, prefix)

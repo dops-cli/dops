@@ -280,7 +280,7 @@ func printHelpCustom(out io.Writer, templ string, data interface{}, customFuncs 
 	if err != nil {
 		// If the writer is closed, t.Execute will fail, and there's nothing
 		// we can do to recover.
-		if options.IsDebug {
+		if options.Debug {
 			log.Fatal(err)
 		}
 		return

@@ -279,7 +279,7 @@ func (c *Color) Sprintln(a ...interface{}) string {
 
 // Sprintf is just like Printf, but returns a string instead of printing it.
 func (c *Color) Sprintf(format string, a ...interface{}) string {
-	if options.OutputRaw {
+	if options.Raw {
 		return fmt.Sprintf(format, a...)
 	}
 	return c.wrap(fmt.Sprintf(format, a...))
@@ -477,7 +477,7 @@ func getCachedColor(p Attribute) *Color {
 
 func colorPrint(format string, p Attribute, a ...interface{}) {
 
-	if options.OutputRaw {
+	if options.Raw {
 		return
 	}
 
@@ -502,7 +502,7 @@ func colorPrint(format string, p Attribute, a ...interface{}) {
 
 func colorString(format string, p Attribute, a ...interface{}) string {
 
-	if options.OutputRaw {
+	if options.Raw {
 		return format
 	}
 

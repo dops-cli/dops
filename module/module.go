@@ -11,6 +11,7 @@ import (
 	"github.com/dops-cli/dops/module/ping"
 	"github.com/dops-cli/dops/module/randomgenerator"
 
+	ciflag "github.com/dops-cli/dops/flags/ci"
 	"github.com/dops-cli/dops/flags/debug"
 	"github.com/dops-cli/dops/flags/raw"
 	"github.com/dops-cli/dops/global"
@@ -26,6 +27,7 @@ func init() {
 	// Add the global flags
 	addGlobalFlag(debug.Flag{})
 	addGlobalFlag(raw.Flag{})
+	addGlobalFlag(ciflag.Flag{})
 
 	// Add modules
 	addModule(bulkdownload.Module{})

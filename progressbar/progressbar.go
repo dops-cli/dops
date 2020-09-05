@@ -795,7 +795,7 @@ func getWidth() int {
 		terminalFd = int(os.Stdout.Fd())
 		w, _, err := terminal.GetSize(terminalFd)
 		if err != nil {
-			if options.IsDebug {
+			if options.Debug {
 				log.Fatal(err)
 			}
 			return 80

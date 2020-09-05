@@ -1,4 +1,4 @@
-package debug
+package ci
 
 import (
 	"github.com/dops-cli/dops/cli"
@@ -12,10 +12,10 @@ type Flag struct{}
 func (Flag) GetFlags() []cli.Flag {
 	return []cli.Flag{
 		&cli.BoolFlag{
-			Aliases:     []string{"d"},
-			Name:        "debug",
-			Usage:       "Enables debugging mode - only useful if you are working on dops",
-			Destination: &options.Debug,
+			Name:        "ci",
+			Aliases:     []string{"cd"},
+			Usage:       "Runs dops in CI/CD mode - disables fancy styling like progressbars, etc.",
+			Destination: &options.Raw,
 		},
 	}
 }
