@@ -485,7 +485,7 @@ func (p *ProgressBar) render() error {
 
 	if options.Raw || options.CI {
 		if p.config.description != "" {
-			fmt.Print("[" + strconv.Itoa(int(p.state.currentNum)) + "/" + strconv.Itoa(int(p.config.max)) + "] ")
+			fmt.Print("· [" + strconv.Itoa(int(p.state.currentNum)) + "/" + strconv.Itoa(int(p.config.max)) + "] ")
 			fmt.Print(p.config.description)
 			fmt.Println("")
 		}
