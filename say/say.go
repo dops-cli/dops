@@ -3,12 +3,17 @@ package say
 import (
 	"fmt"
 	"log"
-	"os"
 
 	"github.com/dops-cli/dops/global"
 	"github.com/dops-cli/dops/global/options"
 	"github.com/dops-cli/dops/progressbar"
+	"github.com/dops-cli/dops/progressbar/decor"
 	"github.com/dops-cli/dops/say/color"
+)
+
+const (
+	// FooterPriority is used as priority for footer progressbars
+	FooterPriority = 10000
 )
 
 var (
@@ -71,20 +76,40 @@ func Fatal(text ...interface{}) {
 	log.Fatal(text...)
 }
 
-func ProgressBar(totalSteps int) *progressbar.ProgressBar {
-	bar := progressbar.NewOptions(
-		totalSteps,
-		progressbar.OptionSetWriter(os.Stderr),
-		progressbar.OptionShowCount(),
-		progressbar.OptionShowIts(),
-		progressbar.OptionFullWidth(),
-		progressbar.OptionOnCompletion(func() {
-			fmt.Fprint(os.Stderr, "\n")
-		}),
-		progressbar.OptionSetPredictTime(true),
-		progressbar.OptionSpinnerType(14),
+// ProgressBar hows a simple progressbar with a set maximum
+func ProgressBar(totalSteps int64) *progressbar.Bar {
+
+	p := progressbar.New()
+
+	bar := p.AddBar(totalSteps,
+		progressbar.PrependDecorators(
+			decor.Percentage(),
+		),
+		progressbar.AppendDecorators(
+			decor.EwmaETA(decor.ET_STYLE_GO, 90),
+		),
 	)
-	bar.RenderBlank()
+
+	bar.SetPriority(1)
+
+	return bar
+}
+
+// ProgressBarFooter shows a simple progressbar with a set maximum at the bottom of the terminal
+func ProgressBarFooter(totalSteps int64) *progressbar.Bar {
+
+	p := progressbar.New()
+
+	bar := p.AddBar(totalSteps,
+		progressbar.PrependDecorators(
+			decor.Percentage(),
+		),
+		progressbar.AppendDecorators(
+			decor.EwmaETA(decor.ET_STYLE_GO, 90),
+		),
+	)
+
+	bar.SetPriority(FooterPriority)
 
 	return bar
 }

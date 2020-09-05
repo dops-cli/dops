@@ -35,10 +35,10 @@ func (Module) GetModuleCommands() []*cli.Command {
 
 				say.Info("Generating documentation...")
 
-				bar := say.ProgressBar(len(commands))
+				bar := say.ProgressBarFooter(int64(len(commands)))
 				for _, cmd := range commands {
-					bar.Describe("Generating docs for: " + cmd.Name)
-					bar.Add(1)
+					bar.GetContainer().Log("Generating docs for: " + cmd.Name)
+					bar.Increment()
 					doc := cli.CommandDocumentation(cmd, nil)
 					err := ioutil.WriteFile("./docs/modules/"+cmd.Name+".md", []byte(doc), 0600)
 					if err != nil {
