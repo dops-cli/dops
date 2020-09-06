@@ -5,7 +5,7 @@ on:
 name: Update Docs
 jobs:
   docup:
-    if: !contains(github.event.head_commit.message, 'autoupdate')
+    if: "!contains(github.event.head_commit.message, 'autoupdate')"
     runs-on: ubuntu-latest
     steps:
       - name: Update Docs
