@@ -1,6 +1,11 @@
 <a name="unreleased"></a>
 ## [Unreleased]
 
+### Chore
+- **deps:** go mod tidy
+
+### Docs
+
 
 <a name="v1.22.3"></a>
 ## [v1.22.3] - 2020-09-07
