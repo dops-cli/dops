@@ -11,6 +11,7 @@
 
 ### Docs
 - **changelog:** update changelog
+- **changelog:** update changelog
 - **changelog:** add changelog
 
 
