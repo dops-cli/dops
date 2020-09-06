@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Generate the Changelog
-        uses: r26d/generate-changelog@v1.0.0
+        uses: r26d/generate-changelog@v1.1.0
         with:
           file: "CHANGELOG.md"
         env:
