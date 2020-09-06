@@ -11,7 +11,7 @@ jobs:
     runs-on: "ubuntu-latest"
 
     steps:
-      - uses: "marvinpinto/action-automatic-releases@latest"
+      - uses: "dops-cli/tag-action@master"
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           prerelease: false
