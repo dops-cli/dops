@@ -2,17 +2,18 @@
 ## [Unreleased]
 
 ### Ci
+- fix docup
 - trigger changelog generation
 - trigger changelog generation
-- fix docup
-- fix docup
 - only run docup on pushes to master
+- fix docup
+- switch to own version of releasetag
+- **changelog:** add changelog ci system
 - **changelog:** remove action and generate docs with docup
 - **changelog:** update action
 - **changelog:** integrate changelog generation into docup
-- **changelog:** add changelog ci system
-- **docup:** fix style of releases
 - **docup:** don't display `autodoc` commits
+- **docup:** fix style of releases
 - **docup:** fix if expression
 
 ### Docs
