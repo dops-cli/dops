@@ -6,6 +6,9 @@
 
 ### Docs
 
+### Refactor
+- bump version to "v1.22.4"
+
 
 <a name="v1.22.3"></a>
 ## [v1.22.3] - 2020-09-07
