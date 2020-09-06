@@ -39,7 +39,7 @@ func main() {
 		Name:                 "dops",
 		HelpName:             "dops",
 		Usage:                "CLI DevOps Toolkit",
-		Version:              "v1.22.5", // <---VERSION---> This comment is used for CI, do NOT modify it!
+		Version:              "v1.22.6", // <---VERSION---> This comment is used for CI, do NOT modify it!
 		Commands:             global.CliCommands,
 		Flags:                global.CliFlags,
 		EnableBashCompletion: true,
