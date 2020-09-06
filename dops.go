@@ -44,12 +44,10 @@ func main() {
 		Flags:                global.CliFlags,
 		EnableBashCompletion: true,
 		Action: func(ctx *cli.Context) error {
-
 			err := interactive.Start()
 			if err != nil {
 				return err
 			}
-
 			return nil
 		},
 		Authors: []*cli.Author{
