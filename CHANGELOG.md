@@ -3,6 +3,7 @@
 
 ### Ci
 - fix docup
+- fix docup
 - only run docup on pushes to master
 - trigger changelog generation
 - trigger changelog generation
@@ -10,8 +11,10 @@
 - **changelog:** update action
 - **changelog:** integrate changelog generation into docup
 - **changelog:** add changelog ci system
+- **docup:** fix if expression
 
 ### Docs
+- autoupdate
 - autoupdate
 - autoupdate
 - autoupdate
