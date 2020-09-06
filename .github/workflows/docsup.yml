@@ -9,3 +9,12 @@ jobs:
         uses: dops-cli/docs-action@master
         env:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+  changelog:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Generate the Changelog
+        uses: r26d/generate-changelog@v1.0.0
+        with:
+          file: "CHANGELOG.md"
+        env:
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
