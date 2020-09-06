@@ -21,6 +21,9 @@
 - **changelog:** update changelog
 - **changelog:** add changelog
 
+### Refactor
+- bump version to "v1.22.1"
+
 
 <a name="v1.22.0"></a>
 ## [v1.22.0] - 2020-09-06
