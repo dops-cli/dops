@@ -18,6 +18,7 @@ var (
 	cliCommands []*cli.Command
 )
 
+// Start starts the interactive mode of dops
 func Start() error {
 	for _, module := range cli.ActiveModules {
 		for _, command := range module.GetModuleCommands() {
@@ -51,6 +52,7 @@ func Start() error {
 	return nil
 }
 
+// Completer handles the suggestions for autocomplete in interactive mode
 func Completer(d prompt.Document) []prompt.Suggest {
 	beforeCursor := d.TextBeforeCursor()
 
@@ -128,6 +130,7 @@ func suggestionsForCommand(d prompt.Document, currentText string, beforeCursorTe
 	return prompt.FilterContains(flags, d.GetWordBeforeCursor(), true)
 }
 
+// FindLastSubCommand finds the last subcommand in a string
 func FindLastSubCommand(parent *cli.Command, text string) *cli.Command {
 	var cmd *cli.Command
 	args := strings.Split(text, " ")
