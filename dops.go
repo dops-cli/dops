@@ -4,10 +4,6 @@ import (
 	"io"
 	"os"
 	"sort"
-	"strings"
-
-	"github.com/gdamore/tcell"
-	"gitlab.com/tslocum/cview"
 
 	"github.com/dops-cli/dops/cli"
 	"github.com/dops-cli/dops/global"
@@ -16,7 +12,6 @@ import (
 	"github.com/dops-cli/dops/module/modules"
 	"github.com/dops-cli/dops/say"
 	"github.com/dops-cli/dops/say/color"
-	"github.com/dops-cli/dops/utils"
 )
 
 func init() {
@@ -49,65 +44,12 @@ func main() {
 		Flags:                global.CliFlags,
 		EnableBashCompletion: true,
 		Action: func(ctx *cli.Context) error {
-			global.CviewApp = cview.NewApplication()
-			global.CviewTable = cview.NewTable()
 
-			global.CviewApp.EnableMouse(true)
-
-			global.CviewTable.SetTitle("DOPS")
-			global.CviewTable.SetSelectable(true, false)
-			global.CviewTable.SetScrollBarVisibility(cview.ScrollBarAuto)
-
-			var categories []string
-
-			for _, command := range global.CliCommands {
-				if !utils.SliceContainsString(categories, command.Category) {
-					categories = append(categories, command.Category)
-				}
+			err := interactive.Start()
+			if err != nil {
+				return err
 			}
 
-			sort.Strings(categories)
-
-			currentRow := 0
-
-			for _, category := range categories {
-				categoryCell := cview.NewTableCell(" --- " + category + " --- ")
-				categoryCell.Color = tcell.Color87
-				global.CviewTable.SetCell(currentRow, 0, categoryCell)
-				currentRow++
-				for _, command := range global.CliCommands {
-					if command.Hidden {
-						continue
-					}
-					if command.Category == category {
-						global.CviewTable.SetCell(currentRow, 0, cview.NewTableCell(command.Name))
-						global.CviewTable.SetCell(currentRow, 1, cview.NewTableCell(command.Usage))
-						currentRow++
-					}
-				}
-			}
-
-			global.CviewTable.Select(0, 0).SetFixed(1, 1).SetDoneFunc(func(key tcell.Key) {
-				if key == tcell.KeyEscape {
-					global.CviewApp.Stop()
-				}
-			}).SetSelectedFunc(func(row int, column int) {
-				cell := global.CviewTable.GetCell(row, column)
-				if strings.Contains(cell.Text, " --- ") {
-					return
-				}
-				cmd, err := module.GetByName(cell.Text)
-				if err != nil {
-					say.Fatal(err)
-				}
-				err = interactive.ShowModule(global.CviewApp, cmd)
-				if err != nil {
-					say.Fatal(err)
-				}
-			})
-			if err := global.CviewApp.SetRoot(global.CviewTable, true).SetFocus(global.CviewTable).Run(); err != nil {
-				say.Fatal(err)
-			}
 			return nil
 		},
 		Authors: []*cli.Author{
