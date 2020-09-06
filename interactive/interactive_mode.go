@@ -9,7 +9,6 @@ import (
 
 	"github.com/dops-cli/dops/cli"
 	"github.com/dops-cli/dops/module"
-	"github.com/dops-cli/dops/say"
 )
 
 var (
@@ -43,7 +42,6 @@ func Start() error {
 	t := prompt.Input(">>> dops ", Completer, options...)
 	args := []string{"dops"}
 	args = append(args, strings.Split(t, " ")...)
-	say.Info("Running: dops ", t)
 	err := module.CliApp.Run(args)
 	if err != nil {
 		return err

@@ -10,4 +10,4 @@ jobs:
       - name: Update Docs
         uses: dops-cli/docs-action@master
         env:
-          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
