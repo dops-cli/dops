@@ -10,6 +10,7 @@
 - **changelog:** add changelog ci system
 
 ### Docs
+- **changelog:** update changelog
 - **changelog:** add changelog
 
 
