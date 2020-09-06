@@ -5,9 +5,7 @@
 {{ if .Unreleased.CommitGroups -}}
 {{ range .Unreleased.CommitGroups -}}
 ### {{ .Title }}
-{{ range .Commits -}}
-- {{ if .Scope }}**{{ .Scope }}:** {{ end }}{{ .Subject }}
-{{ end }}
+{{ range .Commits }}{{ if ne .Subject "autoupdate" }}- {{ if .Scope }}**{{ .Scope }}:** {{ end }}{{ .Subject }}{{ print "\n" }}{{ end -}}{{ end }}
 {{ end -}}
 {{ end -}}
 {{ end -}}
@@ -18,7 +16,7 @@
 {{ range .CommitGroups -}}
 ### {{ .Title }}
 {{ range .Commits -}}
-- {{ if .Scope }}**{{ .Scope }}:** {{ end }}{{ .Subject }}
+{{ if ne .Subject "autoupdate" }}- {{ if .Scope }}**{{ .Scope }}:** {{ end }}{{ .Subject }}{{ end -}}
 {{ end }}
 {{ end -}}
 
