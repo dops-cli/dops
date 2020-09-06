@@ -1,6 +1,14 @@
 <a name="unreleased"></a>
 ## [Unreleased]
 
+### Docs
+
+### Refactor
+- bump version to "v1.22.5"
+
+
+<a name="v1.22.4"></a>
+## [v1.22.4] - 2020-09-07
 ### Chore
 - **deps:** go mod tidy
 
@@ -609,7 +617,8 @@
 - add gosum to tidy golang code automatically
 
 
-[Unreleased]: https://github.com/dops-cli/dops/compare/v1.22.3...HEAD
+[Unreleased]: https://github.com/dops-cli/dops/compare/v1.22.4...HEAD
+[v1.22.4]: https://github.com/dops-cli/dops/compare/v1.22.3...v1.22.4
 [v1.22.3]: https://github.com/dops-cli/dops/compare/v1.22.2...v1.22.3
 [v1.22.2]: https://github.com/dops-cli/dops/compare/v1.22.1...v1.22.2
 [v1.22.1]: https://github.com/dops-cli/dops/compare/v1.22.0...v1.22.1
