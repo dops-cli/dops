@@ -2,6 +2,7 @@
 ## [Unreleased]
 
 ### Ci
+- only run docup on pushes to master
 - trigger changelog generation
 - trigger changelog generation
 - **changelog:** remove action and generate docs with docup
@@ -10,9 +11,50 @@
 - **changelog:** add changelog ci system
 
 ### Docs
-- **changelog:** update changelog
-- **changelog:** update changelog
+- autoupdate
+- autoupdate
+- autoupdate
+- autoupdate
+- autoupdate
+- autoupdate
+- autoupdate
+- autoupdate
+- autoupdate
+- autoupdate
+- autoupdate
+- autoupdate
+- autoupdate
+- autoupdate
+- autoupdate
+- autoupdate
+- autoupdate
+- autoupdate
+- autoupdate
+- autoupdate
+- autoupdate
+- autoupdate
+- autoupdate
+- autoupdate
+- autoupdate
+- autoupdate
+- autoupdate
+- autoupdate
+- autoupdate
+- autoupdate
+- autoupdate
+- autoupdate
+- autoupdate
+- autoupdate
+- autoupdate
+- autoupdate
+- autoupdate
+- autoupdate
+- autoupdate
+- autoupdate
+- autoupdate
 - **changelog:** add changelog
+- **changelog:** update changelog
+- **changelog:** update changelog
 
 
 <a name="v1.22.0"></a>
