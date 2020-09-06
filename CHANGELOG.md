@@ -1,6 +1,17 @@
 <a name="unreleased"></a>
 ## [Unreleased]
 
+
+<a name="v1.22.3"></a>
+## [v1.22.3] - 2020-09-07
+### Docs
+
+### Refactor
+- bump version to "v1.22.3"
+
+
+<a name="v1.22.2"></a>
+## [v1.22.2] - 2020-09-06
 ### Docs
 
 ### Refactor
@@ -590,7 +601,9 @@
 - add gosum to tidy golang code automatically
 
 
-[Unreleased]: https://github.com/dops-cli/dops/compare/v1.22.1...HEAD
+[Unreleased]: https://github.com/dops-cli/dops/compare/v1.22.3...HEAD
+[v1.22.3]: https://github.com/dops-cli/dops/compare/v1.22.2...v1.22.3
+[v1.22.2]: https://github.com/dops-cli/dops/compare/v1.22.1...v1.22.2
 [v1.22.1]: https://github.com/dops-cli/dops/compare/v1.22.0...v1.22.1
 [v1.22.0]: https://github.com/dops-cli/dops/compare/v1.21.1...v1.22.0
 [v1.21.1]: https://github.com/dops-cli/dops/compare/v1.21.0...v1.21.1
