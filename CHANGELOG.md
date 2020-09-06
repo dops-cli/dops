@@ -2,6 +2,7 @@
 ## [Unreleased]
 
 ### Ci
+- fix docup
 - only run docup on pushes to master
 - trigger changelog generation
 - trigger changelog generation
@@ -11,6 +12,7 @@
 - **changelog:** add changelog ci system
 
 ### Docs
+- autoupdate
 - autoupdate
 - autoupdate
 - autoupdate
