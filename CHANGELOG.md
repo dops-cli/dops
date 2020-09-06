@@ -3,21 +3,22 @@
 
 ### Ci
 - trigger changelog generation
+- trigger changelog generation
 - fix docup
 - fix docup
 - only run docup on pushes to master
-- trigger changelog generation
 - **changelog:** remove action and generate docs with docup
 - **changelog:** update action
 - **changelog:** integrate changelog generation into docup
 - **changelog:** add changelog ci system
+- **docup:** fix style of releases
 - **docup:** don't display `autodoc` commits
 - **docup:** fix if expression
 
 ### Docs
+- **changelog:** update changelog
+- **changelog:** update changelog
 - **changelog:** add changelog
-- **changelog:** update changelog
-- **changelog:** update changelog
 
 
 <a name="v1.22.0"></a>
