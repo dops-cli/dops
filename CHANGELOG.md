@@ -1,6 +1,17 @@
 <a name="unreleased"></a>
 ## [Unreleased]
 
+### Ci
+- trigger changelog generation
+- trigger changelog generation
+- **changelog:** remove action and generate docs with docup
+- **changelog:** update action
+- **changelog:** integrate changelog generation into docup
+- **changelog:** add changelog ci system
+
+### Docs
+- **changelog:** add changelog
+
 
 <a name="v1.22.0"></a>
 ## [v1.22.0] - 2020-09-06
