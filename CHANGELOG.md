@@ -1,6 +1,9 @@
 <a name="unreleased"></a>
 ## [Unreleased]
 
+### Chore
+- **deps:** go mod tidy
+
 ### Ci
 - trigger changelog generation
 - trigger changelog generation
@@ -10,6 +13,7 @@
 - **changelog:** add changelog ci system
 
 ### Docs
+- autoupdate
 - **changelog:** update changelog
 - **changelog:** update changelog
 - **changelog:** add changelog
