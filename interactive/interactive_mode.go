@@ -19,8 +19,8 @@ var (
 
 // Start starts the interactive mode of dops
 func Start() error {
-	for _, module := range cli.ActiveModules {
-		for _, command := range module.GetModuleCommands() {
+	for _, m := range cli.ActiveModules {
+		for _, command := range m.GetModuleCommands() {
 			modules = append(modules, prompt.Suggest{Text: command.Name, Description: command.Usage})
 			cliCommands = append(cliCommands, command)
 		}
