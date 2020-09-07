@@ -2,6 +2,7 @@ package interactive
 
 import (
 	"fmt"
+	"os"
 	"regexp"
 	"strings"
 
@@ -35,6 +36,13 @@ func Start() error {
 
 		prompt.OptionSelectedDescriptionBGColor(prompt.DefaultColor),
 		prompt.OptionSelectedDescriptionTextColor(prompt.Green),
+
+		prompt.OptionAddKeyBind(struct {
+			Key prompt.Key
+			Fn  prompt.KeyBindFunc
+		}{Key: prompt.Escape, Fn: func(buffer *prompt.Buffer) {
+			os.Exit(0)
+		}}),
 
 		prompt.OptionTitle("DOPS"),
 	}
