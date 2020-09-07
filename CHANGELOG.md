@@ -6,6 +6,13 @@
 
 ### Docs
 
+### Feat
+- add escape keybind to quit dops
+- add update command to `update` module
+
+### Refactor
+- rename module variable
+
 
 <a name="v1.22.7"></a>
 ## [v1.22.7] - 2020-09-07
