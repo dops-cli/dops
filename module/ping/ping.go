@@ -27,7 +27,7 @@ func (Module) GetModuleCommands() []*cli.Command {
 				{
 					GenerateSVG:      true,
 					ShortDescription: "Ping google.com 10 times",
-					Usage:            "dops ping -t google.com -c 10",
+					Usage:            "sudo dops ping -t google.com -c 10",
 				},
 			},
 			Action: func(context *cli.Context) error {
