@@ -2,6 +2,7 @@
 ## [Unreleased]
 
 ### Chore
+- clean up svg files
 - go mod tidy
 - **deps:** go mod tidy
 - **deps:** go mod tidy
@@ -31,6 +32,7 @@
 - fix CI flag
 
 ### Refactor
+- better flag detection in code snippets syntax highlighting
 - make `ping` example use sudo
 - better input handling for `extract text`
 - change module structure of `extract text`
