@@ -16,6 +16,9 @@
 - add escape keybind to quit dops
 - add update command to `update` module
 
+### Fix
+- fix CI flag
+
 ### Refactor
 - change warning of `ci` module
 - rename module variable

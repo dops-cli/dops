@@ -64,5 +64,5 @@ The generated random values are not cryptographically secure!
 ```command
 dops random-generator string --length 15
 ```
-<img src="/_assets/example_svg/wjxKzeZXshCx.svg">
+<img src="/_assets/example_svg/XjujAWByvrvm.svg">
 
