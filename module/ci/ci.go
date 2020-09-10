@@ -39,7 +39,7 @@ func (Module) GetModuleCommands() []*cli.Command {
 				for _, cmd := range commands {
 					bar.GetContainer().Log("Generating docs for: " + cmd.Name)
 					bar.Increment()
-					doc := cli.CommandDocumentation(cmd, nil)
+					doc := cli.CommandDocumentation(cmd, nil, 0)
 					err := ioutil.WriteFile("./docs/modules/"+cmd.Name+".md", []byte(doc), 0600)
 					if err != nil {
 						return err

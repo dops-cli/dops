@@ -155,11 +155,18 @@ func PrintModules() error {
 }
 
 // CommandDocumentation returns the documentation used at https://dops-cli.com for a module
-func CommandDocumentation(cmd *Command, parent *Command) string {
+func CommandDocumentation(cmd *Command, parent *Command, level int) string {
 
 	var docs string
 
-	docs += "# " + cmd.Name + "\n\n"
+	var levelPrefix string
+
+	for i := 0; i < level; i++ {
+		levelPrefix += "#"
+	}
+
+	docs += levelPrefix + "# " + cmd.Name + "\n\n"
+
 	docs += "> " + cmd.Usage + "\n\n"
 
 	docs += cmd.Description + "\n\n"
@@ -176,7 +183,7 @@ func CommandDocumentation(cmd *Command, parent *Command) string {
 		docs += cmd.Note + "  \n\n"
 	}
 
-	docs += "## Usage\n\n"
+	docs += levelPrefix + "## Usage\n\n"
 	docs += "> `dops [options] "
 	if parent != nil {
 		docs += parent.Name + " "
@@ -209,7 +216,7 @@ func CommandDocumentation(cmd *Command, parent *Command) string {
 		docs += "**Aliases:** `" + strings.Join(cmd.Aliases, ", ") + "`  \n"
 	}
 	if len(cmd.Flags) > 0 {
-		docs += "\n### Options\n"
+		docs += "\n" + levelPrefix + "### Options\n"
 		docs += "```flags\n"
 		for _, flag := range cmd.Flags {
 			docs += flag.String() + "  \n"
@@ -217,7 +224,7 @@ func CommandDocumentation(cmd *Command, parent *Command) string {
 		docs += "```\n"
 	}
 	if len(cmd.Examples) > 0 {
-		docs += "### Examples\n\n"
+		docs += levelPrefix + "### Examples\n\n"
 		for _, example := range cmd.Examples {
 			docs += "> [!TIP]\n"
 			docs += "> " + example.ShortDescription + "  \n"
@@ -227,8 +234,12 @@ func CommandDocumentation(cmd *Command, parent *Command) string {
 		}
 	}
 	if len(cmd.Subcommands) > 0 {
+		docs += levelPrefix + "## Submodules\n\n"
 		for _, scmd := range cmd.Subcommands {
-			docs += CommandDocumentation(scmd, cmd)
+			if level == 0 {
+				level = 1
+			}
+			docs += CommandDocumentation(scmd, cmd, level+1)
 		}
 	}
 

@@ -9,20 +9,22 @@ Extract contains multiple data extractors, which can be used to extract data fro
 > `dops [options] extract subcommand [arguments...]`
 
 **Category:** Data Analysis  
-# text
+## Submodules
+
+### text
 
 > Extracts text from data
 
 This can be used to extract text using a predefined or a custom regex.
 
-## Usage
+#### Usage
 
 > `dops [options] extract text [options] [arguments...]`
 
 **Category:**   
 **Aliases:** `t, string, strings, s`  
 
-### Options
+##### Options
 ```flags
 --regex PATTERN, -r PATTERN  |  extracts matching strings with PATTERN  
 --input FILE, -i FILE        |  use FILE as input  

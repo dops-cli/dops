@@ -19,38 +19,40 @@ The generated random values are not cryptographically secure!
 ```flags
 --seed SEED, -s SEED  |  Uses SEED for the random generation (default: calculated by current time (nanoseconds))  
 ```
-# string
+## Submodules
+
+### string
 
 > Generate random strings
 
 
 
-## Usage
+#### Usage
 
 > `dops [options] random-generator [options] string [options] [arguments...]`
 
 **Category:**   
 **Aliases:** `s`  
 
-### Options
+##### Options
 ```flags
 --chars CHARS, -c CHARS     |  Use CHARS to generate a random string (default: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789")  
 --length LENGTH, -l LENGTH  |  Generate a random string of length LENGTH (default: 8)  
 ```
-# integer
+### integer
 
 > Generate random integer
 
 
 
-## Usage
+#### Usage
 
 > `dops [options] random-generator [options] integer [options] [arguments...]`
 
 **Category:**   
 **Aliases:** `i, n, number`  
 
-### Options
+##### Options
 ```flags
 --min NUMBER  |  Minimum NUMBER to be generated (default: 0)  
 --max NUMBER  |  Maximum NUMBER to be generated (default: 2147483647)  
