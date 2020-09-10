@@ -15,7 +15,7 @@ func URL() *cli.Command {
 		Usage:   "Open `URL` with the standard browser",
 		Examples: []cli.Example{
 			{
-				ShortDescription: "Opens https://marvinjwendt.com in your standard browser",
+				ShortDescription: "Opens marvinjwendt.com in your standard browser",
 				Usage:            "dops open url https://marvinjwendt.com",
 			},
 			{
