@@ -15,6 +15,7 @@
 - enhance submodule documentation generator
 
 ### Feat
+- add module `open`
 - more examples for `random-generator`
 - add example to ping command
 - add another example to `random-generator`

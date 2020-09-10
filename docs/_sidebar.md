@@ -6,6 +6,7 @@
   - [bulkdownload](modules/bulkdownload.md)
   - [ci](modules/ci.md)
   - [extract](modules/extract.md)
+  - [open](modules/open.md)
   - [ping](modules/ping.md)
   - [random-generator](modules/random-generator.md)
   - [rename-files](modules/rename-files.md)
