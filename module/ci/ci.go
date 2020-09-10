@@ -18,11 +18,10 @@ type Module struct{}
 func (Module) GetModuleCommands() []*cli.Command {
 	return []*cli.Command{
 		{
-			Name:        "ci",
-			Usage:       "Runs on every push to the official GitHub repository of dops",
-			Description: "",
-			Warning:     "This module should only be used to develop dops further",
-			Category:    categories.Dops,
+			Name:     "ci",
+			Usage:    "Runs on every push to the official GitHub repository of dops",
+			Warning:  "This module should only be used while working on dops",
+			Category: categories.Dops,
 			Action: func(context *cli.Context) error {
 
 				var commands []*cli.Command
