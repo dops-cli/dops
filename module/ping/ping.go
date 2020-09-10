@@ -23,13 +23,6 @@ func (Module) GetModuleCommands() []*cli.Command {
 			Usage:       "Ping a host",
 			Description: "Ping pings a host on the web via ICMP",
 			Category:    categories.Statistics,
-			Examples: []cli.Example{
-				{
-					GenerateSVG:      true,
-					ShortDescription: "Ping google.com 10 times",
-					Usage:            "sudo dops ping -t google.com -c 10",
-				},
-			},
 			Action: func(context *cli.Context) error {
 				host := context.String("host")
 				count := context.Int("count")
