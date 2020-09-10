@@ -1,5 +1,7 @@
 # Using Modules
 
+<a id="asciicast-9w0cCZ34umw2xfYfxUy9rNoMm" data-autoplay="true" data-loop="true"></a>
+
 > Using modules in dops is super easy!
 
 ## The two ways to use dops

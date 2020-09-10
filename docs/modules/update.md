@@ -9,3 +9,5 @@ NOTICE: This module is in progress. But you can already see it's usage for furth
 > `dops [options] update [arguments...]`
 
 **Category:** Dops  
+## Examples
+

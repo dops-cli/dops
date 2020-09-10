@@ -44,6 +44,13 @@ You can set the number of generations and the seed.`,
 					Name:    "string",
 					Aliases: []string{"s"},
 					Usage:   "Generate random strings",
+					Examples: []cli.Example{
+						{
+							ShortDescription: "Generate a random string with 15 letters",
+							Usage:            "dops random-generator string --length 15",
+							GenerateSVG:      true,
+						},
+					},
 					Action: func(context *cli.Context) error {
 						setSeed(context.String("seed"))
 						charset := context.String("chars")
@@ -54,7 +61,7 @@ You can set the number of generations and the seed.`,
 						Aliases: []string{"c"},
 						Name:    "chars",
 						Usage:   "Use `CHARS` to generate a random string",
-						Value:   charsetNumbersAndLetters,
+						Value:   CharsetNumbersAndLetters,
 					},
 						&cli.IntFlag{
 							Aliases: []string{"l"},

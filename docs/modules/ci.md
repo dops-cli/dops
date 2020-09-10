@@ -4,7 +4,7 @@
 
 
 
-> [!WARNING]
+!> **WARNING**
 This module should only be used while working on dops  
 
 ## Usage
@@ -12,3 +12,5 @@ This module should only be used while working on dops
 > `dops [options] ci [arguments...]`
 
 **Category:** Dops  
+## Examples
+

@@ -20,3 +20,5 @@ The pattern could be a timestamp, or the hashcode of the file, among others.
 --disablebackup, --db                  |  Disable file name backups (default: false)  
 --loadbackup, -l, --lb                 |  Reverts the filenames to the original (default: false)  
 ```
+## Examples
+

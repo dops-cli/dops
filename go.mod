@@ -19,7 +19,7 @@ require (
 	github.com/pkg/term v0.0.0-20200520122047-c3ffed290a03 // indirect
 	github.com/sparrc/go-ping v0.0.0-20190613174326-4e5b6552494c
 	github.com/tsuyoshiwada/go-gitcmd v0.0.0-20180205145712-5f1f5f9475df // indirect
-	github.com/urfave/cli v1.22.4 // indirect
+	github.com/urfave/cli v1.22.4
 	golang.org/x/net v0.0.0-20200904194848-62affa334b73 // indirect
 	golang.org/x/sys v0.0.0-20200909081042-eff7692f9009
 	golang.org/x/text v0.3.3 // indirect

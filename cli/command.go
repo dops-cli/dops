@@ -40,7 +40,7 @@ type Command struct {
 	Aliases []string
 	// A short description of the usage of this command
 	Usage string
-	// Examples
+	// Examples contains usages examples
 	Examples []Example
 	// Custom text to show on USAGE section of help
 	UsageText string
@@ -100,8 +100,11 @@ type Command struct {
 
 // Example contains command usage examples
 type Example struct {
+	ID               string
+	GenerateSVG      bool
 	ShortDescription string
 	Usage            string
+	AsciinemaID      string
 }
 
 // Commands contains all commands

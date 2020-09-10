@@ -4,11 +4,15 @@ import (
 	"bytes"
 	"fmt"
 	"log"
+	"math/rand"
+	"os/exec"
 	"strings"
 	"text/tabwriter"
 	"text/template"
+	"time"
 
 	"github.com/dops-cli/dops/say/color"
+	"github.com/dops-cli/dops/utils"
 )
 
 // AppHelpTemplate is the text template for the Default help topic.
@@ -171,15 +175,15 @@ func CommandDocumentation(cmd *Command, parent *Command, level int) string {
 
 	docs += cmd.Description + "\n\n"
 	if cmd.Warning != "" {
-		docs += "> [!WARNING]\n"
+		docs += "!> **WARNING**\n"
 		docs += cmd.Warning + "  \n\n"
 	}
 	if cmd.Tip != "" {
-		docs += "> [!TIP]\n"
+		docs += "?> **TIP**\n"
 		docs += cmd.Tip + "  \n\n"
 	}
 	if cmd.Note != "" {
-		docs += "> [!NOTE]\n"
+		docs += "?> **NOTE**\n"
 		docs += cmd.Note + "  \n\n"
 	}
 
@@ -223,27 +227,21 @@ func CommandDocumentation(cmd *Command, parent *Command, level int) string {
 		}
 		docs += "```\n"
 	}
-	if len(cmd.Examples) > 0 {
-		docs += levelPrefix + "### Examples\n\n"
-		for _, example := range cmd.Examples {
-			docs += "> [!TIP]\n"
-			docs += "> " + example.ShortDescription + "  \n"
-			docs += "> ```command\n"
-			docs += "> " + example.Usage + "\n"
-			docs += "> ```\n\n"
-		}
-	}
 	if len(cmd.Subcommands) > 0 {
 		docs += levelPrefix + "## Submodules\n\n"
 		for _, scmd := range cmd.Subcommands {
+			var jump int
 			if level == 0 {
-				level = 1
+				jump = 1
 			}
-			docs += CommandDocumentation(scmd, cmd, level+1)
+			docs += CommandDocumentation(scmd, cmd, level+jump+1)
 		}
 	}
 
-	// docs += "\n</details>\n\n"
+	if level == 0 {
+		docs += "## Examples\n\n"
+		docs += generateExamples(cmd)
+	}
 
 	var buf bytes.Buffer
 	w := tabwriter.NewWriter(&buf, 1, 8, 2, ' ', 0)
@@ -259,6 +257,88 @@ func CommandDocumentation(cmd *Command, parent *Command, level int) string {
 	}
 
 	return buf.String()
+}
+
+func generateExamples(cmd *Command) string {
+	var docs string
+
+	if len(cmd.Examples) > 0 {
+		for _, example := range cmd.Examples {
+			docs += "### " + example.ShortDescription + "\n\n"
+			docs += "```command\n"
+			docs += "" + example.Usage + "\n"
+			docs += "```\n"
+			if example.AsciinemaID != "" {
+				docs += `<a id="asciicast-` + example.AsciinemaID + `" data-autoplay="true" data-loop="true"></a>` + "\n"
+			}
+			if example.GenerateSVG {
+				// svgFileName := generateSVG(example.Usage)
+				// docs +=
+				docs += "<img src=\"" + generateSVG(example.Usage) + "\">\n"
+			}
+			docs += "\n"
+		}
+	}
+
+	for _, subcmd := range cmd.Subcommands {
+		docs += generateExamples(subcmd)
+	}
+
+	return docs
+}
+
+func generateSVG(command string) string {
+	castFile := "./example_casts/" + generateCastFile(command)
+	svgFile := "./docs/_assets/example_svg/" + randomFileName() + ".svg"
+
+	// command = "echo HelloWorld && " + command + " && sleep 10 && echo restarting..."
+
+	args := []string{"-c", "svg-term --in " + castFile + ".json --out " + svgFile}
+
+	cmd := exec.Command("bash", args...)
+
+	var out bytes.Buffer
+	var stderr bytes.Buffer
+	cmd.Stdout = &out
+	cmd.Stderr = &stderr
+
+	cmd.Run()
+
+	svgFile = strings.ReplaceAll(svgFile, "./docs", "")
+
+	return svgFile
+
+}
+
+func generateCastFile(command string) string {
+
+	filename := randomFileName()
+
+	args := []string{"-c", "asciinema rec ./example_casts/" + filename + ".json -c '" + command + "'"}
+
+	cmd := exec.Command("bash", args...)
+
+	var out bytes.Buffer
+	var stderr bytes.Buffer
+	cmd.Stdout = &out
+	cmd.Stderr = &stderr
+
+	cmd.Run()
+
+	utils.WriteFile("./example_casts/"+filename+".json", []byte("[5, \"o\", \"\\r\\nrestarting...\\r\\n\"]"), true)
+
+	return filename
+}
+
+func randomFileName() string {
+	rand.Seed(time.Now().UnixNano())
+
+	charset := "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+	b := make([]byte, 12)
+	for i := range b {
+		b[i] = charset[rand.Intn(len(charset))] //nolint:gosec
+	}
+	return string(b)
 }
 
 // PrintModulesMarkdown prints all modules in markdown format to stdout

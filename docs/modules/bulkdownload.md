@@ -18,11 +18,11 @@ You can set how many files should be downloaded concurrently..
 --output DIR, -o DIR            |  save the downloaded files to DIR (default: current directory)  
 --concurrent NUMBER, -c NUMBER  |  downloads NUMBER files concurrently (default: 3)  
 ```
-### Examples
+## Examples
 
-> [!TIP]
-> Download all files from urls.txt, with 5 concurrent connections, to the current directory.  
-> ```command
-> dops bulkdownload -i urls.txt -c 5
-> ```
+### Download all files from urls.txt, with 5 concurrent connections, to the current directory.
+
+```command
+dops bulkdownload -i urls.txt -c 5
+```
 

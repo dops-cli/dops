@@ -18,3 +18,5 @@ Ping pings a host on the web via ICMP
 --size SIZE, -s SIZE                 |  Pings with packets of size SIZE (default: 16)  
 --source IP ADDRESS                  |  Source IP ADDRESS of the ping (default: your hosts IP)  
 ```
+## Examples
+

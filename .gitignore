@@ -14,5 +14,8 @@ out/
 # Output of the go coverage tool, specifically when used with LiteIDE
 *.out
 
-#
+# Don't push generated binaries
 dist/
+
+# Don't push generated asciinema casts
+example_casts/

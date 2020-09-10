@@ -5,7 +5,7 @@
 This module generates random values of specific types like string, integer, email etc.
 You can set the number of generations and the seed.
 
-> [!WARNING]
+!> **WARNING**
 The generated random values are not cryptographically secure!  
 
 ## Usage
@@ -57,3 +57,12 @@ The generated random values are not cryptographically secure!
 --min NUMBER  |  Minimum NUMBER to be generated (default: 0)  
 --max NUMBER  |  Maximum NUMBER to be generated (default: 2147483647)  
 ```
+## Examples
+
+### Generate a random string with 15 letters
+
+```command
+dops random-generator string --length 15
+```
+<img src="/_assets/example_svg/bvuhafgMdolt.svg">
+

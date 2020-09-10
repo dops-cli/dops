@@ -9,7 +9,7 @@
 - Highly modular
 - Open Source
 
+[Installation](installation.md)
 [Usage](usage.md)
 [Module Documentation](modules/_modules.md)
 [GitHub](https://github.com/dops-cli/dops/)
-[Installation](installation.md)

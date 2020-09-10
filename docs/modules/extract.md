@@ -31,3 +31,5 @@ This can be used to extract text using a predefined or a custom regex.
 --output DIR, -o DIR         |  outputs to directory DIR  
 --append, -a                 |  append instead of overriding output (default: false)  
 ```
+## Examples
+

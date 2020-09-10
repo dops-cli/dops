@@ -1,5 +1,6 @@
 package randomgenerator
 
 const (
-	charsetNumbersAndLetters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+	// CharsetNumbersAndLetters contains lowercase letters, uppercase letters, and numbers from 0-9
+	CharsetNumbersAndLetters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
 )
