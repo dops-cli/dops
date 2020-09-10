@@ -1,9 +1,10 @@
 package extract
 
 import (
+	"regexp"
+
 	"github.com/dops-cli/dops/cli"
 	"github.com/dops-cli/dops/utils"
-	"regexp"
 
 	"github.com/dops-cli/dops/categories"
 )
