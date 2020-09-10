@@ -15,6 +15,7 @@
 - enhance submodule documentation generator
 
 ### Feat
+- add example to ping command
 - add another example to `random-generator`
 - redesign whole documentation and add example svg generation
 - change `extract-text` module to `extract`
@@ -22,9 +23,13 @@
 - add update command to `update` module
 
 ### Fix
+- remove `ping` example, as it's not working on linux without permissions
 - fix CI flag
 
 ### Refactor
+- make `ping` example use sudo
+- better input handling for `extract text`
+- change module structure of `extract text`
 - change warning of `ci` module
 - rename module variable
 
