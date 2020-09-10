@@ -5,7 +5,7 @@ Prism.languages.command = {
         greedy: true
     },
     'keyword': {
-        pattern: /-\S*/ig,
+        pattern: /\b-\S*/ig,
         lookbehind: true
     },
     'important': {
