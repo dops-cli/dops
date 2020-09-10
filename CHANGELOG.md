@@ -15,6 +15,7 @@
 - enhance submodule documentation generator
 
 ### Feat
+- add `execute` category
 - add module `open`
 - more examples for `random-generator`
 - add example to ping command
@@ -25,6 +26,7 @@
 - add update command to `update` module
 
 ### Fix
+- remove URL from example title
 - remove `ping` example, as it's not working on linux without permissions
 - fix CI flag
 

@@ -2,13 +2,13 @@
 
 > Opens a file or URL in the default program assigned to it
 
-
+Open finds the standard program, assigned to a file, and opens it with the found programm.
 
 ## Usage
 
 > `dops [options] open subcommand [arguments...]`
 
-**Category:**   
+**Category:** Execute  
 ## Submodules
 
 ### url
@@ -30,7 +30,7 @@ This modules locates the standard browser of the system and opens a specific URL
 ```
 ## Examples
 
-### Opens https://marvinjwendt.com in your standard browser
+### Opens marvinjwendt.com in your standard browser
 
 ```command
 dops open url https://marvinjwendt.com
@@ -47,5 +47,5 @@ echo "https://marvinjwendt.com" | dops open url
 ```command
 dops open url https://marvinjwendt.com
 ```
-<img src="/_assets/example_svg/zGGyvpRCRnSb.svg">
+<img src="/_assets/example_svg/SCXIEqGwZtDg.svg">
 
