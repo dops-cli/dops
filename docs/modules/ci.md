@@ -5,7 +5,7 @@
 
 
 > [!WARNING]
-This module should only be used to develop dops further  
+This module should only be used while working on dops  
 
 ## Usage
 

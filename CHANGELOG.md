@@ -15,6 +15,7 @@
 - add update command to `update` module
 
 ### Refactor
+- change warning of `ci` module
 - rename module variable
 
 
