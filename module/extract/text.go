@@ -17,7 +17,7 @@ func Text() *cli.Command {
 		Description: "This can be used to extract text using a predefined or a custom regex.",
 		Action: func(c *cli.Context) error {
 			regex := c.String("regex")
-			input := c.Path("input")
+			input := utils.Input(c.Path("input"))
 			output := c.String("output")
 			appendFlag := c.Bool("appendFlag")
 
@@ -28,7 +28,7 @@ func Text() *cli.Command {
 				return err
 			}
 
-			foundStrings = r.FindAllString(utils.Input(input), -1)
+			foundStrings = r.FindAllString(input, -1)
 			utils.Output(output, foundStrings, appendFlag)
 
 			return nil
