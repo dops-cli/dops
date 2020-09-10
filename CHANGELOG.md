@@ -8,6 +8,7 @@
 - **deps:** update golang version to `1.15`
 
 ### Ci
+- run `go run .` instead of `dops`
 - add term env
 
 ### Docs
