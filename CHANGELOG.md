@@ -4,12 +4,14 @@
 ### Chore
 - go mod tidy
 - **deps:** go mod tidy
+- **deps:** go mod tidy
 - **deps:** update golang version to `1.15`
 
 ### Docs
 - enhance submodule documentation generator
 
 ### Feat
+- redesign whole documentation and add example svg generation
 - change `extract-text` module to `extract`
 - add escape keybind to quit dops
 - add update command to `update` module
@@ -17,6 +19,10 @@
 ### Refactor
 - change warning of `ci` module
 - rename module variable
+
+### Style
+- go fmt
+- go fmt
 
 
 <a name="v1.22.7"></a>
