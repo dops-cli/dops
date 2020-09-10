@@ -47,5 +47,5 @@ echo "https://marvinjwendt.com" | dops open url
 ```command
 dops open url https://marvinjwendt.com
 ```
-<img src="/_assets/example_svg/SCXIEqGwZtDg.svg">
+<img src="/_assets/example_svg/dopsopenurlhttpsmarvinjwendtcom.svg">
 

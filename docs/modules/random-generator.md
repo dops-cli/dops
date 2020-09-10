@@ -64,19 +64,19 @@ The generated random values are not cryptographically secure!
 ```command
 dops random-generator string --length 15
 ```
-<img src="/_assets/example_svg/MWpyRVYiWGHo.svg">
+<img src="/_assets/example_svg/dopsrandomgeneratorstringlength15.svg">
 
 ### Generate a random string with 100 letters and a custom charset
 
 ```command
-dops random-generator string --chars abcde12.,-+# --length 100
+dops random-generator string --chars abcde12$# --length 100
 ```
-<img src="/_assets/example_svg/ORwuCCysFgrH.svg">
+<img src="/_assets/example_svg/dopsrandomgeneratorstringcharsabcde12length100.svg">
 
 ### Generate a random number with a minimum of 0 and a maximum of 1000
 
 ```command
 dops random-generator integer --max 1000
 ```
-<img src="/_assets/example_svg/mQhrriaWYrTU.svg">
+<img src="/_assets/example_svg/dopsrandomgeneratorintegermax1000.svg">
 

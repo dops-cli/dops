@@ -4,12 +4,11 @@ import (
 	"bytes"
 	"fmt"
 	"log"
-	"math/rand"
 	"os/exec"
+	"regexp"
 	"strings"
 	"text/tabwriter"
 	"text/template"
-	"time"
 
 	"github.com/dops-cli/dops/global/options"
 	"github.com/dops-cli/dops/say/color"
@@ -290,9 +289,7 @@ func generateExamples(cmd *Command) string {
 
 func generateSVG(command string) string {
 	castFile := "./example_casts/" + generateCastFile(command)
-	svgFile := "./docs/_assets/example_svg/" + randomFileName() + ".svg"
-
-	// command = "echo HelloWorld && " + command + " && sleep 10 && echo restarting..."
+	svgFile := "./docs/_assets/example_svg/" + generateFileName(command) + ".svg"
 
 	args := []string{"-c", "svg-term --in " + castFile + ".json --out " + svgFile}
 
@@ -313,7 +310,7 @@ func generateSVG(command string) string {
 
 func generateCastFile(command string) string {
 
-	filename := randomFileName()
+	filename := generateFileName(command)
 
 	command = strings.Replace(command, "dops", "go run .", 1)
 
@@ -337,15 +334,9 @@ func generateCastFile(command string) string {
 	return filename
 }
 
-func randomFileName() string {
-	rand.Seed(time.Now().UnixNano())
-
-	charset := "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
-	b := make([]byte, 12)
-	for i := range b {
-		b[i] = charset[rand.Intn(len(charset))] //nolint:gosec
-	}
-	return string(b)
+func generateFileName(usage string) string {
+	r := regexp.MustCompile(`(?m)\W`)
+	return r.ReplaceAllString(usage, "")
 }
 
 // PrintModulesMarkdown prints all modules in markdown format to stdout

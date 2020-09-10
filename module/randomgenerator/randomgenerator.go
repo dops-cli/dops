@@ -52,7 +52,7 @@ You can set the number of generations and the seed.`,
 						},
 						{
 							ShortDescription: "Generate a random string with 100 letters and a custom charset",
-							Usage:            "dops random-generator string --chars abcde12.,-+# --length 100",
+							Usage:            "dops random-generator string --chars abcde12$# --length 100",
 							GenerateSVG:      true,
 						},
 						{

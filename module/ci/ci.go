@@ -2,6 +2,7 @@ package ci
 
 import (
 	"io/ioutil"
+	"os"
 	"regexp"
 	"sort"
 
@@ -31,6 +32,10 @@ func (Module) GetModuleCommands() []*cli.Command {
 				}
 
 				sort.Sort(cli.CommandsByName(commands))
+
+				say.Info("Cleaning svg files...")
+				_ = os.RemoveAll("./docs/_assets/example_svg")
+				_ = os.MkdirAll("./docs/_assets/example_svg", 0600)
 
 				say.Info("Generating documentation...")
 
