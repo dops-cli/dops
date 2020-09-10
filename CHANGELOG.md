@@ -15,6 +15,7 @@
 - enhance submodule documentation generator
 
 ### Feat
+- more examples for `random-generator`
 - add example to ping command
 - add another example to `random-generator`
 - redesign whole documentation and add example svg generation
