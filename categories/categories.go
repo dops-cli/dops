@@ -10,6 +10,9 @@ const (
 	// TextProcessing is for modules, which processes texts
 	TextProcessing = "Text Processing"
 
+	//DataAnalysis is for modules, which analyze data
+	DataAnalysis = "Data Analysis"
+
 	// Info is for modules that return information about something to the user
 	Info = "Note"
 
