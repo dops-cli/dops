@@ -7,6 +7,9 @@
 - **deps:** go mod tidy
 - **deps:** update golang version to `1.15`
 
+### Ci
+- add term env
+
 ### Docs
 - enhance submodule documentation generator
 
