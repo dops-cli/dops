@@ -15,6 +15,7 @@
 - enhance submodule documentation generator
 
 ### Feat
+- add another example to `random-generator`
 - redesign whole documentation and add example svg generation
 - change `extract-text` module to `extract`
 - add escape keybind to quit dops

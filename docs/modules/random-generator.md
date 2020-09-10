@@ -64,5 +64,12 @@ The generated random values are not cryptographically secure!
 ```command
 dops random-generator string --length 15
 ```
-<img src="/_assets/example_svg/fIdqthCAqNEb.svg">
+<img src="/_assets/example_svg/eWlclcXxnYLT.svg">
+
+### Generate a random number with a minimum of 0 and a maximum of 1000
+
+```command
+dops random-generator integer --max 1000
+```
+<img src="/_assets/example_svg/RZcXPMDKXjYu.svg">
 
