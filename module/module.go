@@ -8,6 +8,7 @@ import (
 
 	"github.com/dops-cli/dops/cli"
 	"github.com/dops-cli/dops/module/ci"
+	"github.com/dops-cli/dops/module/open"
 	"github.com/dops-cli/dops/module/ping"
 	"github.com/dops-cli/dops/module/randomgenerator"
 
@@ -37,6 +38,7 @@ func init() {
 	addModule(renamefiles.Module{})
 	addModule(ping.Module{})
 	addModule(randomgenerator.Module{})
+	addModule(open.Module{})
 
 	addModule(ci.Module{})
 }
