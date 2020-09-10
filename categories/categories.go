@@ -24,4 +24,7 @@ const (
 
 	// Generators is for modules, which generate something (random values, etc..)
 	Generators = "Generators"
+
+	// Execute is for modules, which main purpose is to execute another program
+	Execute = "Execute"
 )

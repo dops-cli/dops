@@ -1,6 +1,9 @@
 package open
 
-import "github.com/dops-cli/dops/cli"
+import (
+	"github.com/dops-cli/dops/categories"
+	"github.com/dops-cli/dops/cli"
+)
 
 // Module returns the created module
 type Module struct{}
@@ -11,8 +14,8 @@ func (Module) GetModuleCommands() []*cli.Command {
 		{
 			Name:        "open",
 			Usage:       "Opens a file or URL in the default program assigned to it",
-			Description: "",
-			Category:    "",
+			Description: "Open finds the standard program, assigned to a file, and opens it with the found programm.",
+			Category:    categories.Execute,
 			Subcommands: []*cli.Command{
 				URL(),
 			},
