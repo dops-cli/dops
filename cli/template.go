@@ -315,6 +315,8 @@ func generateCastFile(command string) string {
 
 	filename := randomFileName()
 
+	command = strings.Replace(command, "dops", "go run .", 1)
+
 	args := []string{"-c", "asciinema rec ./example_casts/" + filename + ".json -c '" + command + "'"}
 
 	cmd := exec.Command("bash", args...)
