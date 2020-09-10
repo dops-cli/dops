@@ -7,6 +7,7 @@
 - **deps:** update golang version to `1.15`
 
 ### Docs
+- enhance submodule documentation generator
 
 ### Feat
 - change `extract-text` module to `extract`
