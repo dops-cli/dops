@@ -8,6 +8,7 @@
 ### Docs
 
 ### Feat
+- change `extract-text` module to `extract`
 - add escape keybind to quit dops
 - add update command to `update` module
 

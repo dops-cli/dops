@@ -5,7 +5,7 @@
   <!-- <<<CI-MODULES-START>> -->
   - [bulkdownload](modules/bulkdownload.md)
   - [ci](modules/ci.md)
-  - [extract-text](modules/extract-text.md)
+  - [extract](modules/extract.md)
   - [ping](modules/ping.md)
   - [random-generator](modules/random-generator.md)
   - [rename-files](modules/rename-files.md)
