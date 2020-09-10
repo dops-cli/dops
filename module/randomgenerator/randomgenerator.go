@@ -50,6 +50,11 @@ You can set the number of generations and the seed.`,
 							Usage:            "dops random-generator string --length 15",
 							GenerateSVG:      true,
 						},
+						{
+							ShortDescription: "Generate a random number with a minimum of 0 and a maximum of 1000",
+							Usage:            "dops random-generator integer --max 1000",
+							GenerateSVG:      true,
+						},
 					},
 					Action: func(context *cli.Context) error {
 						setSeed(context.String("seed"))
