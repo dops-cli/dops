@@ -11,6 +11,7 @@ import (
 	"text/template"
 	"time"
 
+	"github.com/dops-cli/dops/global/options"
 	"github.com/dops-cli/dops/say/color"
 	"github.com/dops-cli/dops/utils"
 )
@@ -324,6 +325,10 @@ func generateCastFile(command string) string {
 	cmd.Stderr = &stderr
 
 	cmd.Run()
+
+	if options.CI || options.Debug {
+		fmt.Printf("\n\nOutput:\n%v\n\nErrors:\n%v\n", out.String(), stderr.String())
+	}
 
 	utils.WriteFile("./example_casts/"+filename+".json", []byte("[5, \"o\", \"\\r\\nrestarting...\\r\\n\"]"), true)
 

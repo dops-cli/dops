@@ -15,7 +15,7 @@ func (Flag) GetFlags() []cli.Flag {
 			Name:        "ci",
 			Aliases:     []string{"cd"},
 			Usage:       "Runs dops in CI/CD mode - disables fancy styling like progressbars, etc.",
-			Destination: &options.Raw,
+			Destination: &options.CI,
 		},
 	}
 }
