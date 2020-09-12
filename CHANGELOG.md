@@ -11,6 +11,7 @@
 ### Ci
 - run `go run .` instead of `dops`
 - add term env
+- **dops:** remove `example_casts` directory after example generation
 
 ### Docs
 - enhance submodule documentation generator
