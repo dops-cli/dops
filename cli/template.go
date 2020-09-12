@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"fmt"
 	"log"
+	"os"
 	"os/exec"
 	"regexp"
 	"strings"
@@ -280,9 +281,13 @@ func generateExamples(cmd *Command) string {
 		}
 	}
 
+	_ = os.MkdirAll("./example_casts", 0600)
+
 	for _, subcmd := range cmd.Subcommands {
 		docs += generateExamples(subcmd)
 	}
+
+	_ = os.RemoveAll("./example_casts")
 
 	return docs
 }
