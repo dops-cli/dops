@@ -273,8 +273,6 @@ func generateExamples(cmd *Command) string {
 				docs += `<a id="asciicast-` + example.AsciinemaID + `" data-autoplay="true" data-loop="true"></a>` + "\n"
 			}
 			if example.GenerateSVG {
-				// svgFileName := generateSVG(example.Usage)
-				// docs +=
 				docs += "<img src=\"" + generateSVG(example.Usage) + "\">\n"
 			}
 			docs += "\n"
