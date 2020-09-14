@@ -12,6 +12,7 @@
 - **deps:** update golang version to `1.15`
 
 ### Ci
+- remove gosum and integrate into dops ci
 - add code scanning
 - add ossar analysis
 - run `go run .` instead of `dops`
