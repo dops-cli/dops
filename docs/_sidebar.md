@@ -5,6 +5,7 @@
   <!-- <<<CI-MODULES-START>> -->
   - [bulkdownload](modules/bulkdownload.md)
   - [ci](modules/ci.md)
+  - [echo](modules/echo.md)
   - [extract](modules/extract.md)
   - [open](modules/open.md)
   - [ping](modules/ping.md)

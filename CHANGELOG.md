@@ -17,6 +17,7 @@
 - enhance submodule documentation generator
 
 ### Feat
+- add `echo` module
 - add `execute` category
 - add module `open`
 - more examples for `random-generator`
