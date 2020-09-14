@@ -1,6 +1,9 @@
 <a name="unreleased"></a>
 ## [Unreleased]
 
+
+<a name="v1.23.0"></a>
+## [v1.23.0] - 2020-09-14
 ### Chore
 - go mod tidy
 - clean up svg files
@@ -43,6 +46,7 @@
 - fix CI flag
 
 ### Refactor
+- bump version to "v1.23.0"
 - better flag detection in code snippets syntax highlighting
 - make `ping` example use sudo
 - better input handling for `extract text`
@@ -53,6 +57,10 @@
 ### Style
 - go fmt
 - go fmt
+
+### BREAKING CHANGE
+
+change cli usage of `dops extract-text [...]` to `dops extract text [...]`
 
 
 <a name="v1.22.7"></a>
@@ -689,7 +697,8 @@
 - add gosum to tidy golang code automatically
 
 
-[Unreleased]: https://github.com/dops-cli/dops/compare/v1.22.7...HEAD
+[Unreleased]: https://github.com/dops-cli/dops/compare/v1.23.0...HEAD
+[v1.23.0]: https://github.com/dops-cli/dops/compare/v1.22.7...v1.23.0
 [v1.22.7]: https://github.com/dops-cli/dops/compare/v1.22.6...v1.22.7
 [v1.22.6]: https://github.com/dops-cli/dops/compare/v1.22.5...v1.22.6
 [v1.22.5]: https://github.com/dops-cli/dops/compare/v1.22.4...v1.22.5
