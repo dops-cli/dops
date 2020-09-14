@@ -5,6 +5,7 @@ import (
 	"os"
 	"regexp"
 	"strings"
+	"text/scanner"
 
 	"github.com/c-bata/go-prompt"
 
@@ -49,7 +50,7 @@ func Start() error {
 
 	t := prompt.Input(">>> dops ", Completer, options...)
 	args := []string{"dops"}
-	args = append(args, strings.Split(t, " ")...)
+	args = append(args, splitCommand(t)...)
 	err := module.CliApp.Run(args)
 	if err != nil {
 		return err
@@ -149,4 +150,14 @@ func FindLastSubCommand(parent *cli.Command, text string) *cli.Command {
 	}
 
 	return cmd
+}
+
+func splitCommand(text string) []string {
+	var s scanner.Scanner
+	s.Init(strings.NewReader(text))
+	slice := make([]string, 0, 5)
+	for tok := s.Scan(); tok != scanner.EOF; tok = s.Scan() {
+		slice = append(slice, s.TokenText())
+	}
+	return slice
 }

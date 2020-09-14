@@ -2,6 +2,7 @@ package module
 
 import (
 	"errors"
+	"github.com/dops-cli/dops/module/echo"
 	"os"
 	"os/exec"
 	"strings"
@@ -39,6 +40,7 @@ func init() {
 	addModule(ping.Module{})
 	addModule(randomgenerator.Module{})
 	addModule(open.Module{})
+	addModule(echo.Module{})
 
 	addModule(ci.Module{})
 }
