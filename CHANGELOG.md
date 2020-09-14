@@ -2,10 +2,11 @@
 ## [Unreleased]
 
 ### Chore
-- clean up svg files
 - go mod tidy
+- clean up svg files
 - **deps:** go mod tidy
 - **deps:** update ping
+- **deps:** go mod tidy
 - **deps:** go mod tidy
 - **deps:** go mod tidy
 - **deps:** update golang version to `1.15`
