@@ -4,6 +4,7 @@
 ### Chore
 - clean up svg files
 - go mod tidy
+- **deps:** go mod tidy
 - **deps:** update ping
 - **deps:** go mod tidy
 - **deps:** go mod tidy
@@ -30,6 +31,7 @@
 - add update command to `update` module
 
 ### Fix
+- add exit handling to interactive mode
 - remove URL from example title
 - remove `ping` example, as it's not working on linux without permissions
 - fix CI flag
