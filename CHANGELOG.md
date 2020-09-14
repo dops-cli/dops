@@ -1,6 +1,11 @@
 <a name="unreleased"></a>
 ## [Unreleased]
 
+### Docs
+
+### Feat
+- add predefined regexes to `extract text` module
+
 
 <a name="v1.23.0"></a>
 ## [v1.23.0] - 2020-09-14
