@@ -2,11 +2,10 @@ package ping
 
 import (
 	"fmt"
+	"github.com/go-ping/ping"
 	"os"
 	"os/signal"
 	"time"
-
-	"github.com/sparrc/go-ping"
 
 	"github.com/dops-cli/dops/categories"
 	"github.com/dops-cli/dops/cli"
