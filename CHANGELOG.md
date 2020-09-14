@@ -21,6 +21,7 @@
 - **dops:** remove `example_casts` directory after example generation
 
 ### Docs
+- update styling of sidebar
 - enhance submodule documentation generator
 
 ### Feat

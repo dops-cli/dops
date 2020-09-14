@@ -12,6 +12,6 @@
   - [random-generator](modules/random-generator.md)
   - [rename-files](modules/rename-files.md)
   - [update](modules/update.md)
-  <!-- <<<CI-MODULES-END>> -->
+<!-- <<<CI-MODULES-END>> -->
 - [Contributing to dops](contributing.md)
 - [FAQ](faq.md)
