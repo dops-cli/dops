@@ -15,6 +15,9 @@ func Text() *cli.Command {
 		Usage:       "Extracts text from data",
 		Examples:    nil,
 		Description: "This can be used to extract text using a predefined or a custom regex.",
+		Subcommands: []*cli.Command{
+			Predefined(),
+		},
 		Action: func(c *cli.Context) error {
 			regex := c.String("regex")
 			input := utils.Input(c.Path("input"))
