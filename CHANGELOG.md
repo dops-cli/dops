@@ -12,6 +12,7 @@
 - **deps:** update golang version to `1.15`
 
 ### Ci
+- add ossar analysis
 - run `go run .` instead of `dops`
 - add term env
 - **dops:** remove `example_casts` directory after example generation
