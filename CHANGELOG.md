@@ -6,6 +6,9 @@
 ### Feat
 - add predefined regexes to `extract text` module
 
+### Test
+- add tests to predefined regexps
+
 
 <a name="v1.23.0"></a>
 ## [v1.23.0] - 2020-09-14
