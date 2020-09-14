@@ -16,7 +16,6 @@ require (
 	github.com/mattn/go-tty v0.0.3 // indirect
 	github.com/pkg/browser v0.0.0-20180916011732-0a3d74bf9ce4
 	github.com/pkg/term v0.0.0-20200520122047-c3ffed290a03 // indirect
-	golang.org/x/net v0.0.0-20200904194848-62affa334b73 // indirect
 	golang.org/x/sys v0.0.0-20200909081042-eff7692f9009
 	golang.org/x/text v0.3.3 // indirect
 	gopkg.in/yaml.v2 v2.3.0
