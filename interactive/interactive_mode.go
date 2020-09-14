@@ -3,6 +3,7 @@ package interactive
 import (
 	"fmt"
 	"os"
+	"os/signal"
 	"regexp"
 	"strings"
 	"text/scanner"
@@ -47,6 +48,14 @@ func Start() error {
 
 		prompt.OptionTitle("DOPS"),
 	}
+
+	c := make(chan os.Signal, 1)
+	signal.Notify(c, os.Interrupt)
+	go func() {
+		for range c {
+			os.Exit(0)
+		}
+	}()
 
 	t := prompt.Input(">>> dops ", Completer, options...)
 	args := []string{"dops"}
