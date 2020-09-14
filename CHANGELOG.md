@@ -12,6 +12,7 @@
 - **deps:** update golang version to `1.15`
 
 ### Ci
+- disable gosum.yml
 - remove gosum and integrate into dops ci
 - add code scanning
 - add ossar analysis
