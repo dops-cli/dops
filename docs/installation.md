@@ -43,7 +43,7 @@ Of course dops, just like the installation script, is not harmful to your comput
 This command has to be run in an elevated shell.
 
 ```bash
-curl -s https://dops-cli.com/get/linux | sudo bash
+/bin/bash -c "$(curl -fsSL https://dops-cli.com/get/linux)"
 ```
 
 !> **WARNING**

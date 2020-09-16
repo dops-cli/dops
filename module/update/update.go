@@ -23,13 +23,16 @@ func (Module) GetModuleCommands() []*cli.Command {
 			Category:    categories.Dops,
 			Action: func(c *cli.Context) error {
 
+				cli.ShowVersion(c)
+
 				if runtime.GOOS == "windows" {
-					cli.ShowVersion(c)
 					say.Text(color.Primary("To update dops, open a new powershell with admin privileges and run:"))
 					say.Text(color.SHiRed("iwr -useb dops-cli.com/get/windows | iex"))
+				} else if runtime.GOOS == "darwin" {
+					say.Text("To update dops, open a new terminal and run:")
+					say.Text(color.SHiRed(`/bin/bash -c "$(curl -fsSL https://dops-cli.com/get/linux)"`))
 				} else {
-					cli.ShowVersion(c)
-					say.Text("To update dops, open a terminal and run")
+					say.Text(color.Primary("To update dops, open a terminal and run:"))
 					say.Text(color.SHiRed("curl -s https://dops-cli.com/get/linux | sudo bash"))
 				}
 

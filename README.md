@@ -100,6 +100,12 @@ To install `dops` you must run the following command in a PowerShell terminal wi
 iwr -useb dops-cli.com/get/windows | iex
 ```
 
+### macOS
+
+```console
+/bin/bash -c "$(curl -fsSL https://dops-cli.com/get/linux)"
+```
+
 ### Other / Manual install
 
 If you are using a different operating system you can still use `dops`.  
