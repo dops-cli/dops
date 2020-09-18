@@ -1,7 +1,6 @@
 package interactive
 
 import (
-	"fmt"
 	"os"
 	"os/signal"
 	"regexp"
@@ -124,11 +123,6 @@ func suggestionsForCommand(d prompt.Document, currentText string, beforeCursorTe
 		newBeforeCursor := beforeCursorText
 		newBeforeCursor = strings.TrimSpace(lastSubcommand.Name + " " + strings.TrimSpace(strings.Split(beforeCursorText, lastSubcommand.Name)[1]))
 		newCurrentText := strings.TrimSpace(lastSubcommand.Name + " " + strings.TrimSpace(strings.Split(currentText, lastSubcommand.Name)[1]))
-		fmt.Println("")
-		fmt.Println(newBeforeCursor)
-		fmt.Println(newCurrentText)
-		fmt.Println("Name", command.Name)
-		fmt.Println("")
 		return suggestionsForCommand(d, newCurrentText, newBeforeCursor, *lastSubcommand)
 	}
 

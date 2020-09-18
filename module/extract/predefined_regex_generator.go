@@ -31,7 +31,7 @@ func GeneratePredefinedRegexCommands() []*cli.Command {
 					Usage:            fmt.Sprintf("dops extract text predefined %s --input file.txt", c.Name),
 				},
 			},
-			Description: fmt.Sprintf("The %s command finds all %s`s in the input and returns them.", c.Name, c.Name),
+			Description: fmt.Sprintf("The %s command finds all %s`s in the input and returns them.\n\n", c.Name, c.Name) + "Regex: \n" + c.Regex,
 			Category:    categories.TextProcessing,
 			Action: func(context *cli.Context) error {
 				input := utils.Input(context.Path("input"))
