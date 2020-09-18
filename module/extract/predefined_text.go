@@ -8,9 +8,9 @@ import (
 func Predefined() *cli.Command {
 	return &cli.Command{
 		Name:        "predefined",
-		Usage:       "",
+		Usage:       "Use a predefined regex to extract strings",
 		Examples:    []cli.Example{},
-		Description: "",
+		Description: `Use the predefined submodule to choose from a set of regexes, which you can use to extract strings either from a website, a file or stdin.`,
 		Category:    categories.TextProcessing,
 		Subcommands: GeneratePredefinedRegexCommands(),
 	}
