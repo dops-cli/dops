@@ -4,6 +4,7 @@
 ### Docs
 
 ### Feat
+- add predefined regexes to `extract text` module
 - update macOS installation command
 - add predefined regexes to `extract text` module
 
