@@ -1,6 +1,9 @@
 <a name="unreleased"></a>
 ## [Unreleased]
 
+### Chore
+- **deps:** bump github.com/c-bata/go-prompt from 0.2.3 to 0.2.5
+
 ### Docs
 
 ### Feat
