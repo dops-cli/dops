@@ -31,9 +31,20 @@ func Watermark() *cli.Command {
 
 			input := context.Path("input")
 			glob := context.String("glob")
+			output := context.String("output")
 
 			cli.IncompatibleFlags(input, glob)
-			cli.IncompatibleFlags(context.String("output"), glob)
+			cli.IncompatibleFlags(output, glob)
+			cli.DependingFlags([]cli.DependingFlag{
+				{
+					Name:  "input",
+					Value: input,
+				},
+				{
+					Name:  "output",
+					Value: output,
+				},
+			})
 
 			if glob != "" {
 				matches, err := filepath.Glob(glob)
