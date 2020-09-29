@@ -7,11 +7,7 @@ import (
 	"github.com/dops-cli/dops/say"
 	"github.com/flopp/go-findfont"
 	"github.com/fogleman/gg"
-	"golang.org/x/image/font"
-	"golang.org/x/image/font/basicfont"
-	"golang.org/x/image/math/fixed"
 	"image"
-	"image/color"
 	"image/jpeg"
 	"image/png"
 	"log"
@@ -20,6 +16,7 @@ import (
 	"strings"
 )
 
+// Watermark contains the watermark logic
 func Watermark() *cli.Command {
 	return &cli.Command{
 		Name:        "watermark",
@@ -123,19 +120,6 @@ func Watermark() *cli.Command {
 			},
 		},
 	}
-}
-
-func addLabel(img *image.RGBA, x, y int, label string) {
-	col := color.RGBA{R: 200, G: 100, A: 255}
-	point := fixed.Point26_6{X: fixed.Int26_6(x * 64), Y: fixed.Int26_6(y * 64)}
-
-	d := &font.Drawer{
-		Dst:  img,
-		Src:  image.NewUniform(col),
-		Face: basicfont.Face7x13,
-		Dot:  point,
-	}
-	d.DrawString(label)
 }
 
 func convertLocationToXY(img image.Image, location string, size float64) (x, y, xAnchor, yAnchor float64) {
