@@ -10,6 +10,7 @@
 ### Docs
 
 ### Feat
+- add global `verbose` flag
 - add usage, examples and description in `watermark`
 - check if `input` and `output` are both set
 - add depending flag check
@@ -20,6 +21,7 @@
 - add predefined regexes to `extract text` module
 
 ### Refactor
+- remove alias of `version` flag
 - capitalize usage
 - delete id field from `Example` flag
 - clean up code
