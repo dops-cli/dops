@@ -100,7 +100,6 @@ type Command struct {
 
 // Example contains command usage examples
 type Example struct {
-	ID               string
 	GenerateSVG      bool
 	ShortDescription string
 	Usage            string
