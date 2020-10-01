@@ -11,6 +11,9 @@
 - update macOS installation command
 - add predefined regexes to `extract text` module
 
+### Refactor
+- delete id field from `Example` flag
+
 ### Test
 - add tests to predefined regexps
 
