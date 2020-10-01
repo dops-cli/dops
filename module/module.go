@@ -2,6 +2,7 @@ package module
 
 import (
 	"errors"
+	"github.com/dops-cli/dops/flags/verbose"
 	"github.com/dops-cli/dops/module/echo"
 	"github.com/dops-cli/dops/module/image"
 	"os"
@@ -31,6 +32,7 @@ func init() {
 	addGlobalFlag(debug.Flag{})
 	addGlobalFlag(raw.Flag{})
 	addGlobalFlag(ciflag.Flag{})
+	addGlobalFlag(verbose.Flag{})
 
 	// Add modules
 	addModule(bulkdownload.Module{})
