@@ -1,6 +1,9 @@
 <a name="unreleased"></a>
 ## [Unreleased]
 
+
+<a name="v1.24.0"></a>
+## [v1.24.0] - 2020-10-01
 ### Add
 - ´usage´ and ´description´ add in ´image´
 
@@ -21,6 +24,7 @@
 - add predefined regexes to `extract text` module
 
 ### Refactor
+- bump version to `v1.24.0`
 - remove alias of `version` flag
 - capitalize usage
 - delete id field from `Example` flag
@@ -28,6 +32,10 @@
 
 ### Test
 - add tests to predefined regexps
+
+### BREAKING CHANGE
+
+remove alias of `version` flag
 
 
 <a name="v1.23.0"></a>
@@ -725,7 +733,8 @@ change cli usage of `dops extract-text [...]` to `dops extract text [...]`
 - add gosum to tidy golang code automatically
 
 
-[Unreleased]: https://github.com/dops-cli/dops/compare/v1.23.0...HEAD
+[Unreleased]: https://github.com/dops-cli/dops/compare/v1.24.0...HEAD
+[v1.24.0]: https://github.com/dops-cli/dops/compare/v1.23.0...v1.24.0
 [v1.23.0]: https://github.com/dops-cli/dops/compare/v1.22.7...v1.23.0
 [v1.22.7]: https://github.com/dops-cli/dops/compare/v1.22.6...v1.22.7
 [v1.22.6]: https://github.com/dops-cli/dops/compare/v1.22.5...v1.22.6
