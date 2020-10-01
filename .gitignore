@@ -19,3 +19,6 @@ dist/
 
 # Don't push generated asciinema casts
 example_casts/
+
+# Don't push conventionalcommit configuration
+conventionalcommit.coauthors
