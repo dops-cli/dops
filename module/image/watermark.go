@@ -19,11 +19,20 @@ import (
 // Watermark contains the watermark logic
 func Watermark() *cli.Command {
 	return &cli.Command{
-		Name:        "watermark",
-		Aliases:     []string{"wm"},
-		Usage:       "Adds a watermark to an image",
-		Examples:    []cli.Example{},
-		Description: "",
+		Name:    "watermark",
+		Aliases: []string{"wm"},
+		Usage:   "Adds a watermark to an image",
+		Examples: []cli.Example{
+			{
+				ShortDescription: "Adds a watermark to the example.jpg image and saves it as example_watermarked.png",
+				Usage:            `dops image watermark --input example.jpg --text "example watermark text" --location "top left" --opacity 50 --output "example_watermarked.png"`,
+			},
+			{
+				ShortDescription: "Adds a watermark to every image with .png ending in this path",
+				Usage:            `dops image watermark --glob c/images/*.png --text "example watermark text" --location "top left" --opacity 50`,
+			},
+		},
+		Description: "This module watermark adds a watermark to one or more images from the input with a custom text on one of the corners.",
 		Action: func(context *cli.Context) error {
 
 			input := context.Path("input")
