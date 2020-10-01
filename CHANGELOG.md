@@ -1,6 +1,9 @@
 <a name="unreleased"></a>
 ## [Unreleased]
 
+### Docs
+- add pull request template
+
 
 <a name="v1.24.0"></a>
 ## [v1.24.0] - 2020-10-01
