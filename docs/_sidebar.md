@@ -7,6 +7,7 @@
   - [ci](modules/ci.md)
   - [echo](modules/echo.md)
   - [extract](modules/extract.md)
+  - [image](modules/image.md)
   - [open](modules/open.md)
   - [ping](modules/ping.md)
   - [random-generator](modules/random-generator.md)

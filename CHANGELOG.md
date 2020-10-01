@@ -1,18 +1,28 @@
 <a name="unreleased"></a>
 ## [Unreleased]
 
+### Add
+- ´usage´ and ´description´ add in ´image´
+
 ### Chore
 - **deps:** bump github.com/c-bata/go-prompt from 0.2.3 to 0.2.5
 
 ### Docs
 
 ### Feat
+- add usage, examples and description in `watermark`
+- check if `input` and `output` are both set
+- add depending flag check
+- update watermark module
+- add `image` module with watermark support
 - add predefined regexes to `extract text` module
 - update macOS installation command
 - add predefined regexes to `extract text` module
 
 ### Refactor
+- capitalize usage
 - delete id field from `Example` flag
+- clean up code
 
 ### Test
 - add tests to predefined regexps
