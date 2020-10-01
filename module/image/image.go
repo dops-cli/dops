@@ -13,8 +13,8 @@ func (Module) GetModuleCommands() []*cli.Command {
 	return []*cli.Command{
 		{
 			Name:        "image",
-			Usage:       "", // TODO: Write usage
-			Description: ``, // TODO: Write Description
+			Usage:       "image modification",
+			Description: `This module has a list of modules to modify images.`,
 			Category:    categories.ImageProcessing,
 			Subcommands: []*cli.Command{
 				Watermark(),
