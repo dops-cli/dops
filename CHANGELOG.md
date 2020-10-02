@@ -1,8 +1,15 @@
 <a name="unreleased"></a>
 ## [Unreleased]
 
+### Chore
+- **deps:** go mod tidy
+- **deps:**  update deps
+
 ### Docs
 - add pull request template
+
+### Style
+- refactor code styling
 
 
 <a name="v1.24.0"></a>
