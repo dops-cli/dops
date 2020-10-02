@@ -1,6 +1,7 @@
 package extract
 
 import (
+	"github.com/dops-cli/dops/global/options"
 	"regexp"
 
 	"github.com/dops-cli/dops/cli"
@@ -22,7 +23,11 @@ func Text() *cli.Command {
 			regex := c.String("regex")
 			input := utils.Input(c.Path("input"))
 			output := c.String("output")
+			glob := c.String("glob")
 			appendFlag := c.Bool("appendFlag")
+
+			cli.IncompatibleFlags(input, glob)
+			cli.IncompatibleFlags(appendFlag, glob)
 
 			var foundStrings []string
 
@@ -31,8 +36,26 @@ func Text() *cli.Command {
 				return err
 			}
 
-			foundStrings = r.FindAllString(input, -1)
-			utils.Output(output, foundStrings, appendFlag)
+			if glob != "" {
+				err = utils.Glob(glob, func(path string) error {
+					input = path
+					if options.Verbose {
+						foundStrings = append(foundStrings, "\n\n"+input+"\n\n")
+					}
+					foundStrings = append(foundStrings, r.FindAllString(input, -1)...)
+					utils.Output(output, foundStrings, true)
+					return nil
+				})
+				if err != nil {
+					return err
+				}
+			} else if input != "" {
+				if options.Verbose {
+					foundStrings = append(foundStrings, "\n\n"+input+"\n\n")
+				}
+				foundStrings = append(foundStrings, r.FindAllString(input, -1)...)
+				utils.Output(output, foundStrings, appendFlag)
+			}
 
 			return nil
 		},
@@ -41,6 +64,11 @@ func Text() *cli.Command {
 				Name:    "regex",
 				Aliases: []string{"r"},
 				Usage:   "extracts matching strings with `PATTERN`",
+			},
+			&cli.StringFlag{
+				Name:    "glob",
+				Aliases: []string{"g"},
+				Usage:   "uses a `GLOB` pattern to input multiple files",
 			},
 			&cli.PathFlag{
 				Name:      "input",
