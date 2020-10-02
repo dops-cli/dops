@@ -10,6 +10,7 @@ import (
 	"path/filepath"
 	"strings"
 
+	"github.com/flopp/go-findfont"
 	"github.com/fogleman/gg"
 
 	"github.com/dops-cli/dops/cli"
