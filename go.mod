@@ -16,7 +16,6 @@ require (
 	github.com/mattn/go-colorable v0.1.7
 	github.com/mattn/go-isatty v0.0.12
 	github.com/mattn/go-runewidth v0.0.9
-	github.com/mattn/go-tty v0.0.3 // indirect
 	github.com/pkg/browser v0.0.0-20180916011732-0a3d74bf9ce4
 	golang.org/x/image v0.0.0-20200927104501-e162460cd6b5 // indirect
 	golang.org/x/net v0.0.0-20200930145003-4acb6c075d10 // indirect
