@@ -1,11 +1,12 @@
 package echo
 
 import (
+	"strings"
+
 	"github.com/dops-cli/dops/categories"
 	"github.com/dops-cli/dops/cli"
 	"github.com/dops-cli/dops/say"
 	"github.com/dops-cli/dops/utils"
-	"strings"
 )
 
 // Module returns the created module

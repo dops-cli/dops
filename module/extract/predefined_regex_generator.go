@@ -2,10 +2,11 @@ package extract
 
 import (
 	"fmt"
+	"regexp"
+
 	"github.com/dops-cli/dops/categories"
 	"github.com/dops-cli/dops/cli"
 	"github.com/dops-cli/dops/utils"
-	"regexp"
 )
 
 type PredefinedRegexCommand struct {
