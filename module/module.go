@@ -2,12 +2,13 @@ package module
 
 import (
 	"errors"
-	"github.com/dops-cli/dops/flags/verbose"
-	"github.com/dops-cli/dops/module/echo"
-	"github.com/dops-cli/dops/module/image"
 	"os"
 	"os/exec"
 	"strings"
+
+	"github.com/dops-cli/dops/flags/verbose"
+	"github.com/dops-cli/dops/module/echo"
+	"github.com/dops-cli/dops/module/image"
 
 	"github.com/dops-cli/dops/cli"
 	"github.com/dops-cli/dops/module/ci"
