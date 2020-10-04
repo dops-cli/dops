@@ -15,13 +15,6 @@ import (
 	"os"
 	"path/filepath"
 	"strings"
-
-	"github.com/flopp/go-findfont"
-	"github.com/fogleman/gg"
-
-	"github.com/dops-cli/dops/cli"
-	"github.com/dops-cli/dops/global/options"
-	"github.com/dops-cli/dops/say"
 )
 
 // Watermark contains the watermark logic
