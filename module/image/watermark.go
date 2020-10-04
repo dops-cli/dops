@@ -15,6 +15,13 @@ import (
 	"os"
 	"path/filepath"
 	"strings"
+
+	"github.com/flopp/go-findfont"
+	"github.com/fogleman/gg"
+
+	"github.com/dops-cli/dops/cli"
+	"github.com/dops-cli/dops/global/options"
+	"github.com/dops-cli/dops/say"
 )
 
 // Watermark contains the watermark logic
@@ -228,7 +235,7 @@ func watermarkInput(input string, context *cli.Context) error {
 	err = ctx.LoadFontFace(fontPath, size)
 	if err != nil {
 		return err
-		//ctx.SetFontFace(basicfont.Face7x13)
+		// ctx.SetFontFace(basicfont.Face7x13)
 	}
 
 	x, y, xAnchor, yAnchor := convertLocationToXY(img, location, size)
