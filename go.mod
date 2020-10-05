@@ -13,7 +13,7 @@ require (
 	github.com/gdamore/tcell v1.4.0
 	github.com/go-ping/ping v0.0.0-20201001214134-671c40f29adc
 	github.com/golang/freetype v0.0.0-20170609003504-e2365dfdc4a0 // indirect
-	github.com/mattn/go-colorable v0.1.7
+	github.com/mattn/go-colorable v0.1.8
 	github.com/mattn/go-isatty v0.0.12
 	github.com/mattn/go-runewidth v0.0.9
 	github.com/pkg/browser v0.0.0-20180916011732-0a3d74bf9ce4
