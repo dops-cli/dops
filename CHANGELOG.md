@@ -9,6 +9,9 @@
 ### Docs
 - add pull request template
 
+### Feat
+- integrate https://github.com/pterm/pterm ([#61](https://github.com/dops-cli/dops/issues/61))
+
 ### Style
 - refactor code styling
 
