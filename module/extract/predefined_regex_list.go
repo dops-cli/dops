@@ -39,7 +39,7 @@ var RegexList = []PredefinedRegexCommand{
 		Fails:   []string{"https://youtu#be.com", "https://s$ub.domain.com/asdasd/asdaasd/asdasd.html", "sdfasegsdg.aasd", "https://user@google.com", "https://user~google.com"},
 	},
 	{
-		Name:    "image url",
+		Name:    "image-url",
 		Usage:   "returns image url",
 		Regex:   `(?m)(http(s?)://)([/\d\w\S-_])*\.(?:jpg|gif|png)`,
 		Matches: []string{"https://marvinjwendt.com/wp-content/uploads/2020/08/Marvin_Frei-min.png", "https://openthread.google.cn/images/ot-contrib-google.png", "https://www.wikipedia.org/portal/wikipedia.org/assets/img/Wikipedia-logo-v2.png"},
