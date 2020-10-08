@@ -4,7 +4,6 @@ import (
 	"crypto/md5"  //nolint:gosec
 	"crypto/sha1" //nolint:gosec
 	"encoding/hex"
-	"fmt"
 	"io"
 	"io/ioutil"
 	"os"
@@ -12,6 +11,8 @@ import (
 	"path/filepath"
 	"sort"
 	"strings"
+
+	"github.com/pterm/pterm"
 
 	"github.com/dops-cli/dops/categories"
 	"github.com/dops-cli/dops/cli"
@@ -45,7 +46,7 @@ The pattern could be a timestamp, or the hashcode of the file, among others.`,
 				var files []string
 
 				if recursive {
-					say.Warning("Renaming files recursively!")
+					pterm.Warning.Println("Renaming files recursively!")
 					err := filepath.Walk(dir,
 						func(path string, info os.FileInfo, err error) error {
 							files = append(files, path)
@@ -65,12 +66,6 @@ The pattern could be a timestamp, or the hashcode of the file, among others.`,
 				}
 
 				backupFilePath := filepath.Dir(dir) + string(os.PathSeparator) + ".dops-filename-backup"
-
-				// if backup {
-				// 	if _, err := os.Stat(backupFilePath); err == nil {
-				// 		return errors.New("backup file already exists")
-				// 	}
-				// }
 
 				if loadBackup {
 
@@ -138,12 +133,12 @@ The pattern could be a timestamp, or the hashcode of the file, among others.`,
 
 					var hasherContent []byte
 
-					fmt.Printf("%s -> %s%s\n", file, hex.EncodeToString(hasher.Sum(hasherContent)), filepath.Ext(file))
+					pterm.Printf("%s -> %s%s\n", file, hex.EncodeToString(hasher.Sum(hasherContent)), filepath.Ext(file))
 
 					newName := filepath.Dir(file) + string(os.PathSeparator) + hex.EncodeToString(hasher.Sum(hasherContent)) + path.Ext(file)
 					err = os.Rename(file, newName)
 					if err != nil {
-						say.Error(err)
+						pterm.Error.Println(err)
 					}
 
 					if backup {

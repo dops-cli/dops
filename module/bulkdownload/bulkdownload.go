@@ -2,19 +2,16 @@ package bulkdownload
 
 import (
 	"bufio"
-	"fmt"
 	"io"
 	"net/http"
 	"os"
 	"path/filepath"
 	"sync"
 
-	"github.com/dops-cli/dops/progressbar"
-	"github.com/dops-cli/dops/progressbar/decor"
+	"github.com/pterm/pterm"
 
 	"github.com/dops-cli/dops/categories"
 	"github.com/dops-cli/dops/cli"
-	"github.com/dops-cli/dops/say"
 )
 
 var wg sync.WaitGroup
@@ -43,7 +40,11 @@ You can set how many files should be downloaded concurrently..`,
 				}
 				wg.Add(len(urls))
 
-				downloadMultipleFiles(urls, outputDir, concurrentDownloads)
+				pterm.Info.Println("Downloading " + pterm.LightMagenta(len(urls)) + " files")
+
+				pb := pterm.DefaultProgressbar.WithTotal(len(urls)).WithTitle("Downloading").Start()
+
+				downloadMultipleFiles(urls, outputDir, concurrentDownloads, pb)
 				wg.Wait()
 				return nil
 			},
@@ -77,36 +78,20 @@ You can set how many files should be downloaded concurrently..`,
 	}
 }
 
-var p = progressbar.New(progressbar.WithWaitGroup(&wg))
-var totalbar *progressbar.Bar
-
-func downloadMultipleFiles(urls []string, outputDir string, concurrentDownloads int) {
-	p.NewLineWithPriority(say.FooterPriority)
-	p.NewLineWithPriority(say.FooterPriority)
-	p.NewLineWithPriority(say.FooterPriority)
-	totalbar = p.AddBar(int64(len(urls)),
-		progressbar.PrependDecorators(
-			decor.Name("Total: "),
-			decor.Current(0, ""),
-		),
-		progressbar.AppendDecorators(
-			decor.Name("ETA: "),
-			decor.EwmaETA(decor.ET_STYLE_GO, 90),
-		),
-	)
-	totalbar.SetPriority(say.FooterPriority)
-
-	say.Text("Downloading files...")
+func downloadMultipleFiles(urls []string, outputDir string, concurrentDownloads int, pb *pterm.Progressbar) {
 
 	guard := make(chan struct{}, concurrentDownloads)
 
 	for index, URL := range urls {
 		guard <- struct{}{}
 		go func(URL string, outputDir string, index int) {
+			pb.Title = filepath.Base(URL)
 			err := downloadFile(URL, outputDir)
 			if err != nil {
-				fmt.Println(err)
+				pterm.Fatal.Println(err)
 			}
+			pterm.Success.Println("Downloaded " + URL)
+			pb.Increment()
 			<-guard
 		}(URL, outputDir, index)
 	}
@@ -134,8 +119,9 @@ func downloadFile(URL string, outputDir string) error {
 		return err
 	}
 	defer response.Body.Close()
+
 	if response.StatusCode != http.StatusOK {
-		fmt.Println(response.Status)
+		pterm.Error.Println("Downloading " + pterm.Cyan(URL) + " failed with status code: " + pterm.Red(response.StatusCode))
 	}
 
 	file := filepath.Base(URL)
@@ -156,31 +142,12 @@ func downloadFile(URL string, outputDir string) error {
 	}
 	defer out.Close()
 
-	p.NewLine()
-	p.Log(URL)
-
-	bar := p.AddBar(response.ContentLength,
-		progressbar.PrependDecorators(
-			decor.CountersKibiByte("% .2f / % .2f"),
-		),
-		progressbar.AppendDecorators(
-			decor.EwmaETA(decor.ET_STYLE_GO, 90),
-			decor.Name(" | "),
-			decor.EwmaSpeed(decor.UnitKiB, "% .2f", 60),
-		),
-	)
-
-	// create proxy reader
-	proxyReader := bar.ProxyReader(response.Body)
-	defer proxyReader.Close()
-
 	// copy from proxyReader
-	_, err = io.Copy(out, proxyReader)
+	_, err = io.Copy(out, response.Body)
 	if err != nil {
 		return err
 	}
 
-	totalbar.Increment()
 	wg.Done()
 	return nil
 }

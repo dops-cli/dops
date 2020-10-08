@@ -5,12 +5,13 @@ import (
 	"os"
 	"sort"
 
+	"github.com/pterm/pterm"
+
 	"github.com/dops-cli/dops/cli"
 	"github.com/dops-cli/dops/global"
 	"github.com/dops-cli/dops/interactive"
 	"github.com/dops-cli/dops/module"
 	"github.com/dops-cli/dops/module/modules"
-	"github.com/dops-cli/dops/say"
 	"github.com/dops-cli/dops/say/color"
 )
 
@@ -19,7 +20,7 @@ func init() {
 		cli.HelpPrinterCustom(color.Output, templ, data, nil)
 	}
 	cli.VersionPrinter = func(c *cli.Context) {
-		say.Info("dops is currently on version " + color.Primary(c.App.Version) + "!")
+		pterm.Info.Println("dops is currently on version " + pterm.LightMagenta(c.App.Version) + "!")
 	}
 }
 
@@ -66,6 +67,6 @@ func main() {
 
 	err := module.CliApp.Run(os.Args)
 	if err != nil {
-		say.Fatal(err)
+		pterm.Fatal.Println(err)
 	}
 }

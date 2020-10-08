@@ -3,11 +3,10 @@ package update
 import (
 	"runtime"
 
-	"github.com/dops-cli/dops/cli"
+	"github.com/pterm/pterm"
 
 	"github.com/dops-cli/dops/categories"
-	"github.com/dops-cli/dops/say"
-	"github.com/dops-cli/dops/say/color"
+	"github.com/dops-cli/dops/cli"
 )
 
 // Module returns the created module
@@ -26,14 +25,15 @@ func (Module) GetModuleCommands() []*cli.Command {
 				cli.ShowVersion(c)
 
 				if runtime.GOOS == "windows" {
-					say.Text(color.Primary("To update dops, open a new powershell with admin privileges and run:"))
-					say.Text(color.SHiRed("iwr -useb dops-cli.com/get/windows | iex"))
+					pterm.Info.Println("To update dops, " +
+						"open a new powershell with admin privileges and run:")
+					pterm.Println(pterm.LightRed("       iwr -useb dops-cli.com/get/windows | iex"))
 				} else if runtime.GOOS == "darwin" {
-					say.Text("To update dops, open a new terminal and run:")
-					say.Text(color.SHiRed(`/bin/bash -c "$(curl -fsSL https://dops-cli.com/get/linux)"`))
+					pterm.Info.Println("To update dops, open a new terminal and run:")
+					pterm.Println(pterm.LightRed(`       /bin/bash -c "$(curl -fsSL https://dops-cli.com/get/linux)"`))
 				} else {
-					say.Text(color.Primary("To update dops, open a terminal and run:"))
-					say.Text(color.SHiRed("curl -s https://dops-cli.com/get/linux | sudo bash"))
+					pterm.Info.Println("To update dops, open a terminal and run:")
+					pterm.Println(pterm.LightRed("       curl -s https://dops-cli.com/get/linux | sudo bash"))
 				}
 
 				return nil

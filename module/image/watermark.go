@@ -5,17 +5,15 @@ import (
 	"image"
 	"image/jpeg"
 	"image/png"
-	"log"
 	"os"
 	"path/filepath"
 	"strings"
 
 	"github.com/flopp/go-findfont"
 	"github.com/fogleman/gg"
+	"github.com/pterm/pterm"
 
 	"github.com/dops-cli/dops/cli"
-	"github.com/dops-cli/dops/global/options"
-	"github.com/dops-cli/dops/say"
 )
 
 // Watermark contains the watermark logic
@@ -137,38 +135,33 @@ func convertLocationToXY(img image.Image, location string, size float64) (x, y, 
 	maxX, maxY := img.Bounds().Dx(), img.Bounds().Dy()
 
 	switch location {
-	case "bottom right":
-	case "br":
+	case "bottom right", "br":
 		x = float64(maxX) - (10 + size)
 		y = float64(maxY) - (10 + size)
 		xAnchor, yAnchor = 1, 1
 		break
 
-	case "bottom left":
-	case "bl":
+	case "bottom left", "bl":
 		x = 10 + size
 		y = float64(maxY) - (10 + size)
 		xAnchor, yAnchor = 0, 1
 		break
 
-	case "top right":
-	case "tr":
+	case "top right", "tr":
 		x = float64(maxX) - (10 + size)
 		y = 10 + size
 		xAnchor, yAnchor = 1, 0
 		break
 
-	case "top left":
-	case "tl":
+	case "top left", "tl":
 		x = 10 + size
 		y = 10 + size
 		xAnchor, yAnchor = 0, 0
 		break
 
-	case "center":
-	case "c":
-		x = (float64(maxX) - (size)) / 2
-		y = (float64(maxY) - (size)) / 2
+	case "center", "c":
+		x = float64(maxX) / 2
+		y = float64(maxY) / 2
 		xAnchor, yAnchor = 0.5, 0.5
 		break
 	}
@@ -209,7 +202,7 @@ func watermarkInput(input string, context *cli.Context) error {
 	watermarkColor = strings.ReplaceAll(watermarkColor, "#", "")
 
 	if len(watermarkColor) == 3 {
-		say.Fatal("color code must have 6 digits")
+		pterm.Fatal.Println("color code must have 6 digits")
 	}
 
 	opacity = opacity * 255 / 100
@@ -227,7 +220,7 @@ func watermarkInput(input string, context *cli.Context) error {
 	ctx.SetHexColor(watermarkColor)
 	fontPath, err := findfont.Find("arial.ttf")
 	if err != nil {
-		log.Fatal(err)
+		pterm.Fatal.Println(err)
 	}
 	err = ctx.LoadFontFace(fontPath, size)
 	if err != nil {
@@ -247,14 +240,12 @@ func watermarkInput(input string, context *cli.Context) error {
 		watermarkedFilename = output
 	}
 
-	if !options.Debug {
-		err = ctx.SavePNG(watermarkedFilename)
-		if err != nil {
-			return err
-		}
-	} else {
-		fmt.Println(input + " -> " + watermarkedFilename)
+	err = ctx.SavePNG(watermarkedFilename)
+	if err != nil {
+		return err
 	}
+
+	pterm.Success.Println("Watermarked " + input + pterm.Gray(" -> ") + watermarkedFilename)
 
 	return nil
 }

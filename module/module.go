@@ -6,6 +6,8 @@ import (
 	"os/exec"
 	"strings"
 
+	"github.com/pterm/pterm"
+
 	"github.com/dops-cli/dops/flags/verbose"
 	"github.com/dops-cli/dops/module/echo"
 	"github.com/dops-cli/dops/module/image"
@@ -24,7 +26,6 @@ import (
 	"github.com/dops-cli/dops/module/extract"
 	"github.com/dops-cli/dops/module/renamefiles"
 	"github.com/dops-cli/dops/module/update"
-	"github.com/dops-cli/dops/say"
 )
 
 // * <<< Add modules and global flags here! >>> *
@@ -56,7 +57,7 @@ var CliApp *cli.App
 // Run runs a specific module with specific flags
 func Run(flags []string) error {
 
-	say.Text("\033[2J")
+	pterm.Println("\033[2J")
 	clear := exec.Command("clear")
 	clear.Stdout = os.Stdout
 	_ = clear.Run()
@@ -64,7 +65,7 @@ func Run(flags []string) error {
 	args := []string{"dops"}
 	args = append(args, flags...)
 
-	say.Info("Running: ", strings.Join(args, " "))
+	pterm.Info.Println("Running: ", strings.Join(args, " "))
 
 	err := CliApp.Run(args)
 	if err != nil {

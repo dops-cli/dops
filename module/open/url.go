@@ -2,6 +2,7 @@ package open
 
 import (
 	"github.com/pkg/browser"
+	"github.com/pterm/pterm"
 
 	"github.com/dops-cli/dops/cli"
 	"github.com/dops-cli/dops/utils"
@@ -36,12 +37,14 @@ func URL() *cli.Command {
 				if err != nil {
 					return err
 				}
+				pterm.Success.Println("Opened " + context.Args().First())
 			} else {
 				input := utils.Input(context.String("input"))
 				err := browser.OpenURL(input)
 				if err != nil {
 					return err
 				}
+				pterm.Success.Println("Opened " + context.String("input"))
 			}
 
 			return nil
