@@ -26,7 +26,6 @@ type Finished struct {
 
 type Files struct {
 	Finished Finished `json:"Finished"`
-	Todo     []string `json:"Todo"`
 }
 
 type Module struct {
@@ -44,4 +43,7 @@ func (p Scheme) Sprint() string {
 func (p *Scheme) Print() {
 	utils.EnableStdout()
 	fmt.Print(p.Sprint())
+}
+func (p *Scheme) GetLastModule() Module {
+	return p.Modules[len(p.Modules)-1]
 }

@@ -1,5 +1,7 @@
 package pipe
 
+import "encoding/json"
+
 var PipeModules Scheme
 
 func Print() {
@@ -15,9 +17,20 @@ func AddModule(mod Module) {
 }
 
 func GetLast() Module {
-	return GetByIndex(len(PipeModules.Modules))
+	return GetByIndex(len(PipeModules.Modules) - 1)
 }
 
 func GetByIndex(i int) Module {
 	return PipeModules.Modules[i]
+}
+
+func GetSchemeFromJSON(jsonString string) *Scheme {
+	newMod := &Scheme{}
+
+	err := json.Unmarshal([]byte(jsonString), newMod)
+	if err != nil {
+		panic(err)
+	}
+
+	return newMod
 }

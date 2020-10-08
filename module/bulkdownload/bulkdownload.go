@@ -3,10 +3,12 @@ package bulkdownload
 import (
 	"bufio"
 	"github.com/dops-cli/dops/pipe"
+	"github.com/dops-cli/dops/utils"
 	"io"
 	"net/http"
 	"os"
 	"path/filepath"
+	"strings"
 	"sync"
 
 	"github.com/pterm/pterm"
@@ -32,14 +34,23 @@ You can set how many files should be downloaded concurrently..`,
 			Category: categories.Web,
 			Aliases:  []string{"bd"},
 			Action: func(c *cli.Context) error {
-				inputFile := c.String("input")
+				input := utils.Input(c.String("input"))
 				outputDir := c.String("output")
 				concurrentDownloads := c.Int("concurrent")
 
-				urls, err := readLines(inputFile)
-				if err != nil {
-					return err
+				var urls []string
+
+				if strings.HasPrefix(input, `{"Module":[{"Name":`) {
+					scheme := pipe.GetSchemeFromJSON(input)
+					urls = scheme.GetLastModule().Todo
+				} else {
+					var err error
+					urls, err = readLines(input)
+					if err != nil {
+						return err
+					}
 				}
+
 				wg.Add(len(urls))
 
 				pterm.Info.Println("Downloading " + pterm.LightMagenta(len(urls)) + " files")
@@ -68,7 +79,6 @@ You can set how many files should be downloaded concurrently..`,
 					Name:    "input",
 					Aliases: []string{"i"},
 					Usage:   "load URLs from `FILE`",
-					Value:   "urls.txt",
 				},
 				&cli.StringFlag{
 					Name:        "output",
