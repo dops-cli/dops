@@ -7,6 +7,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"path/filepath"
 	"strconv"
 	"strings"
 
@@ -54,6 +55,23 @@ func WriteFile(path string, content []byte, append bool) {
 		}
 	}
 
+}
+
+// Glob walks over a glob pattern and runs a function on the files.
+func Glob(glob string, forEach func(path string) error) error {
+	matches, err := filepath.Glob(glob)
+	if err != nil {
+		return err
+	}
+
+	for _, match := range matches {
+		err := forEach(match)
+		if err != nil {
+			return err
+		}
+	}
+
+	return nil
 }
 
 // Input is used for flags, which accept input in any form. Input supports HTTP and HTTPS resources, file paths and stdin.

@@ -39,7 +39,7 @@ func DependingFlags(flags []DependingFlag) {
 		}
 	}
 
-	if flagCount != len(flags) {
+	if flagCount != len(flags) && flagCount != 0 {
 		log.Fatal("these flags depend on each other: " + strings.Join(names, ", "))
 	}
 }
