@@ -38,4 +38,11 @@ var RegexList = []PredefinedRegexCommand{
 		Matches: []string{"https://youtube.com", "https://sub.domain.com/asdasd/asdaasd/asdasd.html", "https://user-google.com"},
 		Fails:   []string{"https://youtu#be.com", "https://s$ub.domain.com/asdasd/asdaasd/asdasd.html", "sdfasegsdg.aasd", "https://user@google.com", "https://user~google.com"},
 	},
+	{
+		Name:    "image-url",
+		Usage:   "returns image url",
+		Regex:   `(?m)(http(s?)://)([/\d\w\S-_])*\.(?:jpg|gif|png)`,
+		Matches: []string{"https://marvinjwendt.com/wp-content/uploads/2020/08/Marvin_Frei-min.png", "https://openthread.google.cn/images/ot-contrib-google.png", "https://www.wikipedia.org/portal/wikipedia.org/assets/img/Wikipedia-logo-v2.png"},
+		Fails:   []string{"www.marvinjwendt.com/wp-content/uploads/2020/08/Marvin_Frei-min.png", "https://marvinjwendt.com", "https://marvinjwendt.com/ picture.png\n", "marvinjwendt.com/wp-content/uploads/2020/08/Marvin_Frei-min.png", "https://"},
+	},
 }

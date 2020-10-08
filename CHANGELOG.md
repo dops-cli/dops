@@ -2,11 +2,16 @@
 ## [Unreleased]
 
 ### Chore
+- **deps:** bump github.com/mattn/go-colorable from 0.1.7 to 0.1.8 ([#60](https://github.com/dops-cli/dops/issues/60))
 - **deps:** go mod tidy
 - **deps:**  update deps
 
 ### Docs
 - add pull request template
+
+### Feat
+- add image url to `predefined_regex_list` ([#64](https://github.com/dops-cli/dops/issues/64))
+- integrate https://github.com/pterm/pterm ([#61](https://github.com/dops-cli/dops/issues/61))
 
 ### Style
 - refactor code styling

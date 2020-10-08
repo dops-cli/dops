@@ -152,6 +152,27 @@ Regex:
 --output value, -o value  |  Writes to a file, if not set it writes to stdout  
 --append, -a              |  append instead of overriding output (default: false)  
 ```
+##### image url
+
+> returns image url
+
+The image url command finds all image url`s in the input and returns them.
+
+Regex: 
+(?m)(http(s?)://)([/\d\w\S-_])*\.(?:jpg|gif|png)
+
+###### Usage
+
+> `dops [options] predefined image url [options] [arguments...]`
+
+**Category:** Text Processing  
+
+####### Options
+```flags
+--input value, -i value   |  Input accepts a file, URL or stdin if not set  
+--output value, -o value  |  Writes to a file, if not set it writes to stdout  
+--append, -a              |  append instead of overriding output (default: false)  
+```
 ## Examples
 
 ### Extract all email´s from INPUT
@@ -182,5 +203,11 @@ dops extract text predefined ipaddress --input file.txt
 
 ```command
 dops extract text predefined url --input file.txt
+```
+
+### Extract all image url´s from INPUT
+
+```command
+dops extract text predefined image url --input file.txt
 ```
 
