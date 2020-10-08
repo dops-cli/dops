@@ -1,6 +1,8 @@
 package main
 
 import (
+	"github.com/dops-cli/dops/pipe"
+	"github.com/dops-cli/dops/utils"
 	"io"
 	"os"
 	"sort"
@@ -25,6 +27,10 @@ func init() {
 }
 
 func main() {
+
+	if pipe.IsPiped() {
+		utils.DisableStdout()
+	}
 
 	for _, f := range cli.ActiveGlobalFlags {
 		global.CliFlags = append(global.CliFlags, f.GetFlags()...)
@@ -68,5 +74,9 @@ func main() {
 	err := module.CliApp.Run(os.Args)
 	if err != nil {
 		pterm.Fatal.Println(err)
+	}
+
+	if pipe.IsPiped() {
+		pipe.PipeModules.Print()
 	}
 }

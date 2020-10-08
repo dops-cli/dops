@@ -3,6 +3,7 @@ package utils
 import (
 	"bufio"
 	"fmt"
+	"github.com/pterm/pterm"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -95,12 +96,12 @@ func Input(path string) string {
 func Output(path string, lines []string, append bool) {
 	if path == "" {
 		for _, s := range lines {
-			say.Text(s)
+			fmt.Println(s)
 		}
 	} else {
 		var out string
 		for _, s := range lines {
-			out += fmt.Sprintf("%v", s) + "\n"
+			out += pterm.Sprintf("%v", s) + "\n"
 		}
 		WriteFile(path, []byte(out), append)
 	}

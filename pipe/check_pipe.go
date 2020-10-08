@@ -1,15 +1,10 @@
 package pipe
 
 import (
+	"github.com/mattn/go-isatty"
 	"os"
 )
 
 func IsPiped() bool {
-	fi, _ := os.Stdin.Stat()
-
-	if (fi.Mode() & os.ModeCharDevice) == 0 {
-		return true
-	} else {
-		return false
-	}
+	return !isatty.IsTerminal(os.Stdout.Fd())
 }

@@ -2,7 +2,8 @@ package pipe
 
 import (
 	"encoding/json"
-	"github.com/pterm/pterm"
+	"fmt"
+	"github.com/dops-cli/dops/utils"
 )
 
 type Scheme struct {
@@ -29,9 +30,10 @@ type Files struct {
 }
 
 type Module struct {
-	Name   string `json:"Name"`
-	Output Output `json:"Output"`
-	Files  Files  `json:"Files"`
+	Name   string   `json:"Name"`
+	Output Output   `json:"Output"`
+	Files  Files    `json:"Files"`
+	Todo   []string `json:"Todo"`
 }
 
 func (p Scheme) Sprint() string {
@@ -40,5 +42,6 @@ func (p Scheme) Sprint() string {
 }
 
 func (p *Scheme) Print() {
-	pterm.Print(p.Sprint())
+	utils.EnableStdout()
+	fmt.Print(p.Sprint())
 }
