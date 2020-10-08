@@ -2,6 +2,7 @@ package bulkdownload
 
 import (
 	"bufio"
+	"github.com/dops-cli/dops/pipe"
 	"io"
 	"net/http"
 	"os"
@@ -15,6 +16,7 @@ import (
 )
 
 var wg sync.WaitGroup
+var successList = make(map[string]bool)
 
 // Module returns the created module
 type Module struct{}
@@ -46,6 +48,19 @@ You can set how many files should be downloaded concurrently..`,
 
 				downloadMultipleFiles(urls, outputDir, concurrentDownloads, pb)
 				wg.Wait()
+
+				mod := pipe.Module{
+					Name: c.Command.Name,
+				}
+				for s, b := range successList {
+					if b {
+						mod.Files.Finished.Success = append(mod.Files.Finished.Success, s)
+					} else {
+						mod.Files.Finished.Failed = append(mod.Files.Finished.Failed, s)
+					}
+				}
+				pipe.AddModule(mod)
+
 				return nil
 			},
 			Flags: []cli.Flag{
@@ -121,7 +136,10 @@ func downloadFile(URL string, outputDir string) error {
 	defer response.Body.Close()
 
 	if response.StatusCode != http.StatusOK {
+		successList[URL] = false
 		pterm.Error.Println("Downloading " + pterm.Cyan(URL) + " failed with status code: " + pterm.Red(response.StatusCode))
+	} else {
+		successList[URL] = true
 	}
 
 	file := filepath.Base(URL)
