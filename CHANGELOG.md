@@ -13,6 +13,9 @@
 - add image url to `predefined_regex_list` ([#64](https://github.com/dops-cli/dops/issues/64))
 - integrate https://github.com/pterm/pterm ([#61](https://github.com/dops-cli/dops/issues/61))
 
+### Fix
+- rename `image url` to `image-url` in `predefined_regex_list` ([#65](https://github.com/dops-cli/dops/issues/65))
+
 ### Style
 - refactor code styling
 
