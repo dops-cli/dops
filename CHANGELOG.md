@@ -10,6 +10,7 @@
 - add pull request template
 
 ### Feat
+- add image url to `predefined_regex_list` ([#64](https://github.com/dops-cli/dops/issues/64))
 - integrate https://github.com/pterm/pterm ([#61](https://github.com/dops-cli/dops/issues/61))
 
 ### Style
