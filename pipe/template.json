@@ -1,0 +1,22 @@
+{
+  "Module": [
+    {
+      "Name": "",
+      "Output": {
+        "Info": [],
+        "Success": [],
+        "Warning": [],
+        "Error": [],
+        "Fatal": [],
+        "Other": []
+      },
+      "Files": {
+        "Finished": {
+          "Success": [],
+          "Failed": []
+        },
+        "Todo": []
+      }
+    }
+  ]
+}
