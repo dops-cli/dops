@@ -124,9 +124,7 @@ We are in the first major version of `dops`, with every new module, and other si
 
 | Package       | Original                          | Last Original Commit                                                                                                                  | License   |
 |---------------|-----------------------------------|---------------------------------------------------------------------------------------------------------------------------------------|-----------|
-| color         | github.com/fatih/color            | [daf2830f2741ebb735b21709a520c5f37d642d85](https://github.com/fatih/color/commit/daf2830f2741ebb735b21709a520c5f37d642d85)            | MIT       |
 | cli           | github.com/urfave/cli             | [d2d2098085cee084bc50ae293acf8568cfb348e6](https://github.com/urfave/cli/commit/d2d2098085cee084bc50ae293acf8568cfb348e6)             | MIT       |
-| progressbar   | github.com/vbauerster/mpb         | [0b273e8d6834b902ff85c85620d3feff4ad5810c](https://github.com/vbauerster/mpb/commit/0b273e8d6834b902ff85c85620d3feff4ad5810c)         | UNLICENSE |
 
 ---
 

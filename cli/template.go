@@ -11,64 +11,66 @@ import (
 	"text/tabwriter"
 	"text/template"
 
+	"github.com/pterm/pterm"
+
 	"github.com/dops-cli/dops/global/options"
-	"github.com/dops-cli/dops/say/color"
+	"github.com/dops-cli/dops/theme"
 	"github.com/dops-cli/dops/utils"
 )
 
 // AppHelpTemplate is the text template for the Default help topic.
 // cli.go uses text/template to render templates. You can
 // render custom help text by setting this variable.
-var AppHelpTemplate = color.Primary("\nDOPS - CLI DevOps Toolkit") + `
+var AppHelpTemplate = theme.Primary("\nDOPS - CLI DevOps Toolkit") + `
 
-{{if .VisibleFlags}}` + color.Section(`Global options`) + `
-  ` + color.Flag(`{{range $index, $option := .VisibleFlags}}{{if $index}}`) + `
-  ` + color.Flag(`{{end}}{{$option}}{{end}}{{end}}`) + `
+{{if .VisibleFlags}}` + theme.Section(`Global options`) + `
+  ` + theme.Flag(`{{range $index, $option := .VisibleFlags}}{{if $index}}`) + `
+  ` + theme.Flag(`{{end}}{{$option}}{{end}}{{end}}`) + `
 
-{{if .VisibleCommands}}` + color.Section(`Modules`) + `{{range .VisibleCategories}}{{if .Name}}
-  [` + color.Primary(`{{.Name}}`) + `]{{range .VisibleCommands}}
-    · ` + color.Secondary(`{{join .Names ", "}}`) + color.Separator(`{{"\t|\t"}}`) + `{{.Usage}}{{end}}{{else}}{{range .VisibleCommands}}
-    · ` + color.Secondary(`{{join .Names ", "}}`) + color.Separator(`{{"\t|\t"}}`) + `{{.Usage}}{{end}}{{end}}{{end}}{{end}}
+{{if .VisibleCommands}}` + theme.Section(`Modules`) + `{{range .VisibleCategories}}{{if .Name}}
+  [` + theme.Primary(`{{.Name}}`) + `]{{range .VisibleCommands}}
+    · ` + theme.Secondary(`{{join .Names ", "}}`) + theme.Separator(`{{"\t|\t"}}`) + `{{.Usage}}{{end}}{{else}}{{range .VisibleCommands}}
+    · ` + theme.Secondary(`{{join .Names ", "}}`) + theme.Separator(`{{"\t|\t"}}`) + `{{.Usage}}{{end}}{{end}}{{end}}{{end}}
 
-` + color.SHiRed("Contribute to this tool here: https://github.com/dops-cli ") + color.SRed("<3\n")
+` + pterm.LightRed("Contribute to this tool here: https://github.com/dops-cli ") + pterm.Red("<3\n")
 
 // CommandHelpTemplate is the text template for the command help topic.
 // cli.go uses text/template to render templates. You can
 // render custom help text by setting this variable.
-var CommandHelpTemplate = color.Primary("\n{{.Name}}") + ` - ` + color.Secondary("{{.Usage}}") + color.R + `
+var CommandHelpTemplate = theme.Primary("\n{{.Name}}") + ` - ` + theme.Secondary("{{.Usage}}") + pterm.Normal() + `
 
-{{if .Description}}` + color.Section("Description") + `
+{{if .Description}}` + theme.Section("Description") + `
 {{.Description}}{{end}}
 
-` + color.Primary("Usage:") + ` {{if .UsageText}}{{.UsageText}}{{else}}{{.HelpName}}{{if .VisibleFlags}} [options]{{end}} {{if .ArgsUsage}}{{.ArgsUsage}}{{else}}[arguments...]{{end}}{{end}}
-{{if .Aliases}}` + color.Primary("Aliases:") + `  {{join .Aliases ", "}}{{end}}
-{{if .Category}}` + color.Primary("Category:") + ` {{.Category}}{{end}}
+` + theme.Primary("Usage:") + ` {{if .UsageText}}{{.UsageText}}{{else}}{{.HelpName}}{{if .VisibleFlags}} [options]{{end}} {{if .ArgsUsage}}{{.ArgsUsage}}{{else}}[arguments...]{{end}}{{end}}
+{{if .Aliases}}` + theme.Primary("Aliases:") + `  {{join .Aliases ", "}}{{end}}
+{{if .Category}}` + theme.Primary("Category:") + ` {{.Category}}{{end}}
 
-{{if .VisibleFlags}}` + color.Section("Options") + `
-   {{range .VisibleFlags}}` + color.Flag("{{.}}") + `
+{{if .VisibleFlags}}` + theme.Section("Options") + `
+   {{range .VisibleFlags}}` + theme.Flag("{{.}}") + `
    {{end}}{{end}}
 `
 
 // SubcommandHelpTemplate is the text template for the subcommand help topic.
 // cli.go uses text/template to render templates. You can
 // render custom help text by setting this variable.
-var SubcommandHelpTemplate = color.Primary("\n{{.Name}}") + ` - ` + color.Secondary("{{.Usage}}") + color.R + `
+var SubcommandHelpTemplate = theme.Primary("\n{{.Name}}") + ` - ` + theme.Secondary("{{.Usage}}") + pterm.Normal() + `
 
-{{if .Description}}` + color.Section("Description") + `
+{{if .Description}}` + theme.Section("Description") + `
 {{.Description}}{{end}}
 
-` + color.Primary("Usage:") + ` {{if .UsageText}}{{.UsageText}}{{else}}{{.HelpName}} command{{if .VisibleFlags}} [command options]{{end}} {{if .ArgsUsage}}{{.ArgsUsage}}{{else}}[arguments...]{{end}}{{end}}
+` + theme.Primary("Usage:") + ` {{if .UsageText}}{{.UsageText}}{{else}}{{.HelpName}} command{{if .VisibleFlags}} [command options]{{end}} {{if .ArgsUsage}}{{.ArgsUsage}}{{else}}[arguments...]{{end}}{{end}}
 
-{{if .Aliases}}` + color.Primary("Aliases:") + `  {{join .Aliases ", "}}{{end}}
-{{if .Category}}` + color.Primary("Category:") + ` {{.Category}}{{end}}
+{{if .Aliases}}` + theme.Primary("Aliases:") + `  {{join .Aliases ", "}}{{end}}
+{{if .Category}}` + theme.Primary("Category:") + ` {{.Category}}{{end}}
 
-{{if .VisibleCommands}}` + color.Section(`Commands`) + `{{range .VisibleCategories}}{{if .Name}}
-  [` + color.Primary(`{{.Name}}`) + `]{{range .VisibleCommands}}
-    · ` + color.Secondary(`{{join .Names ", "}}`) + color.Separator(`{{"\t|\t"}}`) + `{{.Usage}}{{end}}{{else}}{{range .VisibleCommands}}
-    · ` + color.Secondary(`{{join .Names ", "}}`) + color.Separator(`{{"\t|\t"}}`) + `{{.Usage}}{{end}}{{end}}{{end}}{{end}}
+{{if .VisibleCommands}}` + theme.Section(`Commands`) + `{{range .VisibleCategories}}{{if .Name}}
+  [` + theme.Primary(`{{.Name}}`) + `]{{range .VisibleCommands}}
+    · ` + theme.Secondary(`{{join .Names ", "}}`) + theme.Separator(`{{"\t|\t"}}`) + `{{.Usage}}{{end}}{{else}}{{range .VisibleCommands}}
+    · ` + theme.Secondary(`{{join .Names ", "}}`) + theme.Separator(`{{"\t|\t"}}`) + `{{.Usage}}{{end}}{{end}}{{end}}{{end}}
 
-{{if .VisibleFlags}}` + color.Section("Options") + `
-   {{range .VisibleFlags}}` + color.Flag("{{.}}") + `
+{{if .VisibleFlags}}` + theme.Section("Options") + `
+   {{range .VisibleFlags}}` + theme.Flag("{{.}}") + `
    {{end}}{{end}}
 `
 
@@ -130,17 +132,17 @@ type Modules struct {
 func PrintModules() error {
 
 	var modules = `{{range .Commands}}` +
-		color.Primary("\n{{.Name}}") + ` - ` + color.Secondary("{{.Usage}}") + `
+		theme.Primary("\n{{.Name}}") + ` - ` + theme.Secondary("{{.Usage}}") + `
 
-  ` + color.Primary("Usage:") + ` {{if .UsageText}}{{.UsageText}}{{else}}{{.HelpName}}{{if .VisibleFlags}} [options]{{end}} {{if .ArgsUsage}}{{.ArgsUsage}}{{else}}[arguments...]{{end}}{{end}}
-  {{if .Aliases}}` + color.Primary("Aliases:") + `  {{join .Aliases ", "}}{{end}}
-  {{if .Category}}` + color.Primary("Category:") + ` {{.Category}}{{end}}{{if .Description}}
+  ` + theme.Primary("Usage:") + ` {{if .UsageText}}{{.UsageText}}{{else}}{{.HelpName}}{{if .VisibleFlags}} [options]{{end}} {{if .ArgsUsage}}{{.ArgsUsage}}{{else}}[arguments...]{{end}}{{end}}
+  {{if .Aliases}}` + theme.Primary("Aliases:") + `  {{join .Aliases ", "}}{{end}}
+  {{if .Category}}` + theme.Primary("Category:") + ` {{.Category}}{{end}}{{if .Description}}
 
-` + color.Section("Description") + `
+` + theme.Section("Description") + `
 {{.Description}}{{end}}{{if .VisibleFlags}}
 
-` + color.Section("Options") + `
-  {{range .VisibleFlags}}` + color.Flag("{{.}}") + `
+` + theme.Section("Options") + `
+  {{range .VisibleFlags}}` + theme.Flag("{{.}}") + `
   {{end}}{{end}}` + "\n\n" + `{{end}}`
 
 	var commands []*Command
@@ -151,7 +153,7 @@ func PrintModules() error {
 
 	t := template.Must(template.New("modules").Funcs(funcMap).Parse(modules))
 
-	err := t.Execute(color.Output, Modules{commands})
+	err := t.Execute(os.Stdout, Modules{commands})
 	if err != nil {
 		return err
 	}
@@ -372,7 +374,7 @@ Usage: {{if .UsageText}}{{.UsageText}}{{else}}{{.HelpName}}{{if .VisibleFlags}} 
 
 	t := template.Must(template.New("modules").Funcs(funcMap).Parse(modules))
 
-	err := t.Execute(color.Output, Modules{commands})
+	err := t.Execute(os.Stdout, Modules{commands})
 	if err != nil {
 		return err
 	}

@@ -1,12 +1,12 @@
 package ping
 
 import (
-	"fmt"
 	"os"
 	"os/signal"
 	"time"
 
 	"github.com/go-ping/ping"
+	"github.com/pterm/pterm"
 
 	"github.com/dops-cli/dops/categories"
 	"github.com/dops-cli/dops/cli"
@@ -31,12 +31,13 @@ func (Module) GetModuleCommands() []*cli.Command {
 				if err != nil {
 					return err
 				}
-
 				pinger.SetPrivileged(true)
 				pinger.Count = count
 				pinger.Interval = context.Duration("interval")
 				pinger.Size = context.Int("size")
 				pinger.Source = context.String("source")
+
+				pb := pterm.DefaultProgressbar.WithTotal(count).WithTitle("Ping").Start()
 
 				// listen for ctrl-C signal
 				c := make(chan os.Signal, 1)
@@ -48,15 +49,16 @@ func (Module) GetModuleCommands() []*cli.Command {
 				}()
 
 				pinger.OnRecv = func(pkt *ping.Packet) {
-					fmt.Printf("%d bytes from %s: icmp_seq=%d time=%v\n", pkt.Nbytes, pkt.IPAddr, pkt.Seq, pkt.Rtt)
+					pterm.Printf("%s bytes from %s: icmp_seq: %s time: %v\n", pterm.LightMagenta(pkt.Nbytes), pterm.Yellow(pkt.IPAddr), pterm.LightMagenta(pkt.Seq), pterm.LightMagenta(pkt.Rtt))
+					pb.Increment()
 				}
 				pinger.OnFinish = func(stats *ping.Statistics) {
-					fmt.Printf("\n--- %s ping statistics ---\n", stats.Addr)
-					fmt.Printf("%d packets transmitted, %d packets received, %v%% packet loss\n", stats.PacketsSent, stats.PacketsRecv, stats.PacketLoss)
-					fmt.Printf("round-trip min/avg/max/stddev = %v/%v/%v/%v\n", stats.MinRtt, stats.AvgRtt, stats.MaxRtt, stats.StdDevRtt)
+					pterm.Printf("\n" + pterm.Gray("       --- ") + pterm.LightWhite(stats.Addr+" ping statistics ") + pterm.Gray("---") + "\n")
+					pterm.Printf("%s packets transmitted, %s packets received, %v packet loss\n", pterm.LightMagenta(stats.PacketsSent), pterm.LightMagenta(stats.PacketsRecv), pterm.LightMagenta(stats.PacketLoss, "%"))
+					pterm.Printf("round-trip "+pterm.Green("min")+"/"+pterm.Yellow("avg")+"/"+pterm.Red("max")+"/"+pterm.LightMagenta("stddev")+" = %v/%v/%v/%v\n", pterm.Green(stats.MinRtt), pterm.Yellow(stats.AvgRtt), pterm.Red(stats.MaxRtt), pterm.LightMagenta(stats.StdDevRtt))
 				}
 
-				fmt.Printf("PING %s (%s):\n", pinger.Addr(), pinger.IPAddr())
+				pterm.Printf("PING %s (%s):\n", pinger.Addr(), pinger.IPAddr())
 				pinger.Run()
 
 				return nil
