@@ -8,6 +8,7 @@
 - **deps:**  update deps
 
 ### Docs
+- fix dead link to the modules in README.md ([#71](https://github.com/dops-cli/dops/issues/71))
 - add pull request template
 
 ### Feat
