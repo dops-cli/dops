@@ -64,7 +64,7 @@ Dops is structured in a way that it is very easy to add a new module. So everyon
 
 > Dops currently features `12`<!-- feature-count --> modules!
 
-To see the documentation of these, go [here](https://dops-cli.com/#/using_modules).
+To see the documentation of these, go [here](https://dops-cli.com/#/modules/_modules).
 
 ## Installation 💿
 
