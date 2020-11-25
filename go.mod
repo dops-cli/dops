@@ -4,25 +4,20 @@ go 1.15
 
 require (
 	github.com/BurntSushi/toml v0.3.1
-	github.com/VividCortex/ewma v1.1.1
-	github.com/acarl005/stripansi v0.0.0-20180116102854-5a71ef0e047d
 	github.com/c-bata/go-prompt v0.2.5
 	github.com/cpuguy83/go-md2man/v2 v2.0.0
 	github.com/flopp/go-findfont v0.0.0-20201114153133-e7393a00c15b
 	github.com/fogleman/gg v1.3.0
-	github.com/gdamore/tcell v1.4.0
 	github.com/go-ping/ping v0.0.0-20201115131931-3300c582a663
 	github.com/golang/freetype v0.0.0-20170609003504-e2365dfdc4a0 // indirect
-	github.com/mattn/go-colorable v0.1.8
+	github.com/mattn/go-colorable v0.1.8 // indirect
 	github.com/mattn/go-isatty v0.0.12
-	github.com/mattn/go-runewidth v0.0.9
 	github.com/pkg/browser v0.0.0-20201112035734-206646e67786
 	github.com/pterm/pterm v0.12.7
 	github.com/russross/blackfriday/v2 v2.1.0 // indirect
 	golang.org/x/crypto v0.0.0-20201124201722-c8d3bf9c5392 // indirect
 	golang.org/x/image v0.0.0-20200927104501-e162460cd6b5 // indirect
 	golang.org/x/net v0.0.0-20201110031124-69a78807bb2b // indirect
-	golang.org/x/sys v0.0.0-20201119102817-f84b799fce68
-	golang.org/x/text v0.3.3 // indirect
+	golang.org/x/sys v0.0.0-20201119102817-f84b799fce68 // indirect
 	gopkg.in/yaml.v2 v2.3.0
 )

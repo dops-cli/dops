@@ -14,7 +14,7 @@ You can set how many files should be downloaded concurrently..
 
 ### Options
 ```flags
---input FILE, -i FILE           |  load URLs from FILE (default: "urls.txt")  
+--input FILE, -i FILE           |  load URLs from FILE  
 --output DIR, -o DIR            |  save the downloaded files to DIR (default: current directory)  
 --concurrent NUMBER, -c NUMBER  |  downloads NUMBER files concurrently (default: 3)  
 ```

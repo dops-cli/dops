@@ -12,11 +12,20 @@
 - add pull request template
 
 ### Feat
+- add pipe output support for predefined regex
+- add pipe support
 - add image url to `predefined_regex_list` ([#64](https://github.com/dops-cli/dops/issues/64))
+- add pipe output support
+- add pipe support
 - integrate https://github.com/pterm/pterm ([#61](https://github.com/dops-cli/dops/issues/61))
+- add pipe support
+- integrate https://github.com/pterm/pterm
 
 ### Fix
 - rename `image url` to `image-url` in `predefined_regex_list` ([#65](https://github.com/dops-cli/dops/issues/65))
+
+### Refactor
+- remove progressbar dependency and update to github.com/pterm/pterm
 
 ### Style
 - refactor code styling

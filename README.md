@@ -62,7 +62,7 @@ Dops is structured in a way that it is very easy to add a new module. So everyon
 
 ## Features 🔥
 
-> Dops currently features `12`<!-- feature-count --> modules!
+> Dops currently features `{"Module":null}`<!-- feature-count --> modules!
 
 To see the documentation of these, go [here](https://dops-cli.com/#/modules/_modules).
 
