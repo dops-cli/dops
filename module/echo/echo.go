@@ -3,9 +3,10 @@ package echo
 import (
 	"strings"
 
+	"github.com/pterm/pterm"
+
 	"github.com/dops-cli/dops/categories"
 	"github.com/dops-cli/dops/cli"
-	"github.com/dops-cli/dops/say"
 	"github.com/dops-cli/dops/utils"
 )
 
@@ -30,7 +31,7 @@ func (Module) GetModuleCommands() []*cli.Command {
 					input = strings.Join(context.Args().Slice(), " ")
 				}
 
-				say.Text(input)
+				pterm.Println(input)
 
 				return nil
 			},

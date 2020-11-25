@@ -2,14 +2,15 @@ package bulkdownload
 
 import (
 	"bufio"
-	"github.com/dops-cli/dops/pipe"
-	"github.com/dops-cli/dops/utils"
 	"io"
 	"net/http"
 	"os"
 	"path/filepath"
 	"strings"
 	"sync"
+
+	"github.com/dops-cli/dops/pipe"
+	"github.com/dops-cli/dops/utils"
 
 	"github.com/pterm/pterm"
 
@@ -55,9 +56,7 @@ You can set how many files should be downloaded concurrently..`,
 
 				pterm.Info.Println("Downloading " + pterm.LightMagenta(len(urls)) + " files")
 
-				pb := pterm.DefaultProgressbar.WithTotal(len(urls)).WithTitle("Downloading").Start()
-
-				downloadMultipleFiles(urls, outputDir, concurrentDownloads, pb)
+				downloadMultipleFiles(urls, outputDir, concurrentDownloads)
 				wg.Wait()
 
 				mod := pipe.Module{
@@ -103,20 +102,18 @@ You can set how many files should be downloaded concurrently..`,
 	}
 }
 
-func downloadMultipleFiles(urls []string, outputDir string, concurrentDownloads int, pb *pterm.Progressbar) {
+func downloadMultipleFiles(urls []string, outputDir string, concurrentDownloads int) {
 
 	guard := make(chan struct{}, concurrentDownloads)
 
 	for index, URL := range urls {
 		guard <- struct{}{}
 		go func(URL string, outputDir string, index int) {
-			pb.Title = filepath.Base(URL)
 			err := downloadFile(URL, outputDir)
 			if err != nil {
 				pterm.Fatal.Println(err)
 			}
 			pterm.Success.Println("Downloaded " + URL)
-			pb.Increment()
 			<-guard
 		}(URL, outputDir, index)
 	}

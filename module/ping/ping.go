@@ -37,7 +37,7 @@ func (Module) GetModuleCommands() []*cli.Command {
 				pinger.Size = context.Int("size")
 				pinger.Source = context.String("source")
 
-				pb := pterm.DefaultProgressbar.WithTotal(count).WithTitle("Ping").Start()
+				pb, _ := pterm.DefaultProgressbar.WithTotal(count).WithTitle("Ping").Start()
 
 				// listen for ctrl-C signal
 				c := make(chan os.Signal, 1)

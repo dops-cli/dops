@@ -6,9 +6,10 @@ import (
 	"regexp"
 	"sort"
 
+	"github.com/pterm/pterm"
+
 	"github.com/dops-cli/dops/categories"
 	"github.com/dops-cli/dops/cli"
-	"github.com/dops-cli/dops/say"
 	"github.com/dops-cli/dops/utils"
 )
 
@@ -33,16 +34,14 @@ func (Module) GetModuleCommands() []*cli.Command {
 
 				sort.Sort(cli.CommandsByName(commands))
 
-				say.Info("Cleaning svg files...")
+				pterm.Info.Println("Cleaning svg files...")
 				_ = os.RemoveAll("./docs/_assets/example_svg")
 				_ = os.MkdirAll("./docs/_assets/example_svg", 0600)
 
-				say.Info("Generating documentation...")
+				pterm.Info.Println("Generating documentation...")
 
-				bar := say.ProgressBarFooter(int64(len(commands)))
 				for _, cmd := range commands {
-					bar.GetContainer().Log("Generating docs for: " + cmd.Name)
-					bar.Increment()
+					pterm.Info.Println("Generating docs for: " + cmd.Name)
 					doc := cli.CommandDocumentation(cmd, nil, 0)
 					err := ioutil.WriteFile("./docs/modules/"+cmd.Name+".md", []byte(doc), 0600)
 					if err != nil {
@@ -76,7 +75,7 @@ func (Module) GetModuleCommands() []*cli.Command {
 
 				utils.WriteFile(sidebarPath, []byte(newSidebarContent), false)
 
-				say.Success("Documentation successfully generated!")
+				pterm.Success.Println("Documentation successfully generated!")
 
 				return nil
 			},

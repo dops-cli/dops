@@ -5,10 +5,11 @@ import (
 	"sort"
 	"strconv"
 
+	"github.com/pterm/pterm"
+
 	"github.com/dops-cli/dops/cli"
 
 	"github.com/dops-cli/dops/categories"
-	"github.com/dops-cli/dops/say"
 )
 
 // Module returns the created module
@@ -62,7 +63,7 @@ With the 'markdown' flag, the output text is parsed in markdown. This is for exa
 					}
 					return nil
 				} else if count {
-					say.Text(strconv.Itoa(len(cli.ActiveModules) + 2))
+					pterm.Println(strconv.Itoa(len(cli.ActiveModules) + 2))
 					return nil
 				} else if gd {
 					// err := cli.GenerateDocs()
@@ -75,7 +76,7 @@ With the 'markdown' flag, the output text is parsed in markdown. This is for exa
 				sort.Strings(foundModules)
 
 				for _, name := range foundModules {
-					say.Text(name)
+					pterm.Println(name)
 				}
 
 				return nil
