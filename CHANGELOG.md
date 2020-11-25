@@ -2,16 +2,21 @@
 ## [Unreleased]
 
 ### Chore
+- **deps:** bump github.com/pterm/pterm from 0.5.0 to 0.5.1 ([#66](https://github.com/dops-cli/dops/issues/66))
 - **deps:** bump github.com/mattn/go-colorable from 0.1.7 to 0.1.8 ([#60](https://github.com/dops-cli/dops/issues/60))
 - **deps:** go mod tidy
 - **deps:**  update deps
 
 ### Docs
+- fix dead link to the modules in README.md ([#71](https://github.com/dops-cli/dops/issues/71))
 - add pull request template
 
 ### Feat
 - add image url to `predefined_regex_list` ([#64](https://github.com/dops-cli/dops/issues/64))
 - integrate https://github.com/pterm/pterm ([#61](https://github.com/dops-cli/dops/issues/61))
+
+### Fix
+- rename `image url` to `image-url` in `predefined_regex_list` ([#65](https://github.com/dops-cli/dops/issues/65))
 
 ### Style
 - refactor code styling
