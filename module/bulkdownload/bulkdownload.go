@@ -6,7 +6,11 @@ import (
 	"net/http"
 	"os"
 	"path/filepath"
+	"strings"
 	"sync"
+
+	"github.com/dops-cli/dops/pipe"
+	"github.com/dops-cli/dops/utils"
 
 	"github.com/pterm/pterm"
 
@@ -15,6 +19,7 @@ import (
 )
 
 var wg sync.WaitGroup
+var successList = make(map[string]bool)
 
 // Module returns the created module
 type Module struct{}
@@ -30,22 +35,42 @@ You can set how many files should be downloaded concurrently..`,
 			Category: categories.Web,
 			Aliases:  []string{"bd"},
 			Action: func(c *cli.Context) error {
-				inputFile := c.String("input")
+				input := utils.Input(c.String("input"))
 				outputDir := c.String("output")
 				concurrentDownloads := c.Int("concurrent")
 
-				urls, err := readLines(inputFile)
-				if err != nil {
-					return err
+				var urls []string
+
+				if strings.HasPrefix(input, `{"Module":[{"Name":`) {
+					scheme := pipe.GetSchemeFromJSON(input)
+					urls = scheme.GetLastModule().Todo
+				} else {
+					var err error
+					urls, err = readLines(input)
+					if err != nil {
+						return err
+					}
 				}
+
 				wg.Add(len(urls))
 
 				pterm.Info.Println("Downloading " + pterm.LightMagenta(len(urls)) + " files")
 
-				pb := pterm.DefaultProgressbar.WithTotal(len(urls)).WithTitle("Downloading").Start()
-
-				downloadMultipleFiles(urls, outputDir, concurrentDownloads, pb)
+				downloadMultipleFiles(urls, outputDir, concurrentDownloads)
 				wg.Wait()
+
+				mod := pipe.Module{
+					Name: c.Command.Name,
+				}
+				for s, b := range successList {
+					if b {
+						mod.Files.Finished.Success = append(mod.Files.Finished.Success, s)
+					} else {
+						mod.Files.Finished.Failed = append(mod.Files.Finished.Failed, s)
+					}
+				}
+				pipe.AddModule(mod)
+
 				return nil
 			},
 			Flags: []cli.Flag{
@@ -53,7 +78,6 @@ You can set how many files should be downloaded concurrently..`,
 					Name:    "input",
 					Aliases: []string{"i"},
 					Usage:   "load URLs from `FILE`",
-					Value:   "urls.txt",
 				},
 				&cli.StringFlag{
 					Name:        "output",
@@ -78,20 +102,18 @@ You can set how many files should be downloaded concurrently..`,
 	}
 }
 
-func downloadMultipleFiles(urls []string, outputDir string, concurrentDownloads int, pb *pterm.Progressbar) {
+func downloadMultipleFiles(urls []string, outputDir string, concurrentDownloads int) {
 
 	guard := make(chan struct{}, concurrentDownloads)
 
 	for index, URL := range urls {
 		guard <- struct{}{}
 		go func(URL string, outputDir string, index int) {
-			pb.Title = filepath.Base(URL)
 			err := downloadFile(URL, outputDir)
 			if err != nil {
 				pterm.Fatal.Println(err)
 			}
 			pterm.Success.Println("Downloaded " + URL)
-			pb.Increment()
 			<-guard
 		}(URL, outputDir, index)
 	}
@@ -121,7 +143,10 @@ func downloadFile(URL string, outputDir string) error {
 	defer response.Body.Close()
 
 	if response.StatusCode != http.StatusOK {
+		successList[URL] = false
 		pterm.Error.Println("Downloading " + pterm.Cyan(URL) + " failed with status code: " + pterm.Red(response.StatusCode))
+	} else {
+		successList[URL] = true
 	}
 
 	file := filepath.Base(URL)

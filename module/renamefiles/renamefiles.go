@@ -16,7 +16,6 @@ import (
 
 	"github.com/dops-cli/dops/categories"
 	"github.com/dops-cli/dops/cli"
-	"github.com/dops-cli/dops/say"
 	"github.com/dops-cli/dops/utils"
 )
 
@@ -79,7 +78,7 @@ The pattern could be a timestamp, or the hashcode of the file, among others.`,
 
 						err := os.Rename(renamed, originalName)
 						if err != nil {
-							say.Error("Could not restore file", renamed+".", "Did you rename/move/delete it? If not, then it was a duplicate.")
+							pterm.Error.Println("Could not restore file", renamed+".", "Did you rename/move/delete it? If not, then it was a duplicate.")
 						}
 						return nil
 					})

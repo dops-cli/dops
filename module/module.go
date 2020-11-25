@@ -56,7 +56,6 @@ var CliApp *cli.App
 
 // Run runs a specific module with specific flags
 func Run(flags []string) error {
-
 	pterm.Println("\033[2J")
 	clear := exec.Command("clear")
 	clear.Stdout = os.Stdout

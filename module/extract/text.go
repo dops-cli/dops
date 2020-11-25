@@ -1,6 +1,7 @@
 package extract
 
 import (
+	"github.com/dops-cli/dops/pipe"
 	"regexp"
 
 	"github.com/dops-cli/dops/cli"
@@ -33,6 +34,10 @@ func Text() *cli.Command {
 
 			foundStrings = r.FindAllString(input, -1)
 			utils.Output(output, foundStrings, appendFlag)
+
+			pipe.AddModule(pipe.Module{
+				Todo: foundStrings,
+			})
 
 			return nil
 		},

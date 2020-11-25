@@ -8,9 +8,10 @@ import (
 	"math/rand"
 	"time"
 
+	"github.com/pterm/pterm"
+
 	"github.com/dops-cli/dops/categories"
 	"github.com/dops-cli/dops/cli"
-	"github.com/dops-cli/dops/say"
 )
 
 // Module returns the created module
@@ -64,7 +65,7 @@ You can set the number of generations and the seed.`,
 					Action: func(context *cli.Context) error {
 						setSeed(context.String("seed"))
 						charset := context.String("chars")
-						say.Text(StringWithCharset(context.Int("length"), charset))
+						pterm.Println(StringWithCharset(context.Int("length"), charset))
 						return nil
 					},
 					Flags: []cli.Flag{&cli.StringFlag{
@@ -91,7 +92,7 @@ You can set the number of generations and the seed.`,
 						min := context.Int("min")
 						max := context.Int("max")
 
-						say.Text(rand.Intn(max+1-min) + min) //nolint:gosec
+						pterm.Println(rand.Intn(max+1-min) + min) //nolint:gosec
 						return nil
 					},
 					Flags: []cli.Flag{
@@ -116,7 +117,7 @@ func setSeed(seedString string) {
 		h := sha512.New() //nolint:gosec
 		_, err := io.WriteString(h, seedString)
 		if err != nil {
-			say.Fatal(err)
+			pterm.Fatal.Println(err)
 		}
 		rand.Seed(int64(binary.BigEndian.Uint64(h.Sum(nil))))
 	} else {

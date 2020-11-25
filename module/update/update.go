@@ -21,7 +21,6 @@ func (Module) GetModuleCommands() []*cli.Command {
 			Description: "NOTICE: This module is in progress. But you can already see it's usage for further use!",
 			Category:    categories.Dops,
 			Action: func(c *cli.Context) error {
-
 				cli.ShowVersion(c)
 
 				if runtime.GOOS == "windows" {

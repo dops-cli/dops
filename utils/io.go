@@ -10,7 +10,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/dops-cli/dops/say"
+	"github.com/pterm/pterm"
 )
 
 // ForEachLineInFile runs cb over all lines in a file
@@ -41,16 +41,16 @@ func WriteFile(path string, content []byte, append bool) {
 	if append {
 		f, err := os.OpenFile(path, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
 		if err != nil {
-			say.Fatal(err)
+			pterm.Fatal.Println(err)
 		}
 		defer f.Close()
 		if _, err := f.Write(content); err != nil {
-			say.Fatal(err)
+			pterm.Fatal.Println(err)
 		}
 	} else {
 		err := ioutil.WriteFile(path, content, 0600)
 		if err != nil {
-			say.Fatal(err)
+			pterm.Fatal.Println(err)
 		}
 	}
 
@@ -61,14 +61,14 @@ func Input(path string) string {
 	if path == "" {
 		bytes, err := ioutil.ReadAll(os.Stdin)
 		if err != nil {
-			say.Fatal(err)
+			pterm.Fatal.Println(err)
 		}
 		return string(bytes)
 	} else if strings.HasPrefix(path, "https://") || strings.HasPrefix(path, "http://") {
 		var client http.Client
 		resp, err := client.Get(path)
 		if err != nil {
-			say.Fatal(err)
+			pterm.Fatal.Println(err)
 		}
 		defer resp.Body.Close()
 
@@ -86,7 +86,7 @@ func Input(path string) string {
 
 	file, err := ioutil.ReadFile(path)
 	if err != nil {
-		say.Fatal(err)
+		pterm.Fatal.Println(err)
 	}
 	return string(file)
 }
@@ -95,12 +95,12 @@ func Input(path string) string {
 func Output(path string, lines []string, append bool) {
 	if path == "" {
 		for _, s := range lines {
-			say.Text(s)
+			fmt.Println(s)
 		}
 	} else {
 		var out string
 		for _, s := range lines {
-			out += fmt.Sprintf("%v", s) + "\n"
+			out += pterm.Sprintf("%v", s) + "\n"
 		}
 		WriteFile(path, []byte(out), append)
 	}

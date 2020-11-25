@@ -1,9 +1,11 @@
 package main
 
 import (
-	"io"
 	"os"
 	"sort"
+
+	"github.com/dops-cli/dops/pipe"
+	"github.com/dops-cli/dops/utils"
 
 	"github.com/pterm/pterm"
 
@@ -12,19 +14,22 @@ import (
 	"github.com/dops-cli/dops/interactive"
 	"github.com/dops-cli/dops/module"
 	"github.com/dops-cli/dops/module/modules"
-	"github.com/dops-cli/dops/say/color"
 )
 
 func init() {
-	cli.HelpPrinter = func(w io.Writer, templ string, data interface{}) {
-		cli.HelpPrinterCustom(color.Output, templ, data, nil)
-	}
+	// cli.HelpPrinter = func(w io.Writer, templ string, data interface{}) {
+	// 	cli.HelpPrinterCustom(color.Output, templ, data, nil)
+	// }
 	cli.VersionPrinter = func(c *cli.Context) {
 		pterm.Info.Println("dops is currently on version " + pterm.LightMagenta(c.App.Version) + "!")
 	}
 }
 
 func main() {
+
+	if pipe.IsPiped() {
+		utils.DisableStdout()
+	}
 
 	for _, f := range cli.ActiveGlobalFlags {
 		global.CliFlags = append(global.CliFlags, f.GetFlags()...)
@@ -58,7 +63,6 @@ func main() {
 			},
 		},
 		Copyright:              "(c) 2020 Marvin Wendt",
-		Writer:                 color.Output,
 		UseShortOptionHandling: true,
 	}
 
@@ -68,5 +72,9 @@ func main() {
 	err := module.CliApp.Run(os.Args)
 	if err != nil {
 		pterm.Fatal.Println(err)
+	}
+
+	if pipe.IsPiped() {
+		pipe.PipeModules.Print()
 	}
 }

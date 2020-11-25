@@ -2,6 +2,7 @@ package extract
 
 import (
 	"fmt"
+	"github.com/dops-cli/dops/pipe"
 	"regexp"
 
 	"github.com/dops-cli/dops/categories"
@@ -48,6 +49,10 @@ func GeneratePredefinedRegexCommands() []*cli.Command {
 
 				foundStrings = r.FindAllString(input, -1)
 				utils.Output(output, foundStrings, appendFlag)
+
+				pipe.AddModule(pipe.Module{
+					Todo: foundStrings,
+				})
 
 				return nil
 			},
