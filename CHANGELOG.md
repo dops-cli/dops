@@ -2,6 +2,7 @@
 ## [Unreleased]
 
 ### Chore
+- **deps:** bump github.com/pterm/pterm from 0.12.7 to 0.12.8
 - **deps:** bump github.com/pterm/pterm from 0.5.0 to 0.5.1 ([#66](https://github.com/dops-cli/dops/issues/66))
 - **deps:** bump github.com/mattn/go-colorable from 0.1.7 to 0.1.8 ([#60](https://github.com/dops-cli/dops/issues/60))
 - **deps:** go mod tidy
