@@ -4,7 +4,7 @@ go 1.15
 
 require (
 	github.com/BurntSushi/toml v0.3.1
-	github.com/c-bata/go-prompt v0.2.5
+	github.com/c-bata/go-prompt v0.2.6
 	github.com/cpuguy83/go-md2man/v2 v2.0.0
 	github.com/flopp/go-findfont v0.0.0-20201114153133-e7393a00c15b
 	github.com/fogleman/gg v1.3.0
