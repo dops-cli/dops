@@ -11,7 +11,7 @@ require (
 	github.com/go-ping/ping v0.0.0-20201115131931-3300c582a663
 	github.com/golang/freetype v0.0.0-20170609003504-e2365dfdc4a0 // indirect
 	github.com/mattn/go-colorable v0.1.8 // indirect
-	github.com/mattn/go-isatty v0.0.12
+	github.com/mattn/go-isatty v0.0.13
 	github.com/pkg/browser v0.0.0-20201112035734-206646e67786
 	github.com/pterm/pterm v0.12.8
 	github.com/russross/blackfriday/v2 v2.1.0 // indirect
